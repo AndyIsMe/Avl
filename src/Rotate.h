@@ -4,4 +4,5 @@
 
 Node *rotateRight(Node *node);
 Node *rotateLeft(Node *node);
+Node *rotateLeftRight(Node *node);
 #endif // _ROTATE_H

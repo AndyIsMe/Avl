@@ -32,6 +32,7 @@ extern void setUp(void);
 extern void tearDown(void);
 extern void test_rotateLeft(void);
 extern void test_rotateRight(void);
+extern void test_rotateLeftRight(void);
 
 
 /*=======Test Reset Option=====*/
@@ -49,6 +50,7 @@ int main(void)
   UnityBegin("test_Rotate.c");
   RUN_TEST(test_rotateLeft, 40);
   RUN_TEST(test_rotateRight, 67);
+  RUN_TEST(test_rotateLeftRight, 104);
 
   return (UnityEnd());
 }

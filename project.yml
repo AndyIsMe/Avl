@@ -17,7 +17,7 @@
     - test:all
 
 :release_build:
-  :output: TreeTraversal.exe
+  :output: Avl.exe
   :use_assembly: FALSE
 
 :environment:

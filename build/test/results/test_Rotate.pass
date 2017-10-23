@@ -9,11 +9,14 @@
 - :test: test_rotateRight
   :line: 67
   :message: ''
+- :test: test_rotateLeftRight
+  :line: 104
+  :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 2
-  :passed: 2
+  :total: 3
+  :passed: 3
   :failed: 0
   :ignored: 0
 :stdout: []
