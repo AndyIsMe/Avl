@@ -1,0 +1,25 @@
+---
+:source:
+  :path: test
+  :file: test_Insert.c
+:successes:
+- :test: test_Insert_20_with_10_as_root
+  :line: 30
+  :message: ''
+- :test: test_Insert_5_with_10_as_root
+  :line: 39
+  :message: ''
+- :test: test_Insert_20_with_10_as_root_N_15_as_child
+  :line: 48
+  :message: ''
+- :test: test_Insert_10_with_30_as_root_N_15_as_child
+  :line: 58
+  :message: ''
+:failures: []
+:ignores: []
+:counts:
+  :total: 4
+  :passed: 4
+  :failed: 0
+  :ignored: 0
+:stdout: []

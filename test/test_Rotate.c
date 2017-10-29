@@ -2,7 +2,7 @@
 #include "Rotate.h"
 
 Node node1,node5 , node10,node15,node20,node25,node30,node35,node40;
-Node node45,node50,node55;
+Node node45,node50,node55,node60;
 
 void initNode(Node *node,Node *left,Node *right,int bf){
   node->left = left;
@@ -24,6 +24,7 @@ void setUp(void)
   node45.data = 45;
   node50.data = 50;
   node55.data = 55;
+  node60.data = 60;
 }
 
 void tearDown(void)
@@ -124,5 +125,43 @@ void test_rotateLeftRight(void){
   TEST_ASSERT_EQUAL_PTR(&node40,node45.left);
   TEST_ASSERT_EQUAL_PTR(&node50,node45.right);
   TEST_ASSERT_EQUAL_PTR(&node45,node30.right);
+
+}
+
+/**
+---------rotaterightleft-----------------
+*         5                   5                   25
+*       /  \      RL"40"    /   \      RR"5"     /   \
+*      1   40  ------->   1     25  ----------> 5     40
+*          /                    / \            /  \   /
+*        25                    20 40          1   20  35
+*       /  \                     /
+*      20   35                  35
+*
+**/
+
+ void test_rotateRightLeft(void){
+     Node *root;
+       initNode(&node1,NULL,NULL,0);
+       initNode(&node20,NULL,NULL,0);
+       initNode(&node35,NULL,NULL,0);
+       initNode(&node25,&node20,&node35,0);
+       initNode(&node40,&node25,NULL,-2);
+       initNode(&node5,&node1,&node40,2);
+
+       root =  rotateRightLeft(&node5);
+       TEST_ASSERT_EQUAL_PTR(&node25,root);
+       TEST_ASSERT_EQUAL_PTR(NULL,node1.left);
+       TEST_ASSERT_EQUAL_PTR(NULL,node1.right);
+       TEST_ASSERT_EQUAL_PTR(NULL,node20.left);
+       TEST_ASSERT_EQUAL_PTR(NULL,node20.right);
+       TEST_ASSERT_EQUAL_PTR(NULL,node35.left);
+       TEST_ASSERT_EQUAL_PTR(NULL,node35.right);
+       TEST_ASSERT_EQUAL_PTR(&node1,node5.left);
+       TEST_ASSERT_EQUAL_PTR(&node20,node5.right);
+       TEST_ASSERT_EQUAL_PTR(&node40,node25.right);
+       TEST_ASSERT_EQUAL_PTR(&node5,node25.left);
+       TEST_ASSERT_EQUAL_PTR(&node35,node40.left);
+       TEST_ASSERT_EQUAL_PTR(NULL,node40.right);
 
 }

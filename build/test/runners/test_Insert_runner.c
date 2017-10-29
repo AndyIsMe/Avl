@@ -30,9 +30,10 @@ char* GlobalOrderError;
 /*=======External Functions This Runner Calls=====*/
 extern void setUp(void);
 extern void tearDown(void);
-extern void test_rotateLeft(void);
-extern void test_rotateRight(void);
-extern void test_rotateLeftRight(void);
+extern void test_Insert_20_with_10_as_root(void);
+extern void test_Insert_5_with_10_as_root(void);
+extern void test_Insert_20_with_10_as_root_N_15_as_child(void);
+extern void test_Insert_10_with_30_as_root_N_15_as_child(void);
 
 
 /*=======Test Reset Option=====*/
@@ -47,10 +48,11 @@ void resetTest(void)
 /*=======MAIN=====*/
 int main(void)
 {
-  UnityBegin("test_Rotate.c");
-  RUN_TEST(test_rotateLeft, 40);
-  RUN_TEST(test_rotateRight, 67);
-  RUN_TEST(test_rotateLeftRight, 104);
+  UnityBegin("test_Insert.c");
+  RUN_TEST(test_Insert_20_with_10_as_root, 30);
+  RUN_TEST(test_Insert_5_with_10_as_root, 39);
+  RUN_TEST(test_Insert_20_with_10_as_root_N_15_as_child, 48);
+  RUN_TEST(test_Insert_10_with_30_as_root_N_15_as_child, 58);
 
   return (UnityEnd());
 }

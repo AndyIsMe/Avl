@@ -10,6 +10,7 @@ struct Node {
   uint32_t data;
 };
 
+
 /*
 typedef struct StringNode StringNode;
 struct StringNode {
