@@ -1,8 +1,11 @@
 #include "unity.h"
 #include "Rotate.h"
+#include "Insert.h"
 
+Node *root;
 Node node1,node5 , node10,node15,node20,node25,node30,node35,node40;
 Node node45,node50,node55,node60;
+Node node100;
 
 void initNode(Node *node,Node *left,Node *right,int bf){
   node->left = left;
@@ -25,6 +28,7 @@ void setUp(void)
   node50.data = 50;
   node55.data = 55;
   node60.data = 60;
+  node100.data = 100;
 }
 
 void tearDown(void)
@@ -39,7 +43,7 @@ void tearDown(void)
  *
  */
  void test_rotateLeft(void)
- {   Node *root;
+ {
      initNode(&node25,NULL,NULL,0);
      initNode(&node40,NULL,NULL,0);
      initNode(&node30,&node25,&node40,0);
@@ -66,7 +70,7 @@ void tearDown(void)
  *
  */
 void test_rotateRight(void)
-{   Node *root;
+{
     initNode(&node5,NULL,NULL,0);
     initNode(&node20,NULL,NULL,0);
     initNode(&node10,&node5,&node20,0);
@@ -103,7 +107,7 @@ void test_rotateRight(void)
  */
 
 void test_rotateLeftRight(void){
-  Node *root;
+
   initNode(&node30,&node25,&node40,0);
   initNode(&node40,NULL,NULL,0);
   initNode(&node50,NULL,NULL,0);
@@ -141,7 +145,6 @@ void test_rotateLeftRight(void){
 **/
 
  void test_rotateRightLeft(void){
-     Node *root;
        initNode(&node1,NULL,NULL,0);
        initNode(&node20,NULL,NULL,0);
        initNode(&node35,NULL,NULL,0);

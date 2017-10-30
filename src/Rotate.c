@@ -5,19 +5,35 @@
 Node *rotateRight(Node *node){
 Node *root;
 root = node->left;
-if(node->left->right != NULL){
 node->left = node->left->right;
-}
 root->right = node;
 return root;
 }
 
-Node *rotateLeft(Node *node){
+
+/*
+Node *rotateLeftVer2(Node *node){
   Node *root;
   root = node->right;
+  if((node->balanceFactor == 2)&&(node->right->balanceFactor == 1 | 0){
   if(node->right->left != NULL){
     node->right = node->right->left;
   }
+  else{
+    node->right->balanceFactor -=1;
+  }
+}
+  else{
+    node->right->balanceFactor -=1;
+  }
+  root->left = node;
+  return root;
+}*/
+
+Node *rotateLeft(Node *node){
+  Node *root;
+  root = node->right;
+  node->right = node->right->left;
   root->left = node;
   return root;
 }

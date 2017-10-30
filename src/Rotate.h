@@ -6,4 +6,5 @@ Node *rotateRight(Node *node);
 Node *rotateLeft(Node *node);
 Node *rotateLeftRight(Node *node);
 Node *rotateRightLeft(Node *node);
+Node *rotateLeftVer2(Node *node);
 #endif // _ROTATE_H
