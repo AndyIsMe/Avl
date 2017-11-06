@@ -8,7 +8,7 @@
 
 Node node1,node5 , node10,node15,node20,node25,node30,node35,node40;
 
-Node node45,node50,node55,node60,node65;
+Node node45,node50,node55,node60,node65,node90;
 
 Node node100;
 
@@ -56,13 +56,13 @@ void setUp(void){
 
   node65.data = 65;
 
+  node90.data = 90;
+
   node100.data = 100;
 
 }
 
 void tearDown(void){}
-
-
 
 void test_Insert_20_with_10_as_root(void){
 
@@ -84,19 +84,27 @@ void test_Insert_20_with_10_as_root(void){
 
  ((void *)0)
 
- ), (UNITY_UINT)(39), UNITY_DISPLAY_STYLE_HEX64);
+ ), (UNITY_UINT)(48), UNITY_DISPLAY_STYLE_HEX64);
 
   UnityAssertEqualNumber((UNITY_INT64)((&node20)), (UNITY_INT64)((node10.right)), (
 
  ((void *)0)
 
- ), (UNITY_UINT)(40), UNITY_DISPLAY_STYLE_HEX64);
+ ), (UNITY_UINT)(49), UNITY_DISPLAY_STYLE_HEX64);
 
+  UnityAssertEqualNumber((UNITY_INT)((1)), (UNITY_INT)((node10.balanceFactor)), (
 
+ ((void *)0)
+
+ ), (UNITY_UINT)(50), UNITY_DISPLAY_STYLE_INT);
+
+  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node20.balanceFactor)), (
+
+ ((void *)0)
+
+ ), (UNITY_UINT)(51), UNITY_DISPLAY_STYLE_INT);
 
 }
-
-
 
 void test_Insert_5_with_10_as_root(void){
 
@@ -118,19 +126,29 @@ void test_Insert_5_with_10_as_root(void){
 
  ((void *)0)
 
- ), (UNITY_UINT)(48), UNITY_DISPLAY_STYLE_HEX64);
+ ), (UNITY_UINT)(65), UNITY_DISPLAY_STYLE_HEX64);
 
   UnityAssertEqualNumber((UNITY_INT64)((&node5)), (UNITY_INT64)((node10.left)), (
 
  ((void *)0)
 
- ), (UNITY_UINT)(49), UNITY_DISPLAY_STYLE_HEX64);
+ ), (UNITY_UINT)(66), UNITY_DISPLAY_STYLE_HEX64);
+
+  UnityAssertEqualNumber((UNITY_INT)((-1)), (UNITY_INT)((node10.balanceFactor)), (
+
+ ((void *)0)
+
+ ), (UNITY_UINT)(67), UNITY_DISPLAY_STYLE_INT);
+
+  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node5.balanceFactor)), (
+
+ ((void *)0)
+
+ ), (UNITY_UINT)(68), UNITY_DISPLAY_STYLE_INT);
 
 
 
 }
-
-
 
 void test_Insert_20_with_10_as_root_N_15_as_child(void){
 
@@ -144,31 +162,47 @@ void test_Insert_20_with_10_as_root_N_15_as_child(void){
 
   avl_Insert(&root,&node20);
 
-  UnityAssertEqualNumber((UNITY_INT64)((&node10)), (UNITY_INT64)((root)), (
+  UnityAssertEqualNumber((UNITY_INT64)((&node15)), (UNITY_INT64)((root)), (
 
  ((void *)0)
 
- ), (UNITY_UINT)(57), UNITY_DISPLAY_STYLE_HEX64);
+ ), (UNITY_UINT)(83), UNITY_DISPLAY_STYLE_HEX64);
 
-  UnityAssertEqualNumber((UNITY_INT64)((&node15)), (UNITY_INT64)((node10.right)), (
+  UnityAssertEqualNumber((UNITY_INT64)((&node10)), (UNITY_INT64)((node15.left)), (
 
  ((void *)0)
 
- ), (UNITY_UINT)(58), UNITY_DISPLAY_STYLE_HEX64);
+ ), (UNITY_UINT)(84), UNITY_DISPLAY_STYLE_HEX64);
 
   UnityAssertEqualNumber((UNITY_INT64)((&node20)), (UNITY_INT64)((node15.right)), (
 
  ((void *)0)
 
- ), (UNITY_UINT)(59), UNITY_DISPLAY_STYLE_HEX64);
+ ), (UNITY_UINT)(85), UNITY_DISPLAY_STYLE_HEX64);
+
+  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node10.balanceFactor)), (
+
+ ((void *)0)
+
+ ), (UNITY_UINT)(86), UNITY_DISPLAY_STYLE_INT);
+
+  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node15.balanceFactor)), (
+
+ ((void *)0)
+
+ ), (UNITY_UINT)(87), UNITY_DISPLAY_STYLE_INT);
+
+  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node20.balanceFactor)), (
+
+ ((void *)0)
+
+ ), (UNITY_UINT)(88), UNITY_DISPLAY_STYLE_INT);
 
 
 
 }
 
-
-
-void test_Insert_10_with_30_as_root_N_15_as_child(void){
+void test_Insert_10_with_30_15_expect_balance_tree(void){
 
   Node *root = &node30;
 
@@ -180,139 +214,57 @@ void test_Insert_10_with_30_as_root_N_15_as_child(void){
 
   avl_Insert(&root,&node10);
 
-  UnityAssertEqualNumber((UNITY_INT64)((&node30)), (UNITY_INT64)((root)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(67), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT64)((&node15)), (UNITY_INT64)((node30.left)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(68), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT64)((&node10)), (UNITY_INT64)((node15.left)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(69), UNITY_DISPLAY_STYLE_HEX64);
-
-
-
-}
-
-void test_avlBalanceRightTree_given_40_50_100_expect_a_balance_tree(void){
-
-  initNode(&node100,
-
-                   ((void *)0)
-
-                       ,
-
-                        ((void *)0)
-
-                            ,0);
-
-  initNode(&node50,
-
-                  ((void *)0)
-
-                      ,&node100,1);
-
-  initNode(&node40,
-
-                  ((void *)0)
-
-                      ,&node50,2);
-
-  Node *root = &node40;
-
-
-
-  avlBalanceRightTreeV1(&root);
-
-  UnityAssertEqualNumber((UNITY_INT64)((&node50)), (UNITY_INT64)((root)), (
+  UnityAssertEqualNumber((UNITY_INT64)((&node15)), (UNITY_INT64)((root)), (
 
  ((void *)0)
 
  ), (UNITY_UINT)(104), UNITY_DISPLAY_STYLE_HEX64);
 
-  UnityAssertEqualNumber((UNITY_INT64)((&node40)), (UNITY_INT64)((node50.left)), (
+  UnityAssertEqualNumber((UNITY_INT64)((&node10)), (UNITY_INT64)((node15.left)), (
 
  ((void *)0)
 
  ), (UNITY_UINT)(105), UNITY_DISPLAY_STYLE_HEX64);
 
-  UnityAssertEqualNumber((UNITY_INT64)((&node100)), (UNITY_INT64)((node50.right)), (
+  UnityAssertEqualNumber((UNITY_INT64)((&node30)), (UNITY_INT64)((node15.right)), (
 
  ((void *)0)
 
  ), (UNITY_UINT)(106), UNITY_DISPLAY_STYLE_HEX64);
 
-  UnityAssertEqualNumber((UNITY_INT64)((
+  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node10.balanceFactor)), (
 
  ((void *)0)
 
- )), (UNITY_INT64)((node40.left)), (
+ ), (UNITY_UINT)(107), UNITY_DISPLAY_STYLE_INT);
+
+  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node15.balanceFactor)), (
 
  ((void *)0)
 
- ), (UNITY_UINT)(107), UNITY_DISPLAY_STYLE_HEX64);
+ ), (UNITY_UINT)(108), UNITY_DISPLAY_STYLE_INT);
 
-  UnityAssertEqualNumber((UNITY_INT64)((
-
- ((void *)0)
-
- )), (UNITY_INT64)((node40.right)), (
+  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node30.balanceFactor)), (
 
  ((void *)0)
 
- ), (UNITY_UINT)(108), UNITY_DISPLAY_STYLE_HEX64);
+ ), (UNITY_UINT)(109), UNITY_DISPLAY_STYLE_INT);
 
-  UnityAssertEqualNumber((UNITY_INT64)((
 
- ((void *)0)
-
- )), (UNITY_INT64)((node100.left)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(109), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT64)((
-
- ((void *)0)
-
- )), (UNITY_INT64)((node100.right)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(110), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node50.balanceFactor)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(111), UNITY_DISPLAY_STYLE_INT);
-
-  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node40.balanceFactor)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(112), UNITY_DISPLAY_STYLE_INT);
-
-  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node100.balanceFactor)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(113), UNITY_DISPLAY_STYLE_INT);
 
 }
 
-void test_avlBalanceRightTree_given_40_50_100_45_expect_a_balance_tree(void){
+void test_avlInsert_given_40_50_add_100_expect_a_balance_tree(void){
 
-  initNode(&node45,
+  Node *root = &node40;
+
+  initNode(&node40,
+
+                  ((void *)0)
+
+                      ,&node50,1);
+
+  initNode(&node50,
 
                   ((void *)0)
 
@@ -322,7 +274,57 @@ void test_avlBalanceRightTree_given_40_50_100_45_expect_a_balance_tree(void){
 
                            ,0);
 
-  initNode(&node100,
+  avl_Insert(&root,&node100);
+
+  UnityAssertEqualNumber((UNITY_INT64)((&node50)), (UNITY_INT64)((root)), (
+
+ ((void *)0)
+
+ ), (UNITY_UINT)(125), UNITY_DISPLAY_STYLE_HEX64);
+
+  UnityAssertEqualNumber((UNITY_INT64)((&node40)), (UNITY_INT64)((node50.left)), (
+
+ ((void *)0)
+
+ ), (UNITY_UINT)(126), UNITY_DISPLAY_STYLE_HEX64);
+
+  UnityAssertEqualNumber((UNITY_INT64)((&node100)), (UNITY_INT64)((node50.right)), (
+
+ ((void *)0)
+
+ ), (UNITY_UINT)(127), UNITY_DISPLAY_STYLE_HEX64);
+
+  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node50.balanceFactor)), (
+
+ ((void *)0)
+
+ ), (UNITY_UINT)(128), UNITY_DISPLAY_STYLE_INT);
+
+  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node40.balanceFactor)), (
+
+ ((void *)0)
+
+ ), (UNITY_UINT)(129), UNITY_DISPLAY_STYLE_INT);
+
+  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node100.balanceFactor)), (
+
+ ((void *)0)
+
+ ), (UNITY_UINT)(130), UNITY_DISPLAY_STYLE_INT);
+
+}
+
+ void test_avlInsert_given_40_50_add_55_expect_rotate_left_for_a_balance_tree(void){
+
+   Node *root = &node40;
+
+   initNode(&node40,
+
+                   ((void *)0)
+
+                       ,&node50,1);
+
+   initNode(&node50,
 
                    ((void *)0)
 
@@ -332,1580 +334,942 @@ void test_avlBalanceRightTree_given_40_50_100_45_expect_a_balance_tree(void){
 
                             ,0);
 
-  initNode(&node50,&node45,&node100,0);
+   avl_Insert(&root,&node55);
 
-  initNode(&node40,
+   UnityAssertEqualNumber((UNITY_INT64)((&node50)), (UNITY_INT64)((root)), (
 
-                  ((void *)0)
+  ((void *)0)
 
-                      ,&node50,2);
+  ), (UNITY_UINT)(147), UNITY_DISPLAY_STYLE_HEX64);
 
-  Node *root = &node40;
+   UnityAssertEqualNumber((UNITY_INT64)((&node40)), (UNITY_INT64)((node50.left)), (
 
+  ((void *)0)
 
+  ), (UNITY_UINT)(148), UNITY_DISPLAY_STYLE_HEX64);
 
-  avlBalanceRightTreeV1(&root);
+   UnityAssertEqualNumber((UNITY_INT64)((&node55)), (UNITY_INT64)((node50.right)), (
 
-  UnityAssertEqualNumber((UNITY_INT64)((&node50)), (UNITY_INT64)((root)), (
+  ((void *)0)
 
- ((void *)0)
+  ), (UNITY_UINT)(149), UNITY_DISPLAY_STYLE_HEX64);
 
- ), (UNITY_UINT)(131), UNITY_DISPLAY_STYLE_HEX64);
+   UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node50.balanceFactor)), (
 
-  UnityAssertEqualNumber((UNITY_INT64)((&node40)), (UNITY_INT64)((node50.left)), (
+  ((void *)0)
 
- ((void *)0)
+  ), (UNITY_UINT)(150), UNITY_DISPLAY_STYLE_INT);
 
- ), (UNITY_UINT)(132), UNITY_DISPLAY_STYLE_HEX64);
+   UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node40.balanceFactor)), (
 
-  UnityAssertEqualNumber((UNITY_INT64)((&node100)), (UNITY_INT64)((node50.right)), (
+  ((void *)0)
 
- ((void *)0)
+  ), (UNITY_UINT)(151), UNITY_DISPLAY_STYLE_INT);
 
- ), (UNITY_UINT)(133), UNITY_DISPLAY_STYLE_HEX64);
+   UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node55.balanceFactor)), (
 
-  UnityAssertEqualNumber((UNITY_INT64)((
+  ((void *)0)
 
- ((void *)0)
+  ), (UNITY_UINT)(152), UNITY_DISPLAY_STYLE_INT);
 
- )), (UNITY_INT64)((node40.left)), (
+ }
 
- ((void *)0)
+ void test_avlInsert_given_40_50_add_45_expect_rotate_right_left_for_a_balance_tree(void){
 
- ), (UNITY_UINT)(134), UNITY_DISPLAY_STYLE_HEX64);
+   Node *root = &node40;
 
-  UnityAssertEqualNumber((UNITY_INT64)((&node45)), (UNITY_INT64)((node40.right)), (
+   initNode(&node40,
 
- ((void *)0)
+                   ((void *)0)
 
- ), (UNITY_UINT)(135), UNITY_DISPLAY_STYLE_HEX64);
+                       ,&node50,1);
 
-  UnityAssertEqualNumber((UNITY_INT64)((
+   initNode(&node50,
 
- ((void *)0)
+                   ((void *)0)
 
- )), (UNITY_INT64)((node100.left)), (
+                       ,
 
- ((void *)0)
+                        ((void *)0)
 
- ), (UNITY_UINT)(136), UNITY_DISPLAY_STYLE_HEX64);
+                            ,0);
 
-  UnityAssertEqualNumber((UNITY_INT64)((
+   avl_Insert(&root,&node45);
 
- ((void *)0)
+   UnityAssertEqualNumber((UNITY_INT64)((&node45)), (UNITY_INT64)((root)), (
 
- )), (UNITY_INT64)((node100.right)), (
+  ((void *)0)
 
- ((void *)0)
+  ), (UNITY_UINT)(169), UNITY_DISPLAY_STYLE_HEX64);
 
- ), (UNITY_UINT)(137), UNITY_DISPLAY_STYLE_HEX64);
+   UnityAssertEqualNumber((UNITY_INT64)((&node40)), (UNITY_INT64)((node45.left)), (
 
-  UnityAssertEqualNumber((UNITY_INT64)((
+  ((void *)0)
 
- ((void *)0)
+  ), (UNITY_UINT)(170), UNITY_DISPLAY_STYLE_HEX64);
 
- )), (UNITY_INT64)((node45.left)), (
+   UnityAssertEqualNumber((UNITY_INT64)((&node50)), (UNITY_INT64)((node45.right)), (
 
- ((void *)0)
+  ((void *)0)
 
- ), (UNITY_UINT)(138), UNITY_DISPLAY_STYLE_HEX64);
+  ), (UNITY_UINT)(171), UNITY_DISPLAY_STYLE_HEX64);
 
-  UnityAssertEqualNumber((UNITY_INT64)((
+   UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node50.balanceFactor)), (
 
- ((void *)0)
+  ((void *)0)
 
- )), (UNITY_INT64)((node45.right)), (
+  ), (UNITY_UINT)(172), UNITY_DISPLAY_STYLE_INT);
 
- ((void *)0)
+   UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node40.balanceFactor)), (
 
- ), (UNITY_UINT)(139), UNITY_DISPLAY_STYLE_HEX64);
+  ((void *)0)
 
-  UnityAssertEqualNumber((UNITY_INT)((-1)), (UNITY_INT)((node50.balanceFactor)), (
+  ), (UNITY_UINT)(173), UNITY_DISPLAY_STYLE_INT);
 
- ((void *)0)
+   UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node45.balanceFactor)), (
 
- ), (UNITY_UINT)(140), UNITY_DISPLAY_STYLE_INT);
+  ((void *)0)
 
-  UnityAssertEqualNumber((UNITY_INT)((1)), (UNITY_INT)((node40.balanceFactor)), (
+  ), (UNITY_UINT)(174), UNITY_DISPLAY_STYLE_INT);
 
- ((void *)0)
+ }
 
- ), (UNITY_UINT)(141), UNITY_DISPLAY_STYLE_INT);
+ void test_avlInsert_given_15_20_45_50_55_add_35_expect_rotate_right_left_for_a_balance_tree(void){
 
-  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node45.balanceFactor)), (
+   Node *root = &node20;
 
- ((void *)0)
+   initNode(&node20,&node15,&node50,1);
 
- ), (UNITY_UINT)(142), UNITY_DISPLAY_STYLE_INT);
+   initNode(&node50,&node45,&node55,0);
 
-  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node100.balanceFactor)), (
+   initNode(&node45,
 
- ((void *)0)
+                   ((void *)0)
 
- ), (UNITY_UINT)(143), UNITY_DISPLAY_STYLE_INT);
+                       ,
 
-}
+                        ((void *)0)
 
-void test_avlBalanceRightTreeV1_given_15_20_35_45_50_55_expect_a_balance_tree(void){
+                            ,0);
 
-  initNode(&node15,
+   initNode(&node55,
 
-                  ((void *)0)
+                   ((void *)0)
 
-                      ,
+                       ,
 
-                       ((void *)0)
+                        ((void *)0)
 
-                           ,0);
+                            ,0);
 
-  initNode(&node50,&node45,&node55,-1);
+   initNode(&node15,
 
-  initNode(&node45,&node35,
+                   ((void *)0)
 
-                          ((void *)0)
+                       ,
 
-                              ,-1);
+                        ((void *)0)
 
-  initNode(&node35,
+                            ,0);
 
-                  ((void *)0)
+   avl_Insert(&root,&node35);
 
-                      ,
+   UnityAssertEqualNumber((UNITY_INT64)((&node45)), (UNITY_INT64)((root)), (
 
-                       ((void *)0)
+  ((void *)0)
 
-                           ,0);
+  ), (UNITY_UINT)(203), UNITY_DISPLAY_STYLE_HEX64);
 
-  initNode(&node55,
+   UnityAssertEqualNumber((UNITY_INT64)((&node20)), (UNITY_INT64)((node45.left)), (
 
-                  ((void *)0)
+  ((void *)0)
 
-                      ,
+  ), (UNITY_UINT)(204), UNITY_DISPLAY_STYLE_HEX64);
 
-                       ((void *)0)
+   UnityAssertEqualNumber((UNITY_INT64)((&node50)), (UNITY_INT64)((node45.right)), (
 
-                           ,0);
+  ((void *)0)
 
-  initNode(&node20,&node15,&node50,2);
+  ), (UNITY_UINT)(205), UNITY_DISPLAY_STYLE_HEX64);
 
-  Node *root = &node20;
+   UnityAssertEqualNumber((UNITY_INT64)((&node15)), (UNITY_INT64)((node20.left)), (
 
+  ((void *)0)
 
+  ), (UNITY_UINT)(206), UNITY_DISPLAY_STYLE_HEX64);
 
-  checkRotation(bf);
+   UnityAssertEqualNumber((UNITY_INT64)((&node35)), (UNITY_INT64)((node20.right)), (
 
-  if(bf == 2){
+  ((void *)0)
 
-    avlBalanceRightTreeV1(&root);
+  ), (UNITY_UINT)(207), UNITY_DISPLAY_STYLE_HEX64);
 
-              }
+   UnityAssertEqualNumber((UNITY_INT64)((
 
-  else if(bf == -2){
+  ((void *)0)
 
-    avlBalanceLeftTreeV1(&root);
+  )), (UNITY_INT64)((node50.left)), (
 
-                    }
+  ((void *)0)
 
-  UnityAssertEqualNumber((UNITY_INT64)((&node45)), (UNITY_INT64)((root)), (
+  ), (UNITY_UINT)(208), UNITY_DISPLAY_STYLE_HEX64);
 
- ((void *)0)
+   UnityAssertEqualNumber((UNITY_INT64)((&node55)), (UNITY_INT64)((node50.right)), (
 
- ), (UNITY_UINT)(180), UNITY_DISPLAY_STYLE_HEX64);
+  ((void *)0)
 
-  UnityAssertEqualNumber((UNITY_INT64)((
+  ), (UNITY_UINT)(209), UNITY_DISPLAY_STYLE_HEX64);
 
- ((void *)0)
+   UnityAssertEqualNumber((UNITY_INT64)((
 
- )), (UNITY_INT64)((node50.left)), (
+  ((void *)0)
 
- ((void *)0)
+  )), (UNITY_INT64)((node15.left)), (
 
- ), (UNITY_UINT)(181), UNITY_DISPLAY_STYLE_HEX64);
+  ((void *)0)
 
-  UnityAssertEqualNumber((UNITY_INT64)((&node55)), (UNITY_INT64)((node50.right)), (
+  ), (UNITY_UINT)(210), UNITY_DISPLAY_STYLE_HEX64);
 
- ((void *)0)
+   UnityAssertEqualNumber((UNITY_INT64)((
 
- ), (UNITY_UINT)(182), UNITY_DISPLAY_STYLE_HEX64);
+  ((void *)0)
 
-  UnityAssertEqualNumber((UNITY_INT64)((
+  )), (UNITY_INT64)((node15.right)), (
 
- ((void *)0)
+  ((void *)0)
 
- )), (UNITY_INT64)((node55.left)), (
+  ), (UNITY_UINT)(211), UNITY_DISPLAY_STYLE_HEX64);
 
- ((void *)0)
+   UnityAssertEqualNumber((UNITY_INT64)((
 
- ), (UNITY_UINT)(183), UNITY_DISPLAY_STYLE_HEX64);
+  ((void *)0)
 
-  UnityAssertEqualNumber((UNITY_INT64)((
+  )), (UNITY_INT64)((node35.left)), (
 
- ((void *)0)
+  ((void *)0)
 
- )), (UNITY_INT64)((node55.right)), (
+  ), (UNITY_UINT)(212), UNITY_DISPLAY_STYLE_HEX64);
 
- ((void *)0)
+   UnityAssertEqualNumber((UNITY_INT64)((
 
- ), (UNITY_UINT)(184), UNITY_DISPLAY_STYLE_HEX64);
+  ((void *)0)
 
-  UnityAssertEqualNumber((UNITY_INT64)((
+  )), (UNITY_INT64)((node35.right)), (
 
- ((void *)0)
+  ((void *)0)
 
- )), (UNITY_INT64)((node35.left)), (
+  ), (UNITY_UINT)(213), UNITY_DISPLAY_STYLE_HEX64);
 
- ((void *)0)
+   UnityAssertEqualNumber((UNITY_INT64)((
 
- ), (UNITY_UINT)(185), UNITY_DISPLAY_STYLE_HEX64);
+  ((void *)0)
 
-  UnityAssertEqualNumber((UNITY_INT64)((
+  )), (UNITY_INT64)((node55.left)), (
 
- ((void *)0)
+  ((void *)0)
 
- )), (UNITY_INT64)((node35.right)), (
+  ), (UNITY_UINT)(214), UNITY_DISPLAY_STYLE_HEX64);
 
- ((void *)0)
+   UnityAssertEqualNumber((UNITY_INT64)((
 
- ), (UNITY_UINT)(186), UNITY_DISPLAY_STYLE_HEX64);
+  ((void *)0)
 
-  UnityAssertEqualNumber((UNITY_INT64)((
+  )), (UNITY_INT64)((node55.right)), (
 
- ((void *)0)
+  ((void *)0)
 
- )), (UNITY_INT64)((node15.left)), (
+  ), (UNITY_UINT)(215), UNITY_DISPLAY_STYLE_HEX64);
 
- ((void *)0)
+   UnityAssertEqualNumber((UNITY_INT)((1)), (UNITY_INT)((node50.balanceFactor)), (
 
- ), (UNITY_UINT)(187), UNITY_DISPLAY_STYLE_HEX64);
+  ((void *)0)
 
-  UnityAssertEqualNumber((UNITY_INT64)((
+  ), (UNITY_UINT)(216), UNITY_DISPLAY_STYLE_INT);
 
- ((void *)0)
+   UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node55.balanceFactor)), (
 
- )), (UNITY_INT64)((node15.right)), (
+  ((void *)0)
 
- ((void *)0)
+  ), (UNITY_UINT)(217), UNITY_DISPLAY_STYLE_INT);
 
- ), (UNITY_UINT)(188), UNITY_DISPLAY_STYLE_HEX64);
+   UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node45.balanceFactor)), (
 
-  UnityAssertEqualNumber((UNITY_INT64)((&node15)), (UNITY_INT64)((node20.left)), (
+  ((void *)0)
 
- ((void *)0)
+  ), (UNITY_UINT)(218), UNITY_DISPLAY_STYLE_INT);
 
- ), (UNITY_UINT)(189), UNITY_DISPLAY_STYLE_HEX64);
+   UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node35.balanceFactor)), (
 
-  UnityAssertEqualNumber((UNITY_INT64)((&node35)), (UNITY_INT64)((node20.right)), (
+  ((void *)0)
 
- ((void *)0)
+  ), (UNITY_UINT)(219), UNITY_DISPLAY_STYLE_INT);
 
- ), (UNITY_UINT)(190), UNITY_DISPLAY_STYLE_HEX64);
+   UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node20.balanceFactor)), (
 
-  UnityAssertEqualNumber((UNITY_INT64)((&node20)), (UNITY_INT64)((node45.left)), (
+  ((void *)0)
 
- ((void *)0)
+  ), (UNITY_UINT)(220), UNITY_DISPLAY_STYLE_INT);
 
- ), (UNITY_UINT)(191), UNITY_DISPLAY_STYLE_HEX64);
+   UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node15.balanceFactor)), (
 
-  UnityAssertEqualNumber((UNITY_INT64)((&node50)), (UNITY_INT64)((node45.right)), (
+  ((void *)0)
 
- ((void *)0)
+  ), (UNITY_UINT)(221), UNITY_DISPLAY_STYLE_INT);
 
- ), (UNITY_UINT)(192), UNITY_DISPLAY_STYLE_HEX64);
+ }
 
-  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node15.balanceFactor)), (
+ void test_avlInsert_given_15_20_25_40_55_add_35_expect_rotate_right_left_for_a_balance_tree(void){
 
- ((void *)0)
+   Node *root = &node20;
 
- ), (UNITY_UINT)(193), UNITY_DISPLAY_STYLE_INT);
+   initNode(&node20,&node15,&node40,1);
 
-  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node20.balanceFactor)), (
+   initNode(&node40,&node25,&node55,0);
 
- ((void *)0)
+   initNode(&node25,
 
- ), (UNITY_UINT)(194), UNITY_DISPLAY_STYLE_INT);
+                   ((void *)0)
 
-  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node35.balanceFactor)), (
+                       ,
 
- ((void *)0)
+                        ((void *)0)
 
- ), (UNITY_UINT)(195), UNITY_DISPLAY_STYLE_INT);
+                            ,0);
 
-  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node45.balanceFactor)), (
+   initNode(&node55,
 
- ((void *)0)
+                   ((void *)0)
 
- ), (UNITY_UINT)(196), UNITY_DISPLAY_STYLE_INT);
+                       ,
 
-  UnityAssertEqualNumber((UNITY_INT)((1)), (UNITY_INT)((node50.balanceFactor)), (
+                        ((void *)0)
 
- ((void *)0)
+                            ,0);
 
- ), (UNITY_UINT)(197), UNITY_DISPLAY_STYLE_INT);
+   initNode(&node15,
 
-  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node55.balanceFactor)), (
+                   ((void *)0)
 
- ((void *)0)
+                       ,
 
- ), (UNITY_UINT)(198), UNITY_DISPLAY_STYLE_INT);
+                        ((void *)0)
 
-}
+                            ,0);
 
-void test_avlBalanceRightTreeV1_given_15_20_30_35_40_45_55_expect_a_balance_tree(void){
+   avl_Insert(&root,&node35);
 
-  initNode(&node15,
+   UnityAssertEqualNumber((UNITY_INT64)((&node25)), (UNITY_INT64)((root)), (
 
-                  ((void *)0)
+  ((void *)0)
 
-                      ,
+  ), (UNITY_UINT)(251), UNITY_DISPLAY_STYLE_HEX64);
 
-                       ((void *)0)
+   UnityAssertEqualNumber((UNITY_INT64)((&node20)), (UNITY_INT64)((node25.left)), (
 
-                           ,0);
+  ((void *)0)
 
-  initNode(&node30,
+  ), (UNITY_UINT)(252), UNITY_DISPLAY_STYLE_HEX64);
 
-                  ((void *)0)
+   UnityAssertEqualNumber((UNITY_INT64)((&node40)), (UNITY_INT64)((node25.right)), (
 
-                      ,
+  ((void *)0)
 
-                       ((void *)0)
+  ), (UNITY_UINT)(253), UNITY_DISPLAY_STYLE_HEX64);
 
-                           ,0);
+   UnityAssertEqualNumber((UNITY_INT64)((&node35)), (UNITY_INT64)((node40.left)), (
 
-  initNode(&node40,
+  ((void *)0)
 
-                  ((void *)0)
+  ), (UNITY_UINT)(254), UNITY_DISPLAY_STYLE_HEX64);
 
-                      ,
+   UnityAssertEqualNumber((UNITY_INT64)((&node55)), (UNITY_INT64)((node40.right)), (
 
-                       ((void *)0)
+  ((void *)0)
 
-                           ,0);
+  ), (UNITY_UINT)(255), UNITY_DISPLAY_STYLE_HEX64);
 
-  initNode(&node55,
+   UnityAssertEqualNumber((UNITY_INT64)((&node15)), (UNITY_INT64)((node20.left)), (
 
-                  ((void *)0)
+  ((void *)0)
 
-                      ,
+  ), (UNITY_UINT)(256), UNITY_DISPLAY_STYLE_HEX64);
 
-                       ((void *)0)
+   UnityAssertEqualNumber((UNITY_INT64)((
 
-                           ,0);
+  ((void *)0)
 
-  initNode(&node35,&node30,&node40,0);
+  )), (UNITY_INT64)((node20.right)), (
 
-  initNode(&node45,&node35,&node55,-1);
+  ((void *)0)
 
-  initNode(&node20,&node15,&node45,+2);
+  ), (UNITY_UINT)(257), UNITY_DISPLAY_STYLE_HEX64);
 
-  Node *root = &node20;
+   UnityAssertEqualNumber((UNITY_INT64)((
 
+  ((void *)0)
 
+  )), (UNITY_INT64)((node15.left)), (
 
-  avlBalanceRightTreeV1(&root);
+  ((void *)0)
 
-  UnityAssertEqualNumber((UNITY_INT64)((&node35)), (UNITY_INT64)((root)), (
+  ), (UNITY_UINT)(258), UNITY_DISPLAY_STYLE_HEX64);
 
- ((void *)0)
+   UnityAssertEqualNumber((UNITY_INT64)((
 
- ), (UNITY_UINT)(230), UNITY_DISPLAY_STYLE_HEX64);
+  ((void *)0)
 
-  UnityAssertEqualNumber((UNITY_INT64)((
+  )), (UNITY_INT64)((node15.right)), (
 
- ((void *)0)
+  ((void *)0)
 
- )), (UNITY_INT64)((node55.left)), (
+  ), (UNITY_UINT)(259), UNITY_DISPLAY_STYLE_HEX64);
 
- ((void *)0)
+   UnityAssertEqualNumber((UNITY_INT64)((
 
- ), (UNITY_UINT)(231), UNITY_DISPLAY_STYLE_HEX64);
+  ((void *)0)
 
-  UnityAssertEqualNumber((UNITY_INT64)((
+  )), (UNITY_INT64)((node35.left)), (
 
- ((void *)0)
+  ((void *)0)
 
- )), (UNITY_INT64)((node55.right)), (
+  ), (UNITY_UINT)(260), UNITY_DISPLAY_STYLE_HEX64);
 
- ((void *)0)
+   UnityAssertEqualNumber((UNITY_INT64)((
 
- ), (UNITY_UINT)(232), UNITY_DISPLAY_STYLE_HEX64);
+  ((void *)0)
 
-  UnityAssertEqualNumber((UNITY_INT64)((
+  )), (UNITY_INT64)((node35.right)), (
 
- ((void *)0)
+  ((void *)0)
 
- )), (UNITY_INT64)((node40.left)), (
+  ), (UNITY_UINT)(261), UNITY_DISPLAY_STYLE_HEX64);
 
- ((void *)0)
+   UnityAssertEqualNumber((UNITY_INT64)((
 
- ), (UNITY_UINT)(233), UNITY_DISPLAY_STYLE_HEX64);
+  ((void *)0)
 
-  UnityAssertEqualNumber((UNITY_INT64)((
+  )), (UNITY_INT64)((node55.left)), (
 
- ((void *)0)
+  ((void *)0)
 
- )), (UNITY_INT64)((node40.right)), (
+  ), (UNITY_UINT)(262), UNITY_DISPLAY_STYLE_HEX64);
 
- ((void *)0)
+   UnityAssertEqualNumber((UNITY_INT64)((
 
- ), (UNITY_UINT)(234), UNITY_DISPLAY_STYLE_HEX64);
+  ((void *)0)
 
-  UnityAssertEqualNumber((UNITY_INT64)((
+  )), (UNITY_INT64)((node55.right)), (
 
- ((void *)0)
+  ((void *)0)
 
- )), (UNITY_INT64)((node30.left)), (
+  ), (UNITY_UINT)(263), UNITY_DISPLAY_STYLE_HEX64);
 
- ((void *)0)
+   UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node40.balanceFactor)), (
 
- ), (UNITY_UINT)(235), UNITY_DISPLAY_STYLE_HEX64);
+  ((void *)0)
 
-  UnityAssertEqualNumber((UNITY_INT64)((
+  ), (UNITY_UINT)(264), UNITY_DISPLAY_STYLE_INT);
 
- ((void *)0)
+   UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node55.balanceFactor)), (
 
- )), (UNITY_INT64)((node30.right)), (
+  ((void *)0)
 
- ((void *)0)
+  ), (UNITY_UINT)(265), UNITY_DISPLAY_STYLE_INT);
 
- ), (UNITY_UINT)(236), UNITY_DISPLAY_STYLE_HEX64);
+   UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node35.balanceFactor)), (
 
-  UnityAssertEqualNumber((UNITY_INT64)((
+  ((void *)0)
 
- ((void *)0)
+  ), (UNITY_UINT)(266), UNITY_DISPLAY_STYLE_INT);
 
- )), (UNITY_INT64)((node15.left)), (
+   UnityAssertEqualNumber((UNITY_INT)((-1)), (UNITY_INT)((node20.balanceFactor)), (
 
- ((void *)0)
+  ((void *)0)
 
- ), (UNITY_UINT)(237), UNITY_DISPLAY_STYLE_HEX64);
+  ), (UNITY_UINT)(267), UNITY_DISPLAY_STYLE_INT);
 
-  UnityAssertEqualNumber((UNITY_INT64)((
+   UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node15.balanceFactor)), (
 
- ((void *)0)
+  ((void *)0)
 
- )), (UNITY_INT64)((node15.right)), (
+  ), (UNITY_UINT)(268), UNITY_DISPLAY_STYLE_INT);
 
- ((void *)0)
+   UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node25.balanceFactor)), (
 
- ), (UNITY_UINT)(238), UNITY_DISPLAY_STYLE_HEX64);
+  ((void *)0)
 
-  UnityAssertEqualNumber((UNITY_INT64)((&node15)), (UNITY_INT64)((node20.left)), (
+  ), (UNITY_UINT)(269), UNITY_DISPLAY_STYLE_INT);
 
- ((void *)0)
+ }
 
- ), (UNITY_UINT)(239), UNITY_DISPLAY_STYLE_HEX64);
+ void test_avlInsert_given_50_60_add_40_expect_rotate_right_for_a_balance_tree(void){
 
-  UnityAssertEqualNumber((UNITY_INT64)((&node30)), (UNITY_INT64)((node20.right)), (
+   initNode(&node60,&node50,
 
- ((void *)0)
+                           ((void *)0)
 
- ), (UNITY_UINT)(240), UNITY_DISPLAY_STYLE_HEX64);
+                               ,-1);
 
-  UnityAssertEqualNumber((UNITY_INT64)((&node40)), (UNITY_INT64)((node45.left)), (
+   initNode(&node50,
 
- ((void *)0)
+                   ((void *)0)
 
- ), (UNITY_UINT)(241), UNITY_DISPLAY_STYLE_HEX64);
+                       ,
 
-  UnityAssertEqualNumber((UNITY_INT64)((&node55)), (UNITY_INT64)((node45.right)), (
+                        ((void *)0)
 
- ((void *)0)
+                            ,0);
 
- ), (UNITY_UINT)(242), UNITY_DISPLAY_STYLE_HEX64);
+   Node *root = &node60;
 
-  UnityAssertEqualNumber((UNITY_INT64)((&node20)), (UNITY_INT64)((node35.left)), (
+   avl_Insert(&root,&node40);
 
- ((void *)0)
+   UnityAssertEqualNumber((UNITY_INT64)((&node50)), (UNITY_INT64)((root)), (
 
- ), (UNITY_UINT)(243), UNITY_DISPLAY_STYLE_HEX64);
+  ((void *)0)
 
-  UnityAssertEqualNumber((UNITY_INT64)((&node45)), (UNITY_INT64)((node35.right)), (
+  ), (UNITY_UINT)(284), UNITY_DISPLAY_STYLE_HEX64);
 
- ((void *)0)
+   UnityAssertEqualNumber((UNITY_INT64)((&node40)), (UNITY_INT64)((node50.left)), (
 
- ), (UNITY_UINT)(244), UNITY_DISPLAY_STYLE_HEX64);
+  ((void *)0)
 
-  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node15.balanceFactor)), (
+  ), (UNITY_UINT)(285), UNITY_DISPLAY_STYLE_HEX64);
 
- ((void *)0)
+   UnityAssertEqualNumber((UNITY_INT64)((&node60)), (UNITY_INT64)((node50.right)), (
 
- ), (UNITY_UINT)(245), UNITY_DISPLAY_STYLE_INT);
+  ((void *)0)
 
-  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node20.balanceFactor)), (
+  ), (UNITY_UINT)(286), UNITY_DISPLAY_STYLE_HEX64);
 
- ((void *)0)
+   UnityAssertEqualNumber((UNITY_INT64)((
 
- ), (UNITY_UINT)(246), UNITY_DISPLAY_STYLE_INT);
+  ((void *)0)
 
-  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node30.balanceFactor)), (
+  )), (UNITY_INT64)((node40.left)), (
 
- ((void *)0)
+  ((void *)0)
 
- ), (UNITY_UINT)(247), UNITY_DISPLAY_STYLE_INT);
+  ), (UNITY_UINT)(287), UNITY_DISPLAY_STYLE_HEX64);
 
-  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node35.balanceFactor)), (
+   UnityAssertEqualNumber((UNITY_INT64)((
 
- ((void *)0)
+  ((void *)0)
 
- ), (UNITY_UINT)(248), UNITY_DISPLAY_STYLE_INT);
+  )), (UNITY_INT64)((node40.right)), (
 
-  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node40.balanceFactor)), (
+  ((void *)0)
 
- ((void *)0)
+  ), (UNITY_UINT)(288), UNITY_DISPLAY_STYLE_HEX64);
 
- ), (UNITY_UINT)(249), UNITY_DISPLAY_STYLE_INT);
+   UnityAssertEqualNumber((UNITY_INT64)((
 
-  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node45.balanceFactor)), (
+  ((void *)0)
 
- ((void *)0)
+  )), (UNITY_INT64)((node60.left)), (
 
- ), (UNITY_UINT)(250), UNITY_DISPLAY_STYLE_INT);
+  ((void *)0)
 
-  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node55.balanceFactor)), (
+  ), (UNITY_UINT)(289), UNITY_DISPLAY_STYLE_HEX64);
 
- ((void *)0)
+   UnityAssertEqualNumber((UNITY_INT64)((
 
- ), (UNITY_UINT)(251), UNITY_DISPLAY_STYLE_INT);
+  ((void *)0)
 
-}
+  )), (UNITY_INT64)((node60.right)), (
 
-void test_avlBalanceRightTreeV1_given_15_20_35_40_45_55_expect_a_balance_tree(void){
+  ((void *)0)
 
-  initNode(&node15,
+  ), (UNITY_UINT)(290), UNITY_DISPLAY_STYLE_HEX64);
 
-                  ((void *)0)
+   UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node50.balanceFactor)), (
 
-                      ,
+  ((void *)0)
 
-                       ((void *)0)
+  ), (UNITY_UINT)(291), UNITY_DISPLAY_STYLE_INT);
 
-                           ,0);
+   UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node40.balanceFactor)), (
 
-  initNode(&node35,
+  ((void *)0)
 
-                  ((void *)0)
+  ), (UNITY_UINT)(292), UNITY_DISPLAY_STYLE_INT);
 
-                      ,
+   UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node60.balanceFactor)), (
 
-                       ((void *)0)
+  ((void *)0)
 
-                           ,0);
+  ), (UNITY_UINT)(293), UNITY_DISPLAY_STYLE_INT);
 
-  initNode(&node55,
+ }
 
-                  ((void *)0)
+ void test_avlInsert_given_10_40_45_60_65_add_50_expect_rotate_left_right_a_balance_tree(void){
 
-                      ,
+   initNode(&node60,&node40,&node65,-1);
 
-                       ((void *)0)
+   initNode(&node40,&node10,&node45,0);
 
-                           ,0);
+   initNode(&node45,
 
-  initNode(&node25,
+                   ((void *)0)
 
-                  ((void *)0)
+                       ,
 
-                      ,&node35,1);
+                        ((void *)0)
 
-  initNode(&node40,&node25,&node55,-1);
+                            ,0);
 
-  initNode(&node20,&node15,&node40,+2);
+   initNode(&node10,
 
-  Node *root = &node20;
+                   ((void *)0)
 
+                       ,
 
+                        ((void *)0)
 
-  avlBalanceRightTreeV1(&root);
+                            ,0);
 
-  UnityAssertEqualNumber((UNITY_INT64)((&node25)), (UNITY_INT64)((root)), (
+   initNode(&node65,
 
- ((void *)0)
+                   ((void *)0)
 
- ), (UNITY_UINT)(283), UNITY_DISPLAY_STYLE_HEX64);
+                       ,
 
-  UnityAssertEqualNumber((UNITY_INT64)((
+                        ((void *)0)
 
- ((void *)0)
+                            ,0);
 
- )), (UNITY_INT64)((node55.left)), (
+   Node *root = &node60;
 
- ((void *)0)
 
- ), (UNITY_UINT)(284), UNITY_DISPLAY_STYLE_HEX64);
 
-  UnityAssertEqualNumber((UNITY_INT64)((
+   avl_Insert(&root,&node50);
 
- ((void *)0)
+   UnityAssertEqualNumber((UNITY_INT64)((&node45)), (UNITY_INT64)((root)), (
 
- )), (UNITY_INT64)((node55.right)), (
+  ((void *)0)
 
- ((void *)0)
+  ), (UNITY_UINT)(322), UNITY_DISPLAY_STYLE_HEX64);
 
- ), (UNITY_UINT)(285), UNITY_DISPLAY_STYLE_HEX64);
+   UnityAssertEqualNumber((UNITY_INT64)((&node40)), (UNITY_INT64)((node45.left)), (
 
-  UnityAssertEqualNumber((UNITY_INT64)((
+  ((void *)0)
 
- ((void *)0)
+  ), (UNITY_UINT)(323), UNITY_DISPLAY_STYLE_HEX64);
 
- )), (UNITY_INT64)((node35.left)), (
+   UnityAssertEqualNumber((UNITY_INT64)((&node60)), (UNITY_INT64)((node45.right)), (
 
- ((void *)0)
+  ((void *)0)
 
- ), (UNITY_UINT)(286), UNITY_DISPLAY_STYLE_HEX64);
+  ), (UNITY_UINT)(324), UNITY_DISPLAY_STYLE_HEX64);
 
-  UnityAssertEqualNumber((UNITY_INT64)((
+   UnityAssertEqualNumber((UNITY_INT64)((&node10)), (UNITY_INT64)((node40.left)), (
 
- ((void *)0)
+  ((void *)0)
 
- )), (UNITY_INT64)((node35.right)), (
+  ), (UNITY_UINT)(325), UNITY_DISPLAY_STYLE_HEX64);
 
- ((void *)0)
+   UnityAssertEqualNumber((UNITY_INT64)((&node50)), (UNITY_INT64)((node60.left)), (
 
- ), (UNITY_UINT)(287), UNITY_DISPLAY_STYLE_HEX64);
+  ((void *)0)
 
-  UnityAssertEqualNumber((UNITY_INT64)((
+  ), (UNITY_UINT)(326), UNITY_DISPLAY_STYLE_HEX64);
 
- ((void *)0)
+   UnityAssertEqualNumber((UNITY_INT64)((&node65)), (UNITY_INT64)((node60.right)), (
 
- )), (UNITY_INT64)((node15.left)), (
+  ((void *)0)
 
- ((void *)0)
+  ), (UNITY_UINT)(327), UNITY_DISPLAY_STYLE_HEX64);
 
- ), (UNITY_UINT)(288), UNITY_DISPLAY_STYLE_HEX64);
+   UnityAssertEqualNumber((UNITY_INT64)((
 
-  UnityAssertEqualNumber((UNITY_INT64)((
+  ((void *)0)
 
- ((void *)0)
+  )), (UNITY_INT64)((node40.right)), (
 
- )), (UNITY_INT64)((node15.right)), (
+  ((void *)0)
 
- ((void *)0)
+  ), (UNITY_UINT)(328), UNITY_DISPLAY_STYLE_HEX64);
 
- ), (UNITY_UINT)(289), UNITY_DISPLAY_STYLE_HEX64);
+   UnityAssertEqualNumber((UNITY_INT64)((
 
-  UnityAssertEqualNumber((UNITY_INT64)((&node15)), (UNITY_INT64)((node20.left)), (
+  ((void *)0)
 
- ((void *)0)
+  )), (UNITY_INT64)((node10.left)), (
 
- ), (UNITY_UINT)(290), UNITY_DISPLAY_STYLE_HEX64);
+  ((void *)0)
 
-  UnityAssertEqualNumber((UNITY_INT64)((
+  ), (UNITY_UINT)(329), UNITY_DISPLAY_STYLE_HEX64);
 
- ((void *)0)
+   UnityAssertEqualNumber((UNITY_INT64)((
 
- )), (UNITY_INT64)((node20.right)), (
+  ((void *)0)
 
- ((void *)0)
+  )), (UNITY_INT64)((node10.right)), (
 
- ), (UNITY_UINT)(291), UNITY_DISPLAY_STYLE_HEX64);
+  ((void *)0)
 
-  UnityAssertEqualNumber((UNITY_INT64)((&node35)), (UNITY_INT64)((node40.left)), (
+  ), (UNITY_UINT)(330), UNITY_DISPLAY_STYLE_HEX64);
 
- ((void *)0)
+   UnityAssertEqualNumber((UNITY_INT64)((
 
- ), (UNITY_UINT)(292), UNITY_DISPLAY_STYLE_HEX64);
+  ((void *)0)
 
-  UnityAssertEqualNumber((UNITY_INT64)((&node55)), (UNITY_INT64)((node40.right)), (
+  )), (UNITY_INT64)((node50.left)), (
 
- ((void *)0)
+  ((void *)0)
 
- ), (UNITY_UINT)(293), UNITY_DISPLAY_STYLE_HEX64);
+  ), (UNITY_UINT)(331), UNITY_DISPLAY_STYLE_HEX64);
 
-  UnityAssertEqualNumber((UNITY_INT64)((&node20)), (UNITY_INT64)((node25.left)), (
+   UnityAssertEqualNumber((UNITY_INT64)((
 
- ((void *)0)
+  ((void *)0)
 
- ), (UNITY_UINT)(294), UNITY_DISPLAY_STYLE_HEX64);
+  )), (UNITY_INT64)((node50.right)), (
 
-  UnityAssertEqualNumber((UNITY_INT64)((&node40)), (UNITY_INT64)((node25.right)), (
+  ((void *)0)
 
- ((void *)0)
+  ), (UNITY_UINT)(332), UNITY_DISPLAY_STYLE_HEX64);
 
- ), (UNITY_UINT)(295), UNITY_DISPLAY_STYLE_HEX64);
+   UnityAssertEqualNumber((UNITY_INT64)((
 
-  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node15.balanceFactor)), (
+  ((void *)0)
 
- ((void *)0)
+  )), (UNITY_INT64)((node65.left)), (
 
- ), (UNITY_UINT)(296), UNITY_DISPLAY_STYLE_INT);
+  ((void *)0)
 
-  UnityAssertEqualNumber((UNITY_INT)((-1)), (UNITY_INT)((node20.balanceFactor)), (
+  ), (UNITY_UINT)(333), UNITY_DISPLAY_STYLE_HEX64);
 
- ((void *)0)
+   UnityAssertEqualNumber((UNITY_INT64)((
 
- ), (UNITY_UINT)(297), UNITY_DISPLAY_STYLE_INT);
+  ((void *)0)
 
-  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node35.balanceFactor)), (
+  )), (UNITY_INT64)((node65.right)), (
 
- ((void *)0)
+  ((void *)0)
 
- ), (UNITY_UINT)(298), UNITY_DISPLAY_STYLE_INT);
+  ), (UNITY_UINT)(334), UNITY_DISPLAY_STYLE_HEX64);
 
-  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node40.balanceFactor)), (
+   UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node10.balanceFactor)), (
 
- ((void *)0)
+  ((void *)0)
 
- ), (UNITY_UINT)(299), UNITY_DISPLAY_STYLE_INT);
+  ), (UNITY_UINT)(335), UNITY_DISPLAY_STYLE_INT);
 
-  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node45.balanceFactor)), (
+   UnityAssertEqualNumber((UNITY_INT)((-1)), (UNITY_INT)((node40.balanceFactor)), (
 
- ((void *)0)
+  ((void *)0)
 
- ), (UNITY_UINT)(300), UNITY_DISPLAY_STYLE_INT);
+  ), (UNITY_UINT)(336), UNITY_DISPLAY_STYLE_INT);
 
-  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node55.balanceFactor)), (
+   UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node45.balanceFactor)), (
 
- ((void *)0)
+  ((void *)0)
 
- ), (UNITY_UINT)(301), UNITY_DISPLAY_STYLE_INT);
+  ), (UNITY_UINT)(337), UNITY_DISPLAY_STYLE_INT);
 
-}
+   UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node50.balanceFactor)), (
 
-void test_avlBalanceLeftTree_given_40_50_60_expect_a_balance_tree(void){
+  ((void *)0)
 
-  initNode(&node60,&node50,
+  ), (UNITY_UINT)(338), UNITY_DISPLAY_STYLE_INT);
 
-                          ((void *)0)
+   UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node60.balanceFactor)), (
 
-                              ,-2);
+  ((void *)0)
 
-  initNode(&node50,&node40,
+  ), (UNITY_UINT)(339), UNITY_DISPLAY_STYLE_INT);
 
-                          ((void *)0)
+   UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node65.balanceFactor)), (
 
-                              ,-1);
+  ((void *)0)
 
-  initNode(&node40,
+  ), (UNITY_UINT)(340), UNITY_DISPLAY_STYLE_INT);
 
-                  ((void *)0)
+ }
 
-                      ,
+  void test_avlInsert_given_10_40_50_60_65_add_45_expect_rotate_left_right_a_balance_tree(void){
 
-                       ((void *)0)
+    initNode(&node60,&node40,&node65,-1);
 
-                           ,0);
+    initNode(&node40,&node10,&node50,0);
 
-  Node *root = &node60;
+    initNode(&node50,
 
+                    ((void *)0)
 
+                        ,
 
-  avlBalanceLeftTree(&root);
+                         ((void *)0)
 
-  UnityAssertEqualNumber((UNITY_INT64)((&node50)), (UNITY_INT64)((root)), (
+                             ,0);
 
- ((void *)0)
+    initNode(&node10,
 
- ), (UNITY_UINT)(319), UNITY_DISPLAY_STYLE_HEX64);
+                    ((void *)0)
 
-  UnityAssertEqualNumber((UNITY_INT64)((&node40)), (UNITY_INT64)((node50.left)), (
+                        ,
 
- ((void *)0)
+                         ((void *)0)
 
- ), (UNITY_UINT)(320), UNITY_DISPLAY_STYLE_HEX64);
+                             ,0);
 
-  UnityAssertEqualNumber((UNITY_INT64)((&node60)), (UNITY_INT64)((node50.right)), (
+    initNode(&node65,
 
- ((void *)0)
+                    ((void *)0)
 
- ), (UNITY_UINT)(321), UNITY_DISPLAY_STYLE_HEX64);
+                        ,
 
-  UnityAssertEqualNumber((UNITY_INT64)((
+                         ((void *)0)
 
- ((void *)0)
+                             ,0);
 
- )), (UNITY_INT64)((node40.left)), (
+    Node *root = &node60;
 
- ((void *)0)
 
- ), (UNITY_UINT)(322), UNITY_DISPLAY_STYLE_HEX64);
 
-  UnityAssertEqualNumber((UNITY_INT64)((
+    avl_Insert(&root,&node45);
 
- ((void *)0)
+    UnityAssertEqualNumber((UNITY_INT64)((&node50)), (UNITY_INT64)((root)), (
 
- )), (UNITY_INT64)((node40.right)), (
+   ((void *)0)
 
- ((void *)0)
+   ), (UNITY_UINT)(370), UNITY_DISPLAY_STYLE_HEX64);
 
- ), (UNITY_UINT)(323), UNITY_DISPLAY_STYLE_HEX64);
+    UnityAssertEqualNumber((UNITY_INT64)((&node40)), (UNITY_INT64)((node50.left)), (
 
-  UnityAssertEqualNumber((UNITY_INT64)((
+   ((void *)0)
 
- ((void *)0)
+   ), (UNITY_UINT)(371), UNITY_DISPLAY_STYLE_HEX64);
 
- )), (UNITY_INT64)((node60.left)), (
+    UnityAssertEqualNumber((UNITY_INT64)((&node60)), (UNITY_INT64)((node50.right)), (
 
- ((void *)0)
+   ((void *)0)
 
- ), (UNITY_UINT)(324), UNITY_DISPLAY_STYLE_HEX64);
+   ), (UNITY_UINT)(372), UNITY_DISPLAY_STYLE_HEX64);
 
-  UnityAssertEqualNumber((UNITY_INT64)((
+    UnityAssertEqualNumber((UNITY_INT64)((&node10)), (UNITY_INT64)((node40.left)), (
 
- ((void *)0)
+   ((void *)0)
 
- )), (UNITY_INT64)((node60.right)), (
+   ), (UNITY_UINT)(373), UNITY_DISPLAY_STYLE_HEX64);
 
- ((void *)0)
+    UnityAssertEqualNumber((UNITY_INT64)((
 
- ), (UNITY_UINT)(325), UNITY_DISPLAY_STYLE_HEX64);
+   ((void *)0)
 
-  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node50.balanceFactor)), (
+   )), (UNITY_INT64)((node60.left)), (
 
- ((void *)0)
+   ((void *)0)
 
- ), (UNITY_UINT)(326), UNITY_DISPLAY_STYLE_INT);
+   ), (UNITY_UINT)(374), UNITY_DISPLAY_STYLE_HEX64);
 
-  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node40.balanceFactor)), (
+    UnityAssertEqualNumber((UNITY_INT64)((&node65)), (UNITY_INT64)((node60.right)), (
 
- ((void *)0)
+   ((void *)0)
 
- ), (UNITY_UINT)(327), UNITY_DISPLAY_STYLE_INT);
+   ), (UNITY_UINT)(375), UNITY_DISPLAY_STYLE_HEX64);
 
-  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node60.balanceFactor)), (
+    UnityAssertEqualNumber((UNITY_INT64)((&node45)), (UNITY_INT64)((node40.right)), (
 
- ((void *)0)
+   ((void *)0)
 
- ), (UNITY_UINT)(328), UNITY_DISPLAY_STYLE_INT);
+   ), (UNITY_UINT)(376), UNITY_DISPLAY_STYLE_HEX64);
 
-}
+    UnityAssertEqualNumber((UNITY_INT64)((
 
-void test_avlBalanceLeftTree_given_40_55_50_60_expect_a_balance_tree(void){
+   ((void *)0)
 
-  initNode(&node60,&node50,
+   )), (UNITY_INT64)((node10.left)), (
 
-                          ((void *)0)
+   ((void *)0)
 
-                              ,-2);
+   ), (UNITY_UINT)(377), UNITY_DISPLAY_STYLE_HEX64);
 
-  initNode(&node50,&node40,&node55,0);
+    UnityAssertEqualNumber((UNITY_INT64)((
 
-  initNode(&node40,
+   ((void *)0)
 
-                  ((void *)0)
+   )), (UNITY_INT64)((node10.right)), (
 
-                      ,
+   ((void *)0)
 
-                       ((void *)0)
+   ), (UNITY_UINT)(378), UNITY_DISPLAY_STYLE_HEX64);
 
-                           ,0);
+    UnityAssertEqualNumber((UNITY_INT64)((
 
-  initNode(&node55,
+   ((void *)0)
 
-                  ((void *)0)
+   )), (UNITY_INT64)((node45.left)), (
 
-                      ,
+   ((void *)0)
 
-                       ((void *)0)
+   ), (UNITY_UINT)(379), UNITY_DISPLAY_STYLE_HEX64);
 
-                           ,0);
+    UnityAssertEqualNumber((UNITY_INT64)((
 
-  Node *root = &node60;
+   ((void *)0)
 
+   )), (UNITY_INT64)((node45.right)), (
 
+   ((void *)0)
 
-  avlBalanceLeftTree(&root);
+   ), (UNITY_UINT)(380), UNITY_DISPLAY_STYLE_HEX64);
 
-  UnityAssertEqualNumber((UNITY_INT64)((&node50)), (UNITY_INT64)((root)), (
+    UnityAssertEqualNumber((UNITY_INT64)((
 
- ((void *)0)
+   ((void *)0)
 
- ), (UNITY_UINT)(346), UNITY_DISPLAY_STYLE_HEX64);
+   )), (UNITY_INT64)((node65.left)), (
 
-  UnityAssertEqualNumber((UNITY_INT64)((&node40)), (UNITY_INT64)((node50.left)), (
+   ((void *)0)
 
- ((void *)0)
+   ), (UNITY_UINT)(381), UNITY_DISPLAY_STYLE_HEX64);
 
- ), (UNITY_UINT)(347), UNITY_DISPLAY_STYLE_HEX64);
+    UnityAssertEqualNumber((UNITY_INT64)((
 
-  UnityAssertEqualNumber((UNITY_INT64)((&node60)), (UNITY_INT64)((node50.right)), (
+   ((void *)0)
 
- ((void *)0)
+   )), (UNITY_INT64)((node65.right)), (
 
- ), (UNITY_UINT)(348), UNITY_DISPLAY_STYLE_HEX64);
+   ((void *)0)
 
-  UnityAssertEqualNumber((UNITY_INT64)((
+   ), (UNITY_UINT)(382), UNITY_DISPLAY_STYLE_HEX64);
 
- ((void *)0)
+    UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node10.balanceFactor)), (
 
- )), (UNITY_INT64)((node40.left)), (
+   ((void *)0)
 
- ((void *)0)
+   ), (UNITY_UINT)(383), UNITY_DISPLAY_STYLE_INT);
 
- ), (UNITY_UINT)(349), UNITY_DISPLAY_STYLE_HEX64);
+    UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node40.balanceFactor)), (
 
-  UnityAssertEqualNumber((UNITY_INT64)((
+   ((void *)0)
 
- ((void *)0)
+   ), (UNITY_UINT)(384), UNITY_DISPLAY_STYLE_INT);
 
- )), (UNITY_INT64)((node40.right)), (
+    UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node45.balanceFactor)), (
 
- ((void *)0)
+   ((void *)0)
 
- ), (UNITY_UINT)(350), UNITY_DISPLAY_STYLE_HEX64);
+   ), (UNITY_UINT)(385), UNITY_DISPLAY_STYLE_INT);
 
-  UnityAssertEqualNumber((UNITY_INT64)((
+    UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node50.balanceFactor)), (
 
- ((void *)0)
+   ((void *)0)
 
- )), (UNITY_INT64)((node55.left)), (
+   ), (UNITY_UINT)(386), UNITY_DISPLAY_STYLE_INT);
 
- ((void *)0)
+    UnityAssertEqualNumber((UNITY_INT)((1)), (UNITY_INT)((node60.balanceFactor)), (
 
- ), (UNITY_UINT)(351), UNITY_DISPLAY_STYLE_HEX64);
+   ((void *)0)
 
-  UnityAssertEqualNumber((UNITY_INT64)((
+   ), (UNITY_UINT)(387), UNITY_DISPLAY_STYLE_INT);
 
- ((void *)0)
+    UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node65.balanceFactor)), (
 
- )), (UNITY_INT64)((node55.right)), (
+   ((void *)0)
 
- ((void *)0)
+   ), (UNITY_UINT)(388), UNITY_DISPLAY_STYLE_INT);
 
- ), (UNITY_UINT)(352), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT64)((&node55)), (UNITY_INT64)((node60.left)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(353), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT64)((
-
- ((void *)0)
-
- )), (UNITY_INT64)((node60.right)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(354), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT)((1)), (UNITY_INT)((node50.balanceFactor)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(355), UNITY_DISPLAY_STYLE_INT);
-
-  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node40.balanceFactor)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(356), UNITY_DISPLAY_STYLE_INT);
-
-  UnityAssertEqualNumber((UNITY_INT)((-1)), (UNITY_INT)((node60.balanceFactor)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(357), UNITY_DISPLAY_STYLE_INT);
-
-  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node55.balanceFactor)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(358), UNITY_DISPLAY_STYLE_INT);
-
-}
-
-void test_avlBalanceLeftTreeV1_given_10_40_45_50_60_65_expect_a_balance_tree(void){
-
-  initNode(&node60,&node40,&node65,-2);
-
-  initNode(&node40,&node10,&node45,1);
-
-  initNode(&node45,
-
-                  ((void *)0)
-
-                      ,&node50,1);
-
-  initNode(&node10,
-
-                  ((void *)0)
-
-                      ,
-
-                       ((void *)0)
-
-                           ,0);
-
-  initNode(&node50,
-
-                  ((void *)0)
-
-                      ,
-
-                       ((void *)0)
-
-                           ,0);
-
-  initNode(&node65,
-
-                  ((void *)0)
-
-                      ,
-
-                       ((void *)0)
-
-                           ,0);
-
-  Node *root = &node60;
-
-
-
-  avlBalanceLeftTreeV1(&root);
-
-  UnityAssertEqualNumber((UNITY_INT64)((&node45)), (UNITY_INT64)((root)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(389), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT64)((&node40)), (UNITY_INT64)((node45.left)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(390), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT64)((&node60)), (UNITY_INT64)((node45.right)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(391), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT64)((&node10)), (UNITY_INT64)((node40.left)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(392), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT64)((&node50)), (UNITY_INT64)((node60.left)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(393), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT64)((&node65)), (UNITY_INT64)((node60.right)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(394), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT64)((
-
- ((void *)0)
-
- )), (UNITY_INT64)((node40.right)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(395), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT64)((
-
- ((void *)0)
-
- )), (UNITY_INT64)((node10.left)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(396), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT64)((
-
- ((void *)0)
-
- )), (UNITY_INT64)((node10.right)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(397), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT64)((
-
- ((void *)0)
-
- )), (UNITY_INT64)((node50.left)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(398), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT64)((
-
- ((void *)0)
-
- )), (UNITY_INT64)((node50.right)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(399), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT64)((
-
- ((void *)0)
-
- )), (UNITY_INT64)((node65.left)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(400), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT64)((
-
- ((void *)0)
-
- )), (UNITY_INT64)((node65.right)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(401), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node10.balanceFactor)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(402), UNITY_DISPLAY_STYLE_INT);
-
-  UnityAssertEqualNumber((UNITY_INT)((-1)), (UNITY_INT)((node40.balanceFactor)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(403), UNITY_DISPLAY_STYLE_INT);
-
-  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node45.balanceFactor)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(404), UNITY_DISPLAY_STYLE_INT);
-
-  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node50.balanceFactor)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(405), UNITY_DISPLAY_STYLE_INT);
-
-  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node60.balanceFactor)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(406), UNITY_DISPLAY_STYLE_INT);
-
-  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node65.balanceFactor)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(407), UNITY_DISPLAY_STYLE_INT);
-
-}
-
-void test_avlBalanceLeftTreeV1_given_10_30_40_45_50_60_65_expect_a_balance_tree(void){
-
-  initNode(&node60,&node30,&node65,-2);
-
-  initNode(&node30,&node10,&node45,1);
-
-  initNode(&node45,&node40,&node50,0);
-
-  initNode(&node10,
-
-                  ((void *)0)
-
-                      ,
-
-                       ((void *)0)
-
-                           ,0);
-
-  initNode(&node40,
-
-                  ((void *)0)
-
-                      ,
-
-                       ((void *)0)
-
-                           ,0);
-
-  initNode(&node50,
-
-                  ((void *)0)
-
-                      ,
-
-                       ((void *)0)
-
-                           ,0);
-
-  initNode(&node65,
-
-                  ((void *)0)
-
-                      ,
-
-                       ((void *)0)
-
-                           ,0);
-
-  Node *root = &node60;
-
-
-
-  avlBalanceLeftTreeV1(&root);
-
-  UnityAssertEqualNumber((UNITY_INT64)((&node45)), (UNITY_INT64)((root)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(439), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT64)((&node10)), (UNITY_INT64)((node30.left)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(440), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT64)((&node40)), (UNITY_INT64)((node30.right)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(441), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT64)((&node30)), (UNITY_INT64)((node45.left)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(442), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT64)((&node60)), (UNITY_INT64)((node45.right)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(443), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT64)((
-
- ((void *)0)
-
- )), (UNITY_INT64)((node40.left)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(444), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT64)((
-
- ((void *)0)
-
- )), (UNITY_INT64)((node40.right)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(445), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT64)((&node50)), (UNITY_INT64)((node60.left)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(446), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT64)((&node65)), (UNITY_INT64)((node60.right)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(447), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT64)((
-
- ((void *)0)
-
- )), (UNITY_INT64)((node10.left)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(448), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT64)((
-
- ((void *)0)
-
- )), (UNITY_INT64)((node10.right)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(449), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT64)((
-
- ((void *)0)
-
- )), (UNITY_INT64)((node50.left)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(450), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT64)((
-
- ((void *)0)
-
- )), (UNITY_INT64)((node50.right)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(451), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT64)((
-
- ((void *)0)
-
- )), (UNITY_INT64)((node65.left)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(452), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT64)((
-
- ((void *)0)
-
- )), (UNITY_INT64)((node65.right)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(453), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node10.balanceFactor)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(454), UNITY_DISPLAY_STYLE_INT);
-
-  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node30.balanceFactor)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(455), UNITY_DISPLAY_STYLE_INT);
-
-  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node40.balanceFactor)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(456), UNITY_DISPLAY_STYLE_INT);
-
-  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node45.balanceFactor)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(457), UNITY_DISPLAY_STYLE_INT);
-
-  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node50.balanceFactor)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(458), UNITY_DISPLAY_STYLE_INT);
-
-  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node60.balanceFactor)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(459), UNITY_DISPLAY_STYLE_INT);
-
-  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node65.balanceFactor)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(460), UNITY_DISPLAY_STYLE_INT);
-
-}
-
-void test_avlBalanceLeftTreeV1_given_10_30_40_45_60_65_expect_a_balance_tree(void){
-
-  initNode(&node60,&node30,&node65,-2);
-
-  initNode(&node30,&node10,&node45,1);
-
-  initNode(&node45,&node40,
-
-                          ((void *)0)
-
-                              ,-1);
-
-  initNode(&node10,
-
-                  ((void *)0)
-
-                      ,
-
-                       ((void *)0)
-
-                           ,0);
-
-  initNode(&node40,
-
-                  ((void *)0)
-
-                      ,
-
-                       ((void *)0)
-
-                           ,0);
-
-  initNode(&node65,
-
-                  ((void *)0)
-
-                      ,
-
-                       ((void *)0)
-
-                           ,0);
-
-  Node *root = &node60;
-
-
-
-  avlBalanceLeftTreeV1(&root);
-
-  UnityAssertEqualNumber((UNITY_INT64)((&node45)), (UNITY_INT64)((root)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(491), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT64)((&node10)), (UNITY_INT64)((node30.left)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(492), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT64)((&node40)), (UNITY_INT64)((node30.right)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(493), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT64)((&node30)), (UNITY_INT64)((node45.left)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(494), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT64)((&node60)), (UNITY_INT64)((node45.right)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(495), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT64)((
-
- ((void *)0)
-
- )), (UNITY_INT64)((node40.left)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(496), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT64)((
-
- ((void *)0)
-
- )), (UNITY_INT64)((node40.right)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(497), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT64)((
-
- ((void *)0)
-
- )), (UNITY_INT64)((node60.left)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(498), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT64)((&node65)), (UNITY_INT64)((node60.right)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(499), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT64)((
-
- ((void *)0)
-
- )), (UNITY_INT64)((node10.left)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(500), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT64)((
-
- ((void *)0)
-
- )), (UNITY_INT64)((node10.right)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(501), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT64)((
-
- ((void *)0)
-
- )), (UNITY_INT64)((node65.left)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(502), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT64)((
-
- ((void *)0)
-
- )), (UNITY_INT64)((node65.right)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(503), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node10.balanceFactor)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(504), UNITY_DISPLAY_STYLE_INT);
-
-  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node30.balanceFactor)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(505), UNITY_DISPLAY_STYLE_INT);
-
-  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node40.balanceFactor)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(506), UNITY_DISPLAY_STYLE_INT);
-
-  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node45.balanceFactor)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(507), UNITY_DISPLAY_STYLE_INT);
-
-  UnityAssertEqualNumber((UNITY_INT)((1)), (UNITY_INT)((node60.balanceFactor)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(508), UNITY_DISPLAY_STYLE_INT);
-
-  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node65.balanceFactor)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(509), UNITY_DISPLAY_STYLE_INT);
-
-}
+  }

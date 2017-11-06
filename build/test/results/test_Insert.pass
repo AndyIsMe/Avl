@@ -1,0 +1,49 @@
+---
+:source:
+  :path: test
+  :file: test_Insert.c
+:successes:
+- :test: test_Insert_20_with_10_as_root
+  :line: 44
+  :message: ''
+- :test: test_Insert_5_with_10_as_root
+  :line: 61
+  :message: ''
+- :test: test_Insert_20_with_10_as_root_N_15_as_child
+  :line: 79
+  :message: ''
+- :test: test_Insert_10_with_30_15_expect_balance_tree
+  :line: 100
+  :message: ''
+- :test: test_avlInsert_given_40_50_add_100_expect_a_balance_tree
+  :line: 120
+  :message: ''
+- :test: test_avlInsert_given_40_50_add_55_expect_rotate_left_for_a_balance_tree
+  :line: 142
+  :message: ''
+- :test: test_avlInsert_given_40_50_add_45_expect_rotate_right_left_for_a_balance_tree
+  :line: 164
+  :message: ''
+- :test: test_avlInsert_given_15_20_45_50_55_add_35_expect_rotate_right_left_for_a_balance_tree
+  :line: 195
+  :message: ''
+- :test: test_avlInsert_given_15_20_25_40_55_add_35_expect_rotate_right_left_for_a_balance_tree
+  :line: 243
+  :message: ''
+- :test: test_avlInsert_given_50_60_add_40_expect_rotate_right_for_a_balance_tree
+  :line: 279
+  :message: ''
+- :test: test_avlInsert_given_10_40_45_60_65_add_50_expect_rotate_left_right_a_balance_tree
+  :line: 313
+  :message: ''
+- :test: test_avlInsert_given_10_40_50_60_65_add_45_expect_rotate_left_right_a_balance_tree
+  :line: 361
+  :message: ''
+:failures: []
+:ignores: []
+:counts:
+  :total: 12
+  :passed: 12
+  :failed: 0
+  :ignored: 0
+:stdout: []

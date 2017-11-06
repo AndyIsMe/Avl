@@ -4,22 +4,52 @@
   :file: test_Rotate.c
 :successes:
 - :test: test_rotateLeft
-  :line: 45
+  :line: 44
   :message: ''
 - :test: test_rotateRight
-  :line: 72
+  :line: 71
   :message: ''
 - :test: test_rotateLeftRight
-  :line: 109
+  :line: 108
   :message: ''
 - :test: test_rotateRightLeft
-  :line: 147
+  :line: 146
+  :message: ''
+- :test: test_avlBalanceRightTree_given_40_50_100_expect_a_balance_tree
+  :line: 194
+  :message: ''
+- :test: test_avlBalanceRightTree_given_40_50_100_45_expect_a_balance_tree
+  :line: 220
+  :message: ''
+- :test: test_avlBalanceRightTreeV1_given_15_20_35_45_50_55_expect_a_balance_tree
+  :line: 261
+  :message: ''
+- :test: test_avlBalanceRightTreeV1_given_15_20_30_35_40_45_55_expect_a_balance_tree
+  :line: 311
+  :message: ''
+- :test: test_avlBalanceRightTreeV1_given_15_20_35_40_45_55_expect_a_balance_tree
+  :line: 365
+  :message: ''
+- :test: test_avlBalanceLeftTree_given_40_50_60_expect_a_balance_tree
+  :line: 404
+  :message: ''
+- :test: test_avlBalanceLeftTree_given_40_55_50_60_expect_a_balance_tree
+  :line: 430
+  :message: ''
+- :test: test_avlBalanceLeftTreeV1_given_10_40_45_50_60_65_expect_a_balance_tree
+  :line: 471
+  :message: ''
+- :test: test_avlBalanceLeftTreeV1_given_10_30_40_45_50_60_65_expect_a_balance_tree
+  :line: 520
+  :message: ''
+- :test: test_avlBalanceLeftTreeV1_given_10_30_40_45_60_65_expect_a_balance_tree
+  :line: 573
   :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 4
-  :passed: 4
+  :total: 14
+  :passed: 14
   :failed: 0
   :ignored: 0
 :stdout: []

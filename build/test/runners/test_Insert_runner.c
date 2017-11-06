@@ -33,17 +33,15 @@ extern void tearDown(void);
 extern void test_Insert_20_with_10_as_root(void);
 extern void test_Insert_5_with_10_as_root(void);
 extern void test_Insert_20_with_10_as_root_N_15_as_child(void);
-extern void test_Insert_10_with_30_as_root_N_15_as_child(void);
-extern void test_avlBalanceRightTree_given_40_50_100_expect_a_balance_tree(void);
-extern void test_avlBalanceRightTree_given_40_50_100_45_expect_a_balance_tree(void);
-extern void test_avlBalanceRightTreeV1_given_15_20_35_45_50_55_expect_a_balance_tree(void);
-extern void test_avlBalanceRightTreeV1_given_15_20_30_35_40_45_55_expect_a_balance_tree(void);
-extern void test_avlBalanceRightTreeV1_given_15_20_35_40_45_55_expect_a_balance_tree(void);
-extern void test_avlBalanceLeftTree_given_40_50_60_expect_a_balance_tree(void);
-extern void test_avlBalanceLeftTree_given_40_55_50_60_expect_a_balance_tree(void);
-extern void test_avlBalanceLeftTreeV1_given_10_40_45_50_60_65_expect_a_balance_tree(void);
-extern void test_avlBalanceLeftTreeV1_given_10_30_40_45_50_60_65_expect_a_balance_tree(void);
-extern void test_avlBalanceLeftTreeV1_given_10_30_40_45_60_65_expect_a_balance_tree(void);
+extern void test_Insert_10_with_30_15_expect_balance_tree(void);
+extern void test_avlInsert_given_40_50_add_100_expect_a_balance_tree(void);
+extern void test_avlInsert_given_40_50_add_55_expect_rotate_left_for_a_balance_tree(void);
+extern void test_avlInsert_given_40_50_add_45_expect_rotate_right_left_for_a_balance_tree(void);
+extern void test_avlInsert_given_15_20_45_50_55_add_35_expect_rotate_right_left_for_a_balance_tree(void);
+extern void test_avlInsert_given_15_20_25_40_55_add_35_expect_rotate_right_left_for_a_balance_tree(void);
+extern void test_avlInsert_given_50_60_add_40_expect_rotate_right_for_a_balance_tree(void);
+extern void test_avlInsert_given_10_40_45_60_65_add_50_expect_rotate_left_right_a_balance_tree(void);
+extern void test_avlInsert_given_10_40_50_60_65_add_45_expect_rotate_left_right_a_balance_tree(void);
 
 
 /*=======Test Reset Option=====*/
@@ -59,20 +57,18 @@ void resetTest(void)
 int main(void)
 {
   UnityBegin("test_Insert.c");
-  RUN_TEST(test_Insert_20_with_10_as_root, 35);
-  RUN_TEST(test_Insert_5_with_10_as_root, 44);
-  RUN_TEST(test_Insert_20_with_10_as_root_N_15_as_child, 53);
-  RUN_TEST(test_Insert_10_with_30_as_root_N_15_as_child, 63);
-  RUN_TEST(test_avlBalanceRightTree_given_40_50_100_expect_a_balance_tree, 97);
-  RUN_TEST(test_avlBalanceRightTree_given_40_50_100_45_expect_a_balance_tree, 123);
-  RUN_TEST(test_avlBalanceRightTreeV1_given_15_20_35_45_50_55_expect_a_balance_tree, 164);
-  RUN_TEST(test_avlBalanceRightTreeV1_given_15_20_30_35_40_45_55_expect_a_balance_tree, 219);
-  RUN_TEST(test_avlBalanceRightTreeV1_given_15_20_35_40_45_55_expect_a_balance_tree, 273);
-  RUN_TEST(test_avlBalanceLeftTree_given_40_50_60_expect_a_balance_tree, 312);
-  RUN_TEST(test_avlBalanceLeftTree_given_40_55_50_60_expect_a_balance_tree, 338);
-  RUN_TEST(test_avlBalanceLeftTreeV1_given_10_40_45_50_60_65_expect_a_balance_tree, 379);
-  RUN_TEST(test_avlBalanceLeftTreeV1_given_10_30_40_45_50_60_65_expect_a_balance_tree, 428);
-  RUN_TEST(test_avlBalanceLeftTreeV1_given_10_30_40_45_60_65_expect_a_balance_tree, 481);
+  RUN_TEST(test_Insert_20_with_10_as_root, 44);
+  RUN_TEST(test_Insert_5_with_10_as_root, 61);
+  RUN_TEST(test_Insert_20_with_10_as_root_N_15_as_child, 79);
+  RUN_TEST(test_Insert_10_with_30_15_expect_balance_tree, 100);
+  RUN_TEST(test_avlInsert_given_40_50_add_100_expect_a_balance_tree, 120);
+  RUN_TEST(test_avlInsert_given_40_50_add_55_expect_rotate_left_for_a_balance_tree, 142);
+  RUN_TEST(test_avlInsert_given_40_50_add_45_expect_rotate_right_left_for_a_balance_tree, 164);
+  RUN_TEST(test_avlInsert_given_15_20_45_50_55_add_35_expect_rotate_right_left_for_a_balance_tree, 195);
+  RUN_TEST(test_avlInsert_given_15_20_25_40_55_add_35_expect_rotate_right_left_for_a_balance_tree, 243);
+  RUN_TEST(test_avlInsert_given_50_60_add_40_expect_rotate_right_for_a_balance_tree, 279);
+  RUN_TEST(test_avlInsert_given_10_40_45_60_65_add_50_expect_rotate_left_right_a_balance_tree, 313);
+  RUN_TEST(test_avlInsert_given_10_40_50_60_65_add_45_expect_rotate_left_right_a_balance_tree, 361);
 
   return (UnityEnd());
 }
