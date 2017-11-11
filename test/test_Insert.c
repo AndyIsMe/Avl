@@ -33,6 +33,43 @@ void setUp(void){
 }
 void tearDown(void){}
 
+/**
+---------insert   &    rotateleftRight(1)----------------------
+*        90(-1)               90 (-1)
+*       /  \    add 60        /  \
+*     50   100 --------> (1)50   100
+*    /                     /  \
+*   45                   45     60
+*
+*
+**/
+
+void test_insert_given_90_50_1pect_balance(void){
+
+     initNode(&node45,NULL,NULL,0);
+     initNode(&node100,NULL,NULL,0);
+     initNode(&node90,&node50,&node100,-1);
+     initNode(&node50,&node45,NULL,-1);
+
+     Node *root = &node90;
+     avl_Insert(&root,&node60);
+     TEST_ASSERT_EQUAL_PTR(&node90,root);
+     TEST_ASSERT_EQUAL_PTR(NULL,node45.left);
+     TEST_ASSERT_EQUAL_PTR(NULL,node45.right);
+     TEST_ASSERT_EQUAL_PTR(NULL,node60.left);
+     TEST_ASSERT_EQUAL_PTR(NULL,node60.right);
+     TEST_ASSERT_EQUAL_PTR(NULL,node100.left);
+     TEST_ASSERT_EQUAL_PTR(NULL,node100.right);
+     TEST_ASSERT_EQUAL_PTR(&node45,node50.left);
+     TEST_ASSERT_EQUAL_PTR(&node60,node50.right);
+     TEST_ASSERT_EQUAL_PTR(&node50,node90.left);
+     TEST_ASSERT_EQUAL_PTR(&node100,node90.right);
+     TEST_ASSERT_EQUAL(-1,node90.balanceFactor);
+     TEST_ASSERT_EQUAL(0,node45.balanceFactor);
+     TEST_ASSERT_EQUAL(0,node60.balanceFactor);
+     TEST_ASSERT_EQUAL(0,node100.balanceFactor);
+     TEST_ASSERT_EQUAL(0,node50.balanceFactor);
+}
 
 /*                    Insert 20
  *    10(0)           --------->        10(1)
@@ -100,10 +137,15 @@ void test_Insert_20_with_10_as_root_N_15_as_child(void){
 void test_Insert_10_with_30_15_expect_balance_tree(void){
   Node *root = &node30;
   initNode(&node30,&node15,NULL,-1);
+  initNode(&node15,NULL,NULL,0);
   avl_Insert(&root,&node10);
   TEST_ASSERT_EQUAL_PTR(&node15,root);
   TEST_ASSERT_EQUAL_PTR(&node10,node15.left);
   TEST_ASSERT_EQUAL_PTR(&node30,node15.right);
+  TEST_ASSERT_EQUAL_PTR(NULL,node10.left);
+  TEST_ASSERT_EQUAL_PTR(NULL,node10.right);
+  TEST_ASSERT_EQUAL_PTR(NULL,node30.left);
+  TEST_ASSERT_EQUAL_PTR(NULL,node30.right);
   TEST_ASSERT_EQUAL(0,node10.balanceFactor);
   TEST_ASSERT_EQUAL(0,node15.balanceFactor);
   TEST_ASSERT_EQUAL(0,node30.balanceFactor);

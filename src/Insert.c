@@ -4,21 +4,37 @@
 #include "Rotate.h"
 
 
-Node *avl_Insert(Node **rootPtr, Node *nodeToAdd){
+int avl_Insert(Node **rootPtr, Node *nodeToAdd){
+  int height;
     if(*rootPtr == NULL){
       *rootPtr = nodeToAdd;
       (*rootPtr)->left = NULL;
       (*rootPtr)->right = NULL;
-
+      return height = 1;
                         }
     else{
       if((*rootPtr)->data > nodeToAdd->data){
-        (*rootPtr)->left = avl_Insert((&(*rootPtr)->left),nodeToAdd);
+        height = avl_Insert((&(*rootPtr)->left),nodeToAdd);
+        if(height == 1){
+        //(*rootPtr)->left = avl_Insert((&(*rootPtr)->left),nodeToAdd);
         (*rootPtr)->balanceFactor -= 1;
+          if((*rootPtr)->balanceFactor == 0)
+            height = 0;
+        }
+        else{
+          (*rootPtr)->balanceFactor = (*rootPtr)->balanceFactor;
+        }
                                             }
       else if((*rootPtr)->data < nodeToAdd->data){
-        (*rootPtr)->right = avl_Insert((&(*rootPtr)->right),nodeToAdd);
+        height = avl_Insert((&(*rootPtr)->right),nodeToAdd);
+        if(height == 1){
+        //(*rootPtr)->right = avl_Insert((&(*rootPtr)->right),nodeToAdd);
         (*rootPtr)->balanceFactor += 1;
+          if((*rootPtr)->balanceFactor == 0)
+            height = 0;
+        }
+        else
+          (*rootPtr)->balanceFactor = (*rootPtr)->balanceFactor;
                                                   }
         }
       if((*rootPtr)->balanceFactor >= 2)
@@ -28,5 +44,5 @@ Node *avl_Insert(Node **rootPtr, Node *nodeToAdd){
       else{
         *rootPtr = *rootPtr;
       }
-      return *rootPtr;
+      return height;
 }

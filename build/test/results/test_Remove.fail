@@ -1,0 +1,16 @@
+---
+:source:
+  :path: test
+  :file: test_Remove.c
+:successes: []
+:failures:
+- :test: test_remove_40
+  :line: 71
+  :message: Expected 0x0000000000412A00 Was 0x0000000000000000
+:ignores: []
+:counts:
+  :total: 1
+  :passed: 0
+  :failed: 1
+  :ignored: 0
+:stdout: []

@@ -4,6 +4,6 @@
 #include "Rotate.h"
 
 //Node createNode(int node);
-Node *avl_Insert(Node **rootPtr, Node *nodeToAdd);
+int avl_Insert(Node **rootPtr, Node *nodeToAdd);
 
 #endif // _INSERT_H
