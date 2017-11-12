@@ -1,4 +1,5 @@
 #include "build/temp/_test_Remove.c"
+#include "Rotate.h"
 #include "Remove.h"
 #include "unity.h"
 
@@ -101,7 +102,7 @@ void test_findNearest(void)
 
  ((void *)0)
 
- ), (UNITY_UINT)(43), UNITY_DISPLAY_STYLE_INT);
+ ), (UNITY_UINT)(44), UNITY_DISPLAY_STYLE_INT);
 
 
 
@@ -179,13 +180,13 @@ void test_remove_40(void){
 
  ((void *)0)
 
- ), (UNITY_UINT)(73), UNITY_DISPLAY_STYLE_HEX64);
+ ), (UNITY_UINT)(74), UNITY_DISPLAY_STYLE_HEX64);
 
   UnityAssertEqualNumber((UNITY_INT64)((&node25)), (UNITY_INT64)((node45.left)), (
 
  ((void *)0)
 
- ), (UNITY_UINT)(74), UNITY_DISPLAY_STYLE_HEX64);
+ ), (UNITY_UINT)(75), UNITY_DISPLAY_STYLE_HEX64);
 
   UnityAssertEqualNumber((UNITY_INT64)((
 
@@ -195,19 +196,9 @@ void test_remove_40(void){
 
  ((void *)0)
 
- ), (UNITY_UINT)(75), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT64)((&node10)), (UNITY_INT64)((node25.left)), (
-
- ((void *)0)
-
  ), (UNITY_UINT)(76), UNITY_DISPLAY_STYLE_HEX64);
 
-  UnityAssertEqualNumber((UNITY_INT64)((
-
- ((void *)0)
-
- )), (UNITY_INT64)((node25.right)), (
+  UnityAssertEqualNumber((UNITY_INT64)((&node10)), (UNITY_INT64)((node25.left)), (
 
  ((void *)0)
 
@@ -217,7 +208,7 @@ void test_remove_40(void){
 
  ((void *)0)
 
- )), (UNITY_INT64)((node55.left)), (
+ )), (UNITY_INT64)((node25.right)), (
 
  ((void *)0)
 
@@ -227,7 +218,7 @@ void test_remove_40(void){
 
  ((void *)0)
 
- )), (UNITY_INT64)((node55.right)), (
+ )), (UNITY_INT64)((node55.left)), (
 
  ((void *)0)
 
@@ -237,7 +228,7 @@ void test_remove_40(void){
 
  ((void *)0)
 
- )), (UNITY_INT64)((node10.left)), (
+ )), (UNITY_INT64)((node55.right)), (
 
  ((void *)0)
 
@@ -247,7 +238,7 @@ void test_remove_40(void){
 
  ((void *)0)
 
- )), (UNITY_INT64)((node10.right)), (
+ )), (UNITY_INT64)((node10.left)), (
 
  ((void *)0)
 
@@ -257,7 +248,7 @@ void test_remove_40(void){
 
  ((void *)0)
 
- )), (UNITY_INT64)((node70.left)), (
+ )), (UNITY_INT64)((node10.right)), (
 
  ((void *)0)
 
@@ -267,34 +258,88 @@ void test_remove_40(void){
 
  ((void *)0)
 
- )), (UNITY_INT64)((node70.right)), (
+ )), (UNITY_INT64)((node70.left)), (
 
  ((void *)0)
 
  ), (UNITY_UINT)(83), UNITY_DISPLAY_STYLE_HEX64);
 
-  UnityAssertEqualNumber((UNITY_INT64)((&node55)), (UNITY_INT64)((node60.left)), (
+  UnityAssertEqualNumber((UNITY_INT64)((
+
+ ((void *)0)
+
+ )), (UNITY_INT64)((node70.right)), (
 
  ((void *)0)
 
  ), (UNITY_UINT)(84), UNITY_DISPLAY_STYLE_HEX64);
 
-  UnityAssertEqualNumber((UNITY_INT64)((&node70)), (UNITY_INT64)((node60.right)), (
+  UnityAssertEqualNumber((UNITY_INT64)((&node55)), (UNITY_INT64)((node60.left)), (
 
  ((void *)0)
 
  ), (UNITY_UINT)(85), UNITY_DISPLAY_STYLE_HEX64);
 
-  UnityAssertEqualNumber((UNITY_INT64)((&node45)), (UNITY_INT64)((node50.left)), (
+  UnityAssertEqualNumber((UNITY_INT64)((&node70)), (UNITY_INT64)((node60.right)), (
 
  ((void *)0)
 
  ), (UNITY_UINT)(86), UNITY_DISPLAY_STYLE_HEX64);
 
-  UnityAssertEqualNumber((UNITY_INT64)((&node60)), (UNITY_INT64)((node50.right)), (
+  UnityAssertEqualNumber((UNITY_INT64)((&node45)), (UNITY_INT64)((node50.left)), (
 
  ((void *)0)
 
  ), (UNITY_UINT)(87), UNITY_DISPLAY_STYLE_HEX64);
+
+  UnityAssertEqualNumber((UNITY_INT64)((&node60)), (UNITY_INT64)((node50.right)), (
+
+ ((void *)0)
+
+ ), (UNITY_UINT)(88), UNITY_DISPLAY_STYLE_HEX64);
+
+  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node10.balanceFactor)), (
+
+ ((void *)0)
+
+ ), (UNITY_UINT)(89), UNITY_DISPLAY_STYLE_INT);
+
+  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node55.balanceFactor)), (
+
+ ((void *)0)
+
+ ), (UNITY_UINT)(90), UNITY_DISPLAY_STYLE_INT);
+
+  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node70.balanceFactor)), (
+
+ ((void *)0)
+
+ ), (UNITY_UINT)(91), UNITY_DISPLAY_STYLE_INT);
+
+  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node25.balanceFactor)), (
+
+ ((void *)0)
+
+ ), (UNITY_UINT)(92), UNITY_DISPLAY_STYLE_INT);
+
+  UnityAssertEqualNumber((UNITY_INT)((-1)), (UNITY_INT)((node45.balanceFactor)), (
+
+ ((void *)0)
+
+ ), (UNITY_UINT)(93), UNITY_DISPLAY_STYLE_INT);
+
+  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node50.balanceFactor)), (
+
+ ((void *)0)
+
+ ), (UNITY_UINT)(94), UNITY_DISPLAY_STYLE_INT);
+
+  UnityAssertEqualNumber((UNITY_INT)((0)), (UNITY_INT)((node60.balanceFactor)), (
+
+ ((void *)0)
+
+ ), (UNITY_UINT)(95), UNITY_DISPLAY_STYLE_INT);
+
+
 
 }

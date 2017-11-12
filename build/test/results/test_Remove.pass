@@ -4,10 +4,10 @@
   :file: test_Remove.c
 :successes:
 - :test: test_findNearest
-  :line: 35
+  :line: 36
   :message: ''
 - :test: test_remove_40
-  :line: 57
+  :line: 58
   :message: ''
 :failures: []
 :ignores: []
@@ -17,12 +17,9 @@
   :failed: 0
   :ignored: 0
 :stdout:
-- child4270912
-- child4270496
-- 45 4270944
-- 40 4270816
-- 25  4270880
-- root = 40
+- child4275008
+- child4274592
+- 45 4275040
+- 40 4274912
+- 25  4274976
 - child0
-- val 4270944
-- root = 45

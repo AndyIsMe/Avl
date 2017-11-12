@@ -1,5 +1,6 @@
 #include "unity.h"
 #include "Remove.h"
+#include "Rotate.h"
 
 Node node1,node5 , node10,node15,node20,node25,node30,node35,node40;
 Node node45,node50,node55,node60,node65,node70,node90;
@@ -45,13 +46,24 @@ void test_findNearest(void)
 }
 
 /*
-              50                                  50
-            /   \       Remove 40                /  \
-          40    60      -------->              45   60
-          / \   /\                            /    /  \
-        25  45 55  70                       25   55   70
-        /                                  /
-      10                                 10
+ *              50                                  50
+ *             /   \       Remove 40               /  \
+ *          40    60      -------->              45   60
+ *          / \   /\                            /    /  \
+ *        25  45 55  70                       25   55   70
+ *        /                                  /
+ *      10                                 10
+ *                                                        |
+ *                50(0)                                  |
+ *              /    \                                   | Rotate Right
+ *            25(0)   60(0)                       < ____|
+ *           /  \    / \
+ *        10(0)45(0)55(0)70(0)
+ *
+ *
+ *
+ *
+ *
 */
 
 void test_remove_40(void){
@@ -85,4 +97,12 @@ void test_remove_40(void){
   TEST_ASSERT_EQUAL_PTR(&node70,node60.right);
   TEST_ASSERT_EQUAL_PTR(&node45 ,node50.left);
   TEST_ASSERT_EQUAL_PTR(&node60,node50.right);
+  TEST_ASSERT_EQUAL(0,node10.balanceFactor);
+  TEST_ASSERT_EQUAL(0,node55.balanceFactor);
+  TEST_ASSERT_EQUAL(0,node70.balanceFactor);
+  TEST_ASSERT_EQUAL(0,node25.balanceFactor);
+  TEST_ASSERT_EQUAL(-1,node45.balanceFactor);
+  TEST_ASSERT_EQUAL(0,node50.balanceFactor);
+  TEST_ASSERT_EQUAL(0,node60.balanceFactor);
+
 }

@@ -1,4 +1,5 @@
 ---
 - unity.h
 - Remove.h
+- Rotate.h
 - build/temp/_test_Remove.c

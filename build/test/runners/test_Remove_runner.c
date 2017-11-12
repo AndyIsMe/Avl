@@ -47,8 +47,8 @@ void resetTest(void)
 int main(void)
 {
   UnityBegin("test_Remove.c");
-  RUN_TEST(test_findNearest, 35);
-  RUN_TEST(test_remove_40, 57);
+  RUN_TEST(test_findNearest, 36);
+  RUN_TEST(test_remove_40, 58);
 
   return (UnityEnd());
 }
