@@ -83,6 +83,6 @@ void test_remove_40(void){
   TEST_ASSERT_EQUAL_PTR(NULL,node70.right);
   TEST_ASSERT_EQUAL_PTR(&node55,node60.left);
   TEST_ASSERT_EQUAL_PTR(&node70,node60.right);
-  TEST_ASSERT_EQUAL_PTR(&node40 ,node50.left);
-  TEST_ASSERT_EQUAL_PTR(&node55,node50.right);
+  TEST_ASSERT_EQUAL_PTR(&node45 ,node50.left);
+  TEST_ASSERT_EQUAL_PTR(&node60,node50.right);
 }

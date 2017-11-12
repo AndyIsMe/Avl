@@ -6,15 +6,15 @@
 - :test: test_findNearest
   :line: 35
   :message: ''
-:failures:
 - :test: test_remove_40
-  :line: 74
-  :message: Expected 0x0000000000412A00 Was 0x0000000000000000
+  :line: 57
+  :message: ''
+:failures: []
 :ignores: []
 :counts:
   :total: 2
-  :passed: 1
-  :failed: 1
+  :passed: 2
+  :failed: 0
   :ignored: 0
 :stdout:
 - child4270912

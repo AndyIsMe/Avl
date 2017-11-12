@@ -285,13 +285,13 @@ void test_remove_40(void){
 
  ), (UNITY_UINT)(85), UNITY_DISPLAY_STYLE_HEX64);
 
-  UnityAssertEqualNumber((UNITY_INT64)((&node40)), (UNITY_INT64)((node50.left)), (
+  UnityAssertEqualNumber((UNITY_INT64)((&node45)), (UNITY_INT64)((node50.left)), (
 
  ((void *)0)
 
  ), (UNITY_UINT)(86), UNITY_DISPLAY_STYLE_HEX64);
 
-  UnityAssertEqualNumber((UNITY_INT64)((&node55)), (UNITY_INT64)((node50.right)), (
+  UnityAssertEqualNumber((UNITY_INT64)((&node60)), (UNITY_INT64)((node50.right)), (
 
  ((void *)0)
 
