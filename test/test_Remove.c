@@ -31,18 +31,18 @@ void setUp(void){
   node100.data = 100;
 }
 void tearDown(void){}
-/*
+
 void test_findNearest(void)
 {
 
   initNode(&node30,NULL,NULL,0);
-  initNode(&node40,&node30,NULL,-1);
-  initNode(&node50,&node40,NULL,0);
-  Node *root = &node50;
-  Search(&node30);
-  TEST_ASSERT_EQUAL_PTR(&root,node50);
+  initNode(&node30,&node20,NULL,-1);
+  initNode(&node20,&node15,NULL,-1);
+  Node *root;
+  root = Search(&node30);
+  TEST_ASSERT_EQUAL(15,root->data);
 
-}*/
+}
 
 /*
               50                                  50
@@ -59,14 +59,17 @@ void test_remove_40(void){
   initNode(&node10,NULL,NULL,0);
   initNode(&node25,&node10,NULL,0);
   initNode(&node45,NULL,NULL,0);
-  initNode(&node40,&node25,&node45,0);
+  initNode(&node40,&node25,&node45,-1);
   initNode(&node55,NULL,NULL,0);
   initNode(&node70,NULL,NULL,0);
   initNode(&node60,&node55,&node70,0);
-  initNode(&node50,&node40,&node60,0);
+  initNode(&node50,&node40,&node60,-1);
 
   Node *root = &node50;
-  root=avl_Remove(&root,&node40);
+  printf("45 %d\n",&node45 );
+  printf("40 %d\n",&node40 );
+  printf("25  %d\n",&node10 );
+  avl_Remove(&root,40);
   TEST_ASSERT_EQUAL_PTR(root,&node50);
   TEST_ASSERT_EQUAL_PTR(&node25,node45.left);
   TEST_ASSERT_EQUAL_PTR(NULL,node45.right);
@@ -80,6 +83,6 @@ void test_remove_40(void){
   TEST_ASSERT_EQUAL_PTR(NULL,node70.right);
   TEST_ASSERT_EQUAL_PTR(&node55,node60.left);
   TEST_ASSERT_EQUAL_PTR(&node70,node60.right);
-  TEST_ASSERT_EQUAL_PTR(&node45,node50.left);
-  TEST_ASSERT_EQUAL_PTR(&node60,node50.right);
+  TEST_ASSERT_EQUAL_PTR(&node40 ,node50.left);
+  TEST_ASSERT_EQUAL_PTR(&node55,node50.right);
 }

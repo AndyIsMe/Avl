@@ -2,15 +2,27 @@
 :source:
   :path: test
   :file: test_Remove.c
-:successes: []
+:successes:
+- :test: test_findNearest
+  :line: 35
+  :message: ''
 :failures:
 - :test: test_remove_40
-  :line: 71
+  :line: 74
   :message: Expected 0x0000000000412A00 Was 0x0000000000000000
 :ignores: []
 :counts:
-  :total: 1
-  :passed: 0
+  :total: 2
+  :passed: 1
   :failed: 1
   :ignored: 0
-:stdout: []
+:stdout:
+- child4270912
+- child4270496
+- 45 4270944
+- 40 4270816
+- 25  4270880
+- root = 40
+- child0
+- val 4270944
+- root = 45

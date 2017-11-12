@@ -30,6 +30,7 @@ char* GlobalOrderError;
 /*=======External Functions This Runner Calls=====*/
 extern void setUp(void);
 extern void tearDown(void);
+extern void test_findNearest(void);
 extern void test_remove_40(void);
 
 
@@ -46,6 +47,7 @@ void resetTest(void)
 int main(void)
 {
   UnityBegin("test_Remove.c");
+  RUN_TEST(test_findNearest, 35);
   RUN_TEST(test_remove_40, 57);
 
   return (UnityEnd());

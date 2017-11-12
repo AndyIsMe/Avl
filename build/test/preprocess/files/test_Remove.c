@@ -63,6 +63,50 @@ void setUp(void){
 
 void tearDown(void){}
 
+
+
+void test_findNearest(void)
+
+{
+
+
+
+  initNode(&node30,
+
+                  ((void *)0)
+
+                      ,
+
+                       ((void *)0)
+
+                           ,0);
+
+  initNode(&node30,&node20,
+
+                          ((void *)0)
+
+                              ,-1);
+
+  initNode(&node20,&node15,
+
+                          ((void *)0)
+
+                              ,-1);
+
+  Node *root;
+
+  root = Search(&node30);
+
+  UnityAssertEqualNumber((UNITY_INT)((15)), (UNITY_INT)((root->data)), (
+
+ ((void *)0)
+
+ ), (UNITY_UINT)(43), UNITY_DISPLAY_STYLE_INT);
+
+
+
+}
+
 void test_remove_40(void){
 
 
@@ -93,7 +137,7 @@ void test_remove_40(void){
 
                            ,0);
 
-  initNode(&node40,&node25,&node45,0);
+  initNode(&node40,&node25,&node45,-1);
 
   initNode(&node55,
 
@@ -117,47 +161,27 @@ void test_remove_40(void){
 
   initNode(&node60,&node55,&node70,0);
 
-  initNode(&node50,&node40,&node60,0);
+  initNode(&node50,&node40,&node60,-1);
 
 
 
   Node *root = &node50;
 
-  root=avl_Remove(&root,&node40);
+  printf("45 %d\n",&node45 );
+
+  printf("40 %d\n",&node40 );
+
+  printf("25  %d\n",&node10 );
+
+  avl_Remove(&root,40);
 
   UnityAssertEqualNumber((UNITY_INT64)((root)), (UNITY_INT64)((&node50)), (
 
  ((void *)0)
 
- ), (UNITY_UINT)(70), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT64)((&node25)), (UNITY_INT64)((node45.left)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(71), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT64)((
-
- ((void *)0)
-
- )), (UNITY_INT64)((node45.right)), (
-
- ((void *)0)
-
- ), (UNITY_UINT)(72), UNITY_DISPLAY_STYLE_HEX64);
-
-  UnityAssertEqualNumber((UNITY_INT64)((&node10)), (UNITY_INT64)((node25.left)), (
-
- ((void *)0)
-
  ), (UNITY_UINT)(73), UNITY_DISPLAY_STYLE_HEX64);
 
-  UnityAssertEqualNumber((UNITY_INT64)((
-
- ((void *)0)
-
- )), (UNITY_INT64)((node25.right)), (
+  UnityAssertEqualNumber((UNITY_INT64)((&node25)), (UNITY_INT64)((node45.left)), (
 
  ((void *)0)
 
@@ -167,17 +191,13 @@ void test_remove_40(void){
 
  ((void *)0)
 
- )), (UNITY_INT64)((node55.left)), (
+ )), (UNITY_INT64)((node45.right)), (
 
  ((void *)0)
 
  ), (UNITY_UINT)(75), UNITY_DISPLAY_STYLE_HEX64);
 
-  UnityAssertEqualNumber((UNITY_INT64)((
-
- ((void *)0)
-
- )), (UNITY_INT64)((node55.right)), (
+  UnityAssertEqualNumber((UNITY_INT64)((&node10)), (UNITY_INT64)((node25.left)), (
 
  ((void *)0)
 
@@ -187,7 +207,7 @@ void test_remove_40(void){
 
  ((void *)0)
 
- )), (UNITY_INT64)((node10.left)), (
+ )), (UNITY_INT64)((node25.right)), (
 
  ((void *)0)
 
@@ -197,7 +217,7 @@ void test_remove_40(void){
 
  ((void *)0)
 
- )), (UNITY_INT64)((node10.right)), (
+ )), (UNITY_INT64)((node55.left)), (
 
  ((void *)0)
 
@@ -207,7 +227,7 @@ void test_remove_40(void){
 
  ((void *)0)
 
- )), (UNITY_INT64)((node70.left)), (
+ )), (UNITY_INT64)((node55.right)), (
 
  ((void *)0)
 
@@ -217,34 +237,64 @@ void test_remove_40(void){
 
  ((void *)0)
 
- )), (UNITY_INT64)((node70.right)), (
+ )), (UNITY_INT64)((node10.left)), (
 
  ((void *)0)
 
  ), (UNITY_UINT)(80), UNITY_DISPLAY_STYLE_HEX64);
 
-  UnityAssertEqualNumber((UNITY_INT64)((&node55)), (UNITY_INT64)((node60.left)), (
+  UnityAssertEqualNumber((UNITY_INT64)((
+
+ ((void *)0)
+
+ )), (UNITY_INT64)((node10.right)), (
 
  ((void *)0)
 
  ), (UNITY_UINT)(81), UNITY_DISPLAY_STYLE_HEX64);
 
-  UnityAssertEqualNumber((UNITY_INT64)((&node70)), (UNITY_INT64)((node60.right)), (
+  UnityAssertEqualNumber((UNITY_INT64)((
+
+ ((void *)0)
+
+ )), (UNITY_INT64)((node70.left)), (
 
  ((void *)0)
 
  ), (UNITY_UINT)(82), UNITY_DISPLAY_STYLE_HEX64);
 
-  UnityAssertEqualNumber((UNITY_INT64)((&node45)), (UNITY_INT64)((node50.left)), (
+  UnityAssertEqualNumber((UNITY_INT64)((
+
+ ((void *)0)
+
+ )), (UNITY_INT64)((node70.right)), (
 
  ((void *)0)
 
  ), (UNITY_UINT)(83), UNITY_DISPLAY_STYLE_HEX64);
 
-  UnityAssertEqualNumber((UNITY_INT64)((&node60)), (UNITY_INT64)((node50.right)), (
+  UnityAssertEqualNumber((UNITY_INT64)((&node55)), (UNITY_INT64)((node60.left)), (
 
  ((void *)0)
 
  ), (UNITY_UINT)(84), UNITY_DISPLAY_STYLE_HEX64);
+
+  UnityAssertEqualNumber((UNITY_INT64)((&node70)), (UNITY_INT64)((node60.right)), (
+
+ ((void *)0)
+
+ ), (UNITY_UINT)(85), UNITY_DISPLAY_STYLE_HEX64);
+
+  UnityAssertEqualNumber((UNITY_INT64)((&node40)), (UNITY_INT64)((node50.left)), (
+
+ ((void *)0)
+
+ ), (UNITY_UINT)(86), UNITY_DISPLAY_STYLE_HEX64);
+
+  UnityAssertEqualNumber((UNITY_INT64)((&node55)), (UNITY_INT64)((node50.right)), (
+
+ ((void *)0)
+
+ ), (UNITY_UINT)(87), UNITY_DISPLAY_STYLE_HEX64);
 
 }
