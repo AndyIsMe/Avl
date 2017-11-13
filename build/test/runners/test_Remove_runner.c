@@ -31,7 +31,12 @@ char* GlobalOrderError;
 extern void setUp(void);
 extern void tearDown(void);
 extern void test_findNearest(void);
-extern void test_remove_40(void);
+extern void test_remove_50(void);
+extern void test_remove_40_replace_by_45_with_rotation(void);
+extern void test_remove_30_replace_by_40(void);
+extern void test_remove_node_20_replace_by_node_25(void);
+extern void test_remove_node_20_replace_by_node_30(void);
+extern void test_remove_node_40_replace_by_node_45(void);
 
 
 /*=======Test Reset Option=====*/
@@ -47,8 +52,13 @@ void resetTest(void)
 int main(void)
 {
   UnityBegin("test_Remove.c");
-  RUN_TEST(test_findNearest, 36);
-  RUN_TEST(test_remove_40, 58);
+  RUN_TEST(test_findNearest, 37);
+  RUN_TEST(test_remove_50, 55);
+  RUN_TEST(test_remove_40_replace_by_45_with_rotation, 84);
+  RUN_TEST(test_remove_30_replace_by_40, 135);
+  RUN_TEST(test_remove_node_20_replace_by_node_25, 178);
+  RUN_TEST(test_remove_node_20_replace_by_node_30, 212);
+  RUN_TEST(test_remove_node_40_replace_by_node_45, 267);
 
   return (UnityEnd());
 }

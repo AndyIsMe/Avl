@@ -6,15 +6,23 @@
 Node *Search(Node *rootPtr)
 {
 Node *child = rootPtr->left;
-printf("child%d\n",child );
   if(child != NULL)
   {
     if(child->left != NULL)
       Search(rootPtr->left);
       else
       {
-  //printf("val %d\n",child);
-        return child;
+        return child;/*
+        if(child->right == NULL)
+        {
+          return child;
+        }
+        else
+        {
+
+          child->balanceFactor -= 1;
+          return child;
+        }*/
       }
     }
   else
@@ -23,19 +31,32 @@ printf("child%d\n",child );
     }
 }
 
-Node *avl_Remove(Node **rootPtr, int nodeToRemove){
+Node *avl_Remove(Node **rootPtr, int nodeToRemove, int height)
+{
   Node *Remove;
-  if((*rootPtr) == NULL)
-    return *rootPtr;
+  if((*rootPtr) == NULL){
+    //height = 1;
+    return height;
+  }
       if(nodeToRemove < (*rootPtr)->data)
       {
-        (*rootPtr)->left = avl_Remove(&((*rootPtr)->left),nodeToRemove);
+        height = avl_Remove(&((*rootPtr)->left),nodeToRemove,height);
+        if(height == 1)
+        {
         (*rootPtr)->balanceFactor += 1;
+        if((*rootPtr)->balanceFactor == 0)
+          height = 0;
+        }
       }
       else if(nodeToRemove > (*rootPtr)->data)
       {
-        (*rootPtr)->right = avl_Remove(&((*rootPtr)->right),nodeToRemove);
+        height = avl_Remove(&((*rootPtr)->right),nodeToRemove,height);
+        if(height == 1)
+        {
         (*rootPtr)->balanceFactor -= 1;
+        if((*rootPtr)->balanceFactor == 0)
+          height = 0;
+        }
       }
       else
       {
@@ -44,34 +65,38 @@ Node *avl_Remove(Node **rootPtr, int nodeToRemove){
               Remove = (*rootPtr)->left ? (*rootPtr)->left :(*rootPtr)->right;
                 if(Remove == NULL)
                 {
+                  height = 1;
                   Remove = *rootPtr;
                   *rootPtr = NULL;
                 }
                 else
+                {
+                  height = 1;
                   *rootPtr =  Remove;
-
+                }
               }
             else
             {
+              height = 1;
               Remove = Search((*rootPtr)->right);
-              (*rootPtr)->right = avl_Remove(&((*rootPtr)->right),Remove->data);
+              height = avl_Remove(&((*rootPtr)),Remove->data,height);
               Remove->left = (*rootPtr)->left;
               Remove->right = (*rootPtr)->right;
               Remove->balanceFactor = ((*rootPtr)->balanceFactor);
               *rootPtr = Remove;
+              if((*rootPtr)->balanceFactor >= 2)
+                avlBalanceRightTreeV1(&(*rootPtr));
+              else if((*rootPtr)->balanceFactor <= -2)
+                avlBalanceLeftTreeV1(&(*rootPtr));
+              else
+              {
+                *rootPtr = *rootPtr;
+              }
             }
       }
     if((*rootPtr)==NULL)
     {
-      return *rootPtr;
+      return height;
     }
-    if((*rootPtr)->balanceFactor >= 2)
-      avlBalanceRightTreeV1(&(*rootPtr));
-    else if((*rootPtr)->balanceFactor <= -2)
-      avlBalanceLeftTreeV1(&(*rootPtr));
-    else
-    {
-      *rootPtr = *rootPtr;
-    }
-    return *rootPtr;
+    return height;
 }
