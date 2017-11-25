@@ -40,21 +40,21 @@ Node *avl_Remove(Node **rootPtr, int nodeToRemove, int height)
   }
       if(nodeToRemove < (*rootPtr)->data)
       {
-        height = avl_Remove(&((*rootPtr)->left),nodeToRemove,height);
+        avl_Remove(&((*rootPtr)->left),nodeToRemove,height);
         if(height == 1)
         {
         (*rootPtr)->balanceFactor += 1;
-        if((*rootPtr)->balanceFactor == 0)
+        if((*rootPtr)->balanceFactor != 0)
           height = 0;
         }
       }
       else if(nodeToRemove > (*rootPtr)->data)
       {
-        height = avl_Remove(&((*rootPtr)->right),nodeToRemove,height);
+        avl_Remove(&((*rootPtr)->right),nodeToRemove,height);
         if(height == 1)
         {
         (*rootPtr)->balanceFactor -= 1;
-        if((*rootPtr)->balanceFactor == 0)
+        if((*rootPtr)->balanceFactor != 0)
           height = 0;
         }
       }
@@ -65,13 +65,13 @@ Node *avl_Remove(Node **rootPtr, int nodeToRemove, int height)
               Remove = (*rootPtr)->left ? (*rootPtr)->left :(*rootPtr)->right;
                 if(Remove == NULL)
                 {
-                  height = 1;
+                  //height = 1;
                   Remove = *rootPtr;
                   *rootPtr = NULL;
                 }
                 else
                 {
-                  height = 1;
+                    //height = 1;
                   *rootPtr =  Remove;
                 }
               }
@@ -79,15 +79,19 @@ Node *avl_Remove(Node **rootPtr, int nodeToRemove, int height)
             {
               height = 1;
               Remove = Search((*rootPtr)->right);
-              height = avl_Remove(&((*rootPtr)),Remove->data,height);
+              avl_Remove(&((*rootPtr)),Remove->data,height);
               Remove->left = (*rootPtr)->left;
               Remove->right = (*rootPtr)->right;
               Remove->balanceFactor = ((*rootPtr)->balanceFactor);
               *rootPtr = Remove;
               if((*rootPtr)->balanceFactor >= 2)
                 avlBalanceRightTreeV1(&(*rootPtr));
-              else if((*rootPtr)->balanceFactor <= -2)
+              else if((*rootPtr)->balanceFactor <= -2){
+                printf("height : %d\n",height);
+                printf("balance factor : %d\n",(*rootPtr)->balanceFactor);
                 avlBalanceLeftTreeV1(&(*rootPtr));
+                printf("balance factor : %d\n",(*rootPtr)->balanceFactor);
+              }
               else
               {
                 *rootPtr = *rootPtr;

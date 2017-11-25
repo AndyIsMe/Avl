@@ -1,0 +1,46 @@
+---
+:source:
+  :path: test
+  :file: test_Remove.c
+:successes:
+- :test: test_findNearest
+  :line: 38
+  :message: ''
+- :test: test_remove_50
+  :line: 56
+  :message: ''
+- :test: test_remove_40_replace_by_45_with_rotation
+  :line: 85
+  :message: ''
+- :test: test_remove_30_replace_by_40
+  :line: 136
+  :message: ''
+- :test: test_remove_node_20_replace_by_node_25
+  :line: 179
+  :message: ''
+- :test: test_remove_node_20_replace_by_node_30
+  :line: 213
+  :message: ''
+- :test: test_remove_node_40_replace_by_node_45
+  :line: 268
+  :message: ''
+- :test: test_remove_given_Avl_tree_remove_60_test2
+  :line: 333
+  :message: ''
+:failures: []
+:ignores: []
+:counts:
+  :total: 8
+  :passed: 8
+  :failed: 0
+  :ignored: 0
+:stdout:
+- 'height : 1'
+- 'balance factor : -2'
+- 'balance factor : 0'
+- 'height : 1'
+- 'balance factor : -2'
+- 'balance factor : 0'
+- 'height : 1'
+- 'balance factor : -2'
+- 'balance factor : 0'
