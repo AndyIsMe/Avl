@@ -8,16 +8,14 @@ struct Node {
   Node *right;
   int balanceFactor;
   uint32_t data;
-  uint32_t height;
 };
 
-
-/*
 typedef struct StringNode StringNode;
 struct StringNode {
   StringNode *left;
   StringNode *right;
-  char *data;
-};*/
+  int balanceFactor;
+  char *str;
+};
 
 #endif // _NODE_H
