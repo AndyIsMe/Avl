@@ -37,6 +37,43 @@ void tearDown(void){}
    RemoveN(&root,50);
    TEST_ASSERT_EQUAL_PTR(NULL,root);
  }
+ /**
+*       40(0)                         40 (1)
+*       / \          remove 30         \
+*    30    50 (0)  --------------->    50
+*
+**/
+void test_remove_node_30(void){
+
+
+  initNode(&node30,NULL,NULL,0);
+  initNode(&node50,NULL,NULL,0);
+  initNode(&node40,&node30,&node50,0);
+
+
+  Node *root = &node40;
+  RemoveN(&root,30);
+  TEST_ASSERT_EQUAL_PTR(&node40,root);
+  TEST_ASSERT_EQUAL_NODE(NULL,&node50,1,&node40);
+}
+
+/**
+*       40(0)                         40 (-1)
+*       / \          remove 50       /
+*    30    50 (0)  ---------------> 30
+*
+**/
+void test_remove_node_50(void){
+
+ initNode(&node30,NULL,NULL,0);
+ initNode(&node50,NULL,NULL,0);
+ initNode(&node40,&node30,&node50,0);
+
+ Node *root = &node40;
+ RemoveN(&root,50);
+ TEST_ASSERT_EQUAL_PTR(&node40,root);
+ TEST_ASSERT_EQUAL_NODE(&node30,NULL,-1,&node40);
+}
 
 /*
  *              50                                 50
@@ -190,7 +227,7 @@ void test_remove_node_20_replace_by_node_30(void){
   *       |_>                                /  \    /  \
   *                                        20   45  60  75
   *                                         \  /  \   \
-  *                                        25 35   50   65
+  *                                        25 35   50  65
   *
   *
   *
@@ -229,8 +266,7 @@ void test_remove_node_20_replace_by_node_30(void){
     TEST_ASSERT_EQUAL_NODE(NULL,NULL,0, &node65);
   }
 
-  /**
----------------------------------------remove 60----------------------------------------
+/**
 *                  60                           60 (0)
 *                /    \       remove 40        /   \
 *               40      90    ---------->     30    90(1)
@@ -306,11 +342,11 @@ void test_remove_node_20_replace_by_node_25_with_rotation(void){
 
 /**
  *
- *         5                                 5
+ *         5(1)                             5(1)
  *       /  \                              /  \
- *      1   15(0)     delete node 15       1  20
+ *      1   15(0)     delete node 15     1     20(-1)
  *         /  \          ---->                /
- *        10  20                              10
+ *        10  20                            10
  */
 void test_remove_node_15_replace_by_node_20(void)
 {
@@ -319,7 +355,10 @@ void test_remove_node_15_replace_by_node_20(void)
     initNode(&node10, NULL, NULL, 0);
     initNode(&node20, NULL, NULL, 0);
     initNode(&node1, NULL, NULL, 0);
-
+    printf("5 %x\n",&node5);
+    printf("15 %x\n",&node15);
+    printf("10 %x\n",&node10);
+    printf("20 %x\n",&node20);
     Node *root = &node5;
 
     RemoveN(&root,15);
@@ -328,4 +367,70 @@ void test_remove_node_15_replace_by_node_20(void)
     TEST_ASSERT_EQUAL_NODE(NULL,NULL,0, &node1);
     TEST_ASSERT_EQUAL_NODE(&node10,NULL,-1, &node20);
     TEST_ASSERT_EQUAL_NODE(NULL,NULL,0, &node10);
+}
+/**
+*         60                                60
+*      /     \       remove 40            /   \
+*    40        90    ---------->        50    90
+*    / \     /   \                     / \   /  \
+*   20  50  75    100                20  55 75  100
+*         \
+*          55
+**/
+
+void test_remove_node_40_replace_by_node_50(void){
+
+  initNode(&node60,&node40,&node90,-1);
+  initNode(&node40,&node20,&node50,1);
+  initNode(&node90,&node75,&node100,0);
+  initNode(&node50,NULL,&node55,1);
+  initNode(&node75,NULL,NULL,0);
+  initNode(&node20,NULL,NULL,0);
+  initNode(&node100,NULL,NULL,0);
+  initNode(&node55,NULL,NULL,0);
+
+
+  Node *root = &node60;
+  RemoveN(&root,40);
+  TEST_ASSERT_EQUAL_PTR(&node60,root);
+  TEST_ASSERT_EQUAL_NODE(&node50,&node90,0,&node60);
+  TEST_ASSERT_EQUAL_NODE(&node20,&node55,0,&node50);
+  TEST_ASSERT_EQUAL_NODE(&node75,&node100,0,&node90);
+  TEST_ASSERT_EQUAL_NODE(NULL,NULL,0,&node100);
+  TEST_ASSERT_EQUAL_NODE(NULL,NULL,0,&node75);
+
+}
+/**
+*
+*                               remove 30                           rotateleft at 50
+*               30        ------------------->      45            ---------------->         45
+*              /  \                                 / \                                    / \
+*            20   50                               20  50                                 20  55
+*           /    /  \                             /     \                                 /   / \
+*         10    45   55                          10      55                             10   50  60
+*                      \                                   \
+*                       60                                 60
+*
+**/
+
+void test_remove_node_30_replace_by_node_45_with_rotation(void){
+
+  initNode(&node30,&node20,&node50,1);
+  initNode(&node20,&node10,NULL,-1);
+  initNode(&node50,&node45,&node55,1);
+  initNode(&node55,NULL,&node60,1);
+  initNode(&node10,NULL,NULL,0);
+  initNode(&node45,NULL,NULL,0);
+  initNode(&node60,NULL,NULL,0);
+
+  Node *root = &node30;
+  RemoveN(&root,30);
+  TEST_ASSERT_EQUAL_PTR(&node45,root);
+  TEST_ASSERT_EQUAL_NODE(&node20,&node55,0,&node45);;
+  TEST_ASSERT_EQUAL_NODE(&node50,&node60,0,&node55);
+  TEST_ASSERT_EQUAL_NODE(&node10,NULL,-1,&node20);
+  TEST_ASSERT_EQUAL_NODE(NULL,NULL,0,&node10);
+  TEST_ASSERT_EQUAL_NODE(NULL,NULL,0,&node50);
+  TEST_ASSERT_EQUAL_NODE(NULL,NULL,0,&node60);
+
 }
