@@ -35,10 +35,10 @@ extern void test_remove_40_replace_by_45_with_rotation(void);
 extern void test_remove_30_replace_by_40(void);
 extern void test_remove_node_20_replace_by_node_25(void);
 extern void test_remove_node_20_replace_by_node_30(void);
-extern void test_remove_node_40_replace_by_node_45(void);
-extern void test_remove_given_Avl_tree_remove_60_test2(void);
-extern void test_remove_node_20_replace_by_node_25_v2(void);
-extern void test_deleteLeaf_given_deletedNode_left_right_Not_null_delete_15(void);
+extern void test_remove_node_40_replace_by_node_45_with_rotation(void);
+extern void test_remove_node_40_replace_by_node_50_with_rotation(void);
+extern void test_remove_node_20_replace_by_node_25_with_rotation(void);
+extern void test_remove_node_15_replace_by_node_20(void);
 
 
 /*=======Test Reset Option=====*/
@@ -54,15 +54,15 @@ void resetTest(void)
 int main(void)
 {
   UnityBegin("test_Remove.c");
-  RUN_TEST(test_remove_50, 59);
-  RUN_TEST(test_remove_40_replace_by_45_with_rotation, 88);
-  RUN_TEST(test_remove_30_replace_by_40, 139);
-  RUN_TEST(test_remove_node_20_replace_by_node_25, 182);
-  RUN_TEST(test_remove_node_20_replace_by_node_30, 216);
-  RUN_TEST(test_remove_node_40_replace_by_node_45, 271);
-  RUN_TEST(test_remove_given_Avl_tree_remove_60_test2, 337);
-  RUN_TEST(test_remove_node_20_replace_by_node_25_v2, 402);
-  RUN_TEST(test_deleteLeaf_given_deletedNode_left_right_Not_null_delete_15, 442);
+  RUN_TEST(test_remove_50, 33);
+  RUN_TEST(test_remove_40_replace_by_45_with_rotation, 62);
+  RUN_TEST(test_remove_30_replace_by_40, 99);
+  RUN_TEST(test_remove_node_20_replace_by_node_25, 129);
+  RUN_TEST(test_remove_node_20_replace_by_node_30, 154);
+  RUN_TEST(test_remove_node_40_replace_by_node_45_with_rotation, 202);
+  RUN_TEST(test_remove_node_40_replace_by_node_50_with_rotation, 245);
+  RUN_TEST(test_remove_node_20_replace_by_node_25_with_rotation, 287);
+  RUN_TEST(test_remove_node_15_replace_by_node_20, 315);
 
   return (UnityEnd());
 }

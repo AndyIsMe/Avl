@@ -2,4 +2,6 @@
 - unity.h
 - Remove.h
 - Rotate.h
+- NodeVerifier.h
+- NodeHelper.h
 - build/temp/_test_Remove.c
