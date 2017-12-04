@@ -1,0 +1,52 @@
+---
+:source:
+  :path: test
+  :file: test_Remove.c
+:successes:
+- :test: test_remove_50
+  :line: 34
+  :message: ''
+- :test: test_remove_node_30
+  :line: 49
+  :message: ''
+- :test: test_remove_node_50
+  :line: 69
+  :message: ''
+- :test: test_remove_40_replace_by_45_with_rotation
+  :line: 102
+  :message: ''
+- :test: test_remove_30_replace_by_40
+  :line: 139
+  :message: ''
+- :test: test_remove_node_20_replace_by_node_25
+  :line: 169
+  :message: ''
+- :test: test_remove_node_20_replace_by_node_30
+  :line: 194
+  :message: ''
+- :test: test_remove_node_40_replace_by_node_45_with_rotation
+  :line: 242
+  :message: ''
+- :test: test_remove_node_40_replace_by_node_50_with_rotation
+  :line: 284
+  :message: ''
+- :test: test_remove_node_20_replace_by_node_25_with_rotation
+  :line: 326
+  :message: ''
+- :test: test_remove_node_15_replace_by_node_20
+  :line: 354
+  :message: ''
+- :test: test_remove_node_40_replace_by_node_50
+  :line: 381
+  :message: ''
+- :test: test_remove_node_30_replace_by_node_45_with_rotation
+  :line: 416
+  :message: ''
+:failures: []
+:ignores: []
+:counts:
+  :total: 13
+  :passed: 13
+  :failed: 0
+  :ignored: 0
+:stdout: []

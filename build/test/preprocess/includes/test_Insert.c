@@ -2,4 +2,5 @@
 - unity.h
 - Insert.h
 - Rotate.h
+- AvlInteger.h
 - build/temp/_test_Insert.c

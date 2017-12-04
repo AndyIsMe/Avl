@@ -30,7 +30,9 @@ char* GlobalOrderError;
 /*=======External Functions This Runner Calls=====*/
 extern void setUp(void);
 extern void tearDown(void);
-extern void test_NodeVerifier_NeedToImplement(void);
+extern void test_IntCompare_given_90_60_expect_1(void);
+extern void test_IntCompare_given_60_90_expect_minus_1(void);
+extern void test_IntCompare_given_90_90_expect_0(void);
 
 
 /*=======Test Reset Option=====*/
@@ -45,8 +47,10 @@ void resetTest(void)
 /*=======MAIN=====*/
 int main(void)
 {
-  UnityBegin("test_NodeVerifier.c");
-  RUN_TEST(test_NodeVerifier_NeedToImplement, 12);
+  UnityBegin("test_AvlInteger.c");
+  RUN_TEST(test_IntCompare_given_90_60_expect_1, 12);
+  RUN_TEST(test_IntCompare_given_60_90_expect_minus_1, 24);
+  RUN_TEST(test_IntCompare_given_90_90_expect_0, 36);
 
   return (UnityEnd());
 }

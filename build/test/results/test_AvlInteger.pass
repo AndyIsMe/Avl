@@ -1,0 +1,22 @@
+---
+:source:
+  :path: test
+  :file: test_AvlInteger.c
+:successes:
+- :test: test_IntCompare_given_90_60_expect_1
+  :line: 12
+  :message: ''
+- :test: test_IntCompare_given_60_90_expect_minus_1
+  :line: 24
+  :message: ''
+- :test: test_IntCompare_given_90_90_expect_0
+  :line: 36
+  :message: ''
+:failures: []
+:ignores: []
+:counts:
+  :total: 3
+  :passed: 3
+  :failed: 0
+  :ignored: 0
+:stdout: []

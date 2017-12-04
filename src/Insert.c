@@ -2,36 +2,36 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include "Rotate.h"
-
-
+//#include "AvlInteger.c"
+/*
 int avl_Insert(Node **rootPtr, Node *nodeToAdd){
-  int height;
+  int heightstatus;
     if(*rootPtr == NULL){
       *rootPtr = nodeToAdd;
       (*rootPtr)->left = NULL;
       (*rootPtr)->right = NULL;
-      return height = 1;
+      return heightstatus = 1;
                         }
     else{
       if((*rootPtr)->data > nodeToAdd->data){
-        height = avl_Insert((&(*rootPtr)->left),nodeToAdd);
-        if(height == 1){
+        heightstatus = avl_Insert((&(*rootPtr)->left),nodeToAdd);
+        if(heightstatus == 1){
         //(*rootPtr)->left = avl_Insert((&(*rootPtr)->left),nodeToAdd);
         (*rootPtr)->balanceFactor -= 1;
           if((*rootPtr)->balanceFactor == 0)
-            height = 0;
+            heightstatus = 0;
         }
         else{
           (*rootPtr)->balanceFactor = (*rootPtr)->balanceFactor;
         }
                                             }
       else if((*rootPtr)->data < nodeToAdd->data){
-        height = avl_Insert((&(*rootPtr)->right),nodeToAdd);
-        if(height == 1){
+        heightstatus = avl_Insert((&(*rootPtr)->right),nodeToAdd);
+        if(heightstatus == 1){
         //(*rootPtr)->right = avl_Insert((&(*rootPtr)->right),nodeToAdd);
         (*rootPtr)->balanceFactor += 1;
           if((*rootPtr)->balanceFactor == 0)
-            height = 0;
+            heightstatus = 0;
         }
         else
           (*rootPtr)->balanceFactor = (*rootPtr)->balanceFactor;
@@ -44,5 +44,49 @@ int avl_Insert(Node **rootPtr, Node *nodeToAdd){
       else{
         *rootPtr = *rootPtr;
       }
-      return height;
+      return heightstatus;
+}*/
+
+int avl_Insert(Node **rootPtr, Node *nodeToAdd,Compare IntCompare){
+  int heightstatus;
+    if(*rootPtr == NULL){
+      *rootPtr = nodeToAdd;
+      (*rootPtr)->left = NULL;
+      (*rootPtr)->right = NULL;
+      return heightstatus = 1;
+                        }
+    else{
+      int compareResult = IntCompare(nodeToAdd->data,*rootPtr);
+      if(compareResult > 0){
+        heightstatus = avl_Insert((&(*rootPtr)->left),nodeToAdd,IntCompare);
+        if(heightstatus == 1){
+        //(*rootPtr)->left = avl_Insert((&(*rootPtr)->left),nodeToAdd);
+        (*rootPtr)->balanceFactor -= 1;
+          if((*rootPtr)->balanceFactor == 0)
+            heightstatus = 0;
+        }
+        else{
+          (*rootPtr)->balanceFactor = (*rootPtr)->balanceFactor;
+        }
+                                            }
+      else if(compareResult < 0){
+        heightstatus = avl_Insert((&(*rootPtr)->right),nodeToAdd,IntCompare);
+        if(heightstatus == 1){
+        //(*rootPtr)->right = avl_Insert((&(*rootPtr)->right),nodeToAdd);
+        (*rootPtr)->balanceFactor += 1;
+          if((*rootPtr)->balanceFactor == 0)
+            heightstatus = 0;
+        }
+        else
+          (*rootPtr)->balanceFactor = (*rootPtr)->balanceFactor;
+                                                  }
+        }
+      if((*rootPtr)->balanceFactor >= 2)
+        avlBalanceRightTreeV1(&(*rootPtr));
+      else if((*rootPtr)->balanceFactor <= -2)
+        avlBalanceLeftTreeV1(&(*rootPtr));
+      else{
+        *rootPtr = *rootPtr;
+      }
+      return heightstatus;
 }

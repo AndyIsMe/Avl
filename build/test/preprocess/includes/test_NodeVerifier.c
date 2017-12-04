@@ -1,4 +1,0 @@
----
-- unity.h
-- NodeVerifier.h
-- build/temp/_test_NodeVerifier.c

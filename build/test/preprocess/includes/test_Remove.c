@@ -4,4 +4,5 @@
 - Rotate.h
 - NodeVerifier.h
 - NodeHelper.h
+- AvlInteger.h
 - build/temp/_test_Remove.c

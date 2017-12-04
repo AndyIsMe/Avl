@@ -1,6 +1,8 @@
 #include "unity.h"
 #include "Insert.h"
 #include "Rotate.h"
+#include "AvlInteger.h"
+
 
 
 Node node1,node5 , node10,node15,node20,node25,node30,node35,node40;
@@ -44,7 +46,7 @@ void tearDown(void){}
 *
 **/
 
-void test_insert_given_90_50_1pect_balance(void){
+void test_insert_given_90_50_expect_balance(void){
 
      initNode(&node45,NULL,NULL,0);
      initNode(&node100,NULL,NULL,0);
@@ -52,7 +54,7 @@ void test_insert_given_90_50_1pect_balance(void){
      initNode(&node50,&node45,NULL,-1);
 
      Node *root = &node90;
-     avl_Insert(&root,&node60);
+     avlAddInteger(&root,&node60);
      TEST_ASSERT_EQUAL_PTR(&node90,root);
      TEST_ASSERT_EQUAL_PTR(NULL,node45.left);
      TEST_ASSERT_EQUAL_PTR(NULL,node45.right);
@@ -71,6 +73,7 @@ void test_insert_given_90_50_1pect_balance(void){
      TEST_ASSERT_EQUAL(0,node50.balanceFactor);
 }
 
+
 /*                    Insert 20
  *    10(0)           --------->        10(1)
  *                                          \
@@ -81,7 +84,7 @@ void test_insert_given_90_50_1pect_balance(void){
 void test_Insert_20_with_10_as_root(void){
   Node *root = &node10;
   initNode(&node10,NULL,NULL,0);
-  avl_Insert(&root,&node20);
+  avlAddInteger(&root,&node20);
   TEST_ASSERT_EQUAL_PTR(&node10,root);
   TEST_ASSERT_EQUAL_PTR(&node20,node10.right);
   TEST_ASSERT_EQUAL(1,node10.balanceFactor);
@@ -98,7 +101,7 @@ void test_Insert_20_with_10_as_root(void){
 void test_Insert_5_with_10_as_root(void){
   Node *root = &node10;
   initNode(&node10,NULL,NULL,0);
-  avl_Insert(&root,&node5);
+  avlAddInteger(&root,&node5);
   TEST_ASSERT_EQUAL_PTR(&node10,root);
   TEST_ASSERT_EQUAL_PTR(&node5,node10.left);
   TEST_ASSERT_EQUAL(-1,node10.balanceFactor);
@@ -116,7 +119,7 @@ void test_Insert_5_with_10_as_root(void){
 void test_Insert_20_with_10_as_root_N_15_as_child(void){
   Node *root = &node10;
   initNode(&node10,NULL,&node15,1);
-  avl_Insert(&root,&node20);
+  avlAddInteger(&root,&node20);
   TEST_ASSERT_EQUAL_PTR(&node15,root);
   TEST_ASSERT_EQUAL_PTR(&node10,node15.left);
   TEST_ASSERT_EQUAL_PTR(&node20,node15.right);
@@ -138,7 +141,7 @@ void test_Insert_10_with_30_15_expect_balance_tree(void){
   Node *root = &node30;
   initNode(&node30,&node15,NULL,-1);
   initNode(&node15,NULL,NULL,0);
-  avl_Insert(&root,&node10);
+  avlAddInteger(&root,&node10);
   TEST_ASSERT_EQUAL_PTR(&node15,root);
   TEST_ASSERT_EQUAL_PTR(&node10,node15.left);
   TEST_ASSERT_EQUAL_PTR(&node30,node15.right);
@@ -163,7 +166,7 @@ void test_avlInsert_given_40_50_add_100_expect_a_balance_tree(void){
   Node *root = &node40;
   initNode(&node40,NULL,&node50,1);
   initNode(&node50,NULL,NULL,0);
-  avl_Insert(&root,&node100);
+  avlAddInteger(&root,&node100);
   TEST_ASSERT_EQUAL_PTR(&node50,root);
   TEST_ASSERT_EQUAL_PTR(&node40,node50.left);
   TEST_ASSERT_EQUAL_PTR(&node100,node50.right);
@@ -185,7 +188,7 @@ void test_avlInsert_given_40_50_add_100_expect_a_balance_tree(void){
    Node *root = &node40;
    initNode(&node40,NULL,&node50,1);
    initNode(&node50,NULL,NULL,0);
-   avl_Insert(&root,&node55);
+   avlAddInteger(&root,&node55);
    TEST_ASSERT_EQUAL_PTR(&node50,root);
    TEST_ASSERT_EQUAL_PTR(&node40,node50.left);
    TEST_ASSERT_EQUAL_PTR(&node55,node50.right);
@@ -207,7 +210,7 @@ void test_avlInsert_given_40_50_add_100_expect_a_balance_tree(void){
    Node *root = &node40;
    initNode(&node40,NULL,&node50,1);
    initNode(&node50,NULL,NULL,0);
-   avl_Insert(&root,&node45);
+   avlAddInteger(&root,&node45);
    TEST_ASSERT_EQUAL_PTR(&node45,root);
    TEST_ASSERT_EQUAL_PTR(&node40,node45.left);
    TEST_ASSERT_EQUAL_PTR(&node50,node45.right);
@@ -241,7 +244,7 @@ void test_avlInsert_given_40_50_add_100_expect_a_balance_tree(void){
    initNode(&node45,NULL,NULL,0);
    initNode(&node55,NULL,NULL,0);
    initNode(&node15,NULL,NULL,0);
-   avl_Insert(&root,&node35);
+   avlAddInteger(&root,&node35);
    TEST_ASSERT_EQUAL_PTR(&node45,root);
    TEST_ASSERT_EQUAL_PTR(&node20,node45.left);
    TEST_ASSERT_EQUAL_PTR(&node50,node45.right);
@@ -289,7 +292,7 @@ void test_avlInsert_given_40_50_add_100_expect_a_balance_tree(void){
    initNode(&node25,NULL,NULL,0);
    initNode(&node55,NULL,NULL,0);
    initNode(&node15,NULL,NULL,0);
-   avl_Insert(&root,&node35);
+   avlAddInteger(&root,&node35);
    TEST_ASSERT_EQUAL_PTR(&node25,root);
    TEST_ASSERT_EQUAL_PTR(&node20,node25.left);
    TEST_ASSERT_EQUAL_PTR(&node40,node25.right);
@@ -322,7 +325,7 @@ void test_avlInsert_given_40_50_add_100_expect_a_balance_tree(void){
    initNode(&node60,&node50,NULL,-1);
    initNode(&node50,NULL,NULL,0);
    Node *root = &node60;
-   avl_Insert(&root,&node40);
+   avlAddInteger(&root,&node40);
    TEST_ASSERT_EQUAL_PTR(&node50, root);
    TEST_ASSERT_EQUAL_PTR(&node40,node50.left);
    TEST_ASSERT_EQUAL_PTR(&node60,node50.right);
@@ -360,7 +363,7 @@ void test_avlInsert_given_40_50_add_100_expect_a_balance_tree(void){
    initNode(&node65,NULL,NULL,0);
    Node *root = &node60;
 
-   avl_Insert(&root,&node50);
+   avlAddInteger(&root,&node50);
    TEST_ASSERT_EQUAL_PTR(&node45, root);
    TEST_ASSERT_EQUAL_PTR(&node40,node45.left);
    TEST_ASSERT_EQUAL_PTR(&node60,node45.right);
@@ -408,7 +411,7 @@ void test_avlInsert_given_40_50_add_100_expect_a_balance_tree(void){
     initNode(&node65,NULL,NULL,0);
     Node *root = &node60;
 
-    avl_Insert(&root,&node45);
+    avlAddInteger(&root,&node45);
     TEST_ASSERT_EQUAL_PTR(&node50, root);
     TEST_ASSERT_EQUAL_PTR(&node40,node50.left);
     TEST_ASSERT_EQUAL_PTR(&node60,node50.right);
@@ -429,7 +432,6 @@ void test_avlInsert_given_40_50_add_100_expect_a_balance_tree(void){
     TEST_ASSERT_EQUAL(1 ,node60.balanceFactor);
     TEST_ASSERT_EQUAL(0 ,node65.balanceFactor);
   }
-
 
 /*      ___________________________________________________________________________________________
  *     |_Current_Node_|__Child_Node_| G.Child_Node |________Action________|_Root_|_Child_|_G.Child_|

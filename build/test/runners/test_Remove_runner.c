@@ -58,17 +58,17 @@ void resetTest(void)
 int main(void)
 {
   UnityBegin("test_Remove.c");
-  RUN_TEST(test_remove_50, 33);
-  RUN_TEST(test_remove_node_30, 46);
-  RUN_TEST(test_remove_node_50, 66);
-  RUN_TEST(test_remove_40_replace_by_45_with_rotation, 99);
-  RUN_TEST(test_remove_30_replace_by_40, 136);
-  RUN_TEST(test_remove_node_20_replace_by_node_25, 166);
-  RUN_TEST(test_remove_node_20_replace_by_node_30, 191);
-  RUN_TEST(test_remove_node_40_replace_by_node_45_with_rotation, 239);
-  RUN_TEST(test_remove_node_40_replace_by_node_50_with_rotation, 281);
-  RUN_TEST(test_remove_node_20_replace_by_node_25_with_rotation, 323);
-  RUN_TEST(test_remove_node_15_replace_by_node_20, 351);
+  RUN_TEST(test_remove_50, 34);
+  RUN_TEST(test_remove_node_30, 49);
+  RUN_TEST(test_remove_node_50, 69);
+  RUN_TEST(test_remove_40_replace_by_45_with_rotation, 102);
+  RUN_TEST(test_remove_30_replace_by_40, 139);
+  RUN_TEST(test_remove_node_20_replace_by_node_25, 169);
+  RUN_TEST(test_remove_node_20_replace_by_node_30, 194);
+  RUN_TEST(test_remove_node_40_replace_by_node_45_with_rotation, 242);
+  RUN_TEST(test_remove_node_40_replace_by_node_50_with_rotation, 284);
+  RUN_TEST(test_remove_node_20_replace_by_node_25_with_rotation, 326);
+  RUN_TEST(test_remove_node_15_replace_by_node_20, 354);
   RUN_TEST(test_remove_node_40_replace_by_node_50, 381);
   RUN_TEST(test_remove_node_30_replace_by_node_45_with_rotation, 416);
 

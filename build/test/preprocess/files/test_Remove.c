@@ -1,4 +1,5 @@
 #include "build/temp/_test_Remove.c"
+#include "AvlInteger.h"
 #include "NodeHelper.h"
 #include "NodeVerifier.h"
 #include "Rotate.h"
@@ -36,7 +37,7 @@ void tearDown(void){}
 
    Node *root = &node50;
 
-   RemoveN(&root,50);
+   RemoveN(&root,50,(Compare) IntCompare);
 
    UnityAssertEqualNumber((UNITY_INT64)((
 
@@ -46,21 +47,9 @@ void tearDown(void){}
 
   ((void *)0)
 
-  ), (UNITY_UINT)(38), UNITY_DISPLAY_STYLE_HEX64);
+  ), (UNITY_UINT)(39), UNITY_DISPLAY_STYLE_HEX64);
 
  }
-
-
-
-
-
-
-
-
-
-
-
-
 
 void test_remove_node_30(void){
 
@@ -96,19 +85,19 @@ void test_remove_node_30(void){
 
   Node *root = &node40;
 
-  RemoveN(&root,30);
+  RemoveN(&root,30,(Compare) IntCompare);
 
   UnityAssertEqualNumber((UNITY_INT64)((&node40)), (UNITY_INT64)((root)), (
 
  ((void *)0)
 
- ), (UNITY_UINT)(56), UNITY_DISPLAY_STYLE_HEX64);
+ ), (UNITY_UINT)(59), UNITY_DISPLAY_STYLE_HEX64);
 
   testAssertEqualNode(
 
  ((void *)0)
 
- ,&node50,1,&node40,57);
+ ,&node50,1,&node40,60);
 
 }
 
@@ -156,19 +145,19 @@ void test_remove_node_50(void){
 
  Node *root = &node40;
 
- RemoveN(&root,50);
+ RemoveN(&root,50,(Compare) IntCompare);
 
  UnityAssertEqualNumber((UNITY_INT64)((&node40)), (UNITY_INT64)((root)), (
 
 ((void *)0)
 
-), (UNITY_UINT)(74), UNITY_DISPLAY_STYLE_HEX64);
+), (UNITY_UINT)(77), UNITY_DISPLAY_STYLE_HEX64);
 
  testAssertEqualNode(&node30,
 
 ((void *)0)
 
-,-1,&node40,75);
+,-1,&node40,78);
 
 }
 
@@ -234,13 +223,13 @@ void test_remove_40_replace_by_45_with_rotation(void){
 
 
 
-  RemoveN(&root,40);
+  RemoveN(&root,40,(Compare) IntCompare);
 
   UnityAssertEqualNumber((UNITY_INT64)((&node50)), (UNITY_INT64)((root)), (
 
  ((void *)0)
 
- ), (UNITY_UINT)(113), UNITY_DISPLAY_STYLE_HEX64);
+ ), (UNITY_UINT)(116), UNITY_DISPLAY_STYLE_HEX64);
 
   testAssertEqualNode(
 
@@ -250,19 +239,9 @@ void test_remove_40_replace_by_45_with_rotation(void){
 
  ((void *)0)
 
- ,0,&node45,114);
+ ,0,&node45,117);
 
-  testAssertEqualNode(&node10,&node45,0,&node25,115);
-
-  testAssertEqualNode(
-
- ((void *)0)
-
- ,
-
- ((void *)0)
-
- ,0,&node55,116);
+  testAssertEqualNode(&node10,&node45,0,&node25,118);
 
   testAssertEqualNode(
 
@@ -272,7 +251,7 @@ void test_remove_40_replace_by_45_with_rotation(void){
 
  ((void *)0)
 
- ,0,&node10,117);
+ ,0,&node55,119);
 
   testAssertEqualNode(
 
@@ -282,11 +261,21 @@ void test_remove_40_replace_by_45_with_rotation(void){
 
  ((void *)0)
 
- ,0,&node70,118);
+ ,0,&node10,120);
 
-  testAssertEqualNode(&node55,&node70,0,&node60,119);
+  testAssertEqualNode(
 
-  testAssertEqualNode(&node25,&node60,0,&node50,120);
+ ((void *)0)
+
+ ,
+
+ ((void *)0)
+
+ ,0,&node70,121);
+
+  testAssertEqualNode(&node55,&node70,0,&node60,122);
+
+  testAssertEqualNode(&node25,&node60,0,&node50,123);
 
 
 
@@ -346,13 +335,13 @@ void test_remove_30_replace_by_40(void){
 
   Node *root = &node30;
 
-  RemoveN(&root,30);
+  RemoveN(&root,30,(Compare) IntCompare);
 
   UnityAssertEqualNumber((UNITY_INT64)((&node40)), (UNITY_INT64)((root)), (
 
  ((void *)0)
 
- ), (UNITY_UINT)(148), UNITY_DISPLAY_STYLE_HEX64);
+ ), (UNITY_UINT)(151), UNITY_DISPLAY_STYLE_HEX64);
 
   testAssertEqualNode(
 
@@ -362,25 +351,15 @@ void test_remove_30_replace_by_40(void){
 
  ((void *)0)
 
- ,0,&node45,149);
+ ,0,&node45,152);
 
   testAssertEqualNode(&node20,
 
  ((void *)0)
 
- ,-1,&node25,150);
+ ,-1,&node25,153);
 
-  testAssertEqualNode(&node25,&node50,0,&node40,151);
-
-  testAssertEqualNode(
-
- ((void *)0)
-
- ,
-
- ((void *)0)
-
- ,0,&node20,152);
+  testAssertEqualNode(&node25,&node50,0,&node40,154);
 
   testAssertEqualNode(
 
@@ -390,9 +369,19 @@ void test_remove_30_replace_by_40(void){
 
  ((void *)0)
 
- ,0,&node60,153);
+ ,0,&node20,155);
 
-  testAssertEqualNode(&node45,&node60,0,&node50,154);
+  testAssertEqualNode(
+
+ ((void *)0)
+
+ ,
+
+ ((void *)0)
+
+ ,0,&node60,156);
+
+  testAssertEqualNode(&node45,&node60,0,&node50,157);
 
 
 
@@ -438,31 +427,15 @@ void test_remove_node_20_replace_by_node_25(void){
 
 
 
-  RemoveN(&root,20);
+  RemoveN(&root,20,(Compare) IntCompare);
 
   UnityAssertEqualNumber((UNITY_INT64)((&node25)), (UNITY_INT64)((root)), (
 
  ((void *)0)
 
- ), (UNITY_UINT)(175), UNITY_DISPLAY_STYLE_HEX64);
+ ), (UNITY_UINT)(178), UNITY_DISPLAY_STYLE_HEX64);
 
-  testAssertEqualNode(&node10,&node30,1,&node25,176);
-
-  testAssertEqualNode(
-
- ((void *)0)
-
- ,
-
- ((void *)0)
-
- ,0,&node40,177);
-
-  testAssertEqualNode(
-
- ((void *)0)
-
- ,&node40,1,&node30,178);
+  testAssertEqualNode(&node10,&node30,1,&node25,179);
 
   testAssertEqualNode(
 
@@ -472,7 +445,23 @@ void test_remove_node_20_replace_by_node_25(void){
 
  ((void *)0)
 
- ,0,&node10,179);
+ ,0,&node40,180);
+
+  testAssertEqualNode(
+
+ ((void *)0)
+
+ ,&node40,1,&node30,181);
+
+  testAssertEqualNode(
+
+ ((void *)0)
+
+ ,
+
+ ((void *)0)
+
+ ,0,&node10,182);
 
 }
 
@@ -510,25 +499,15 @@ void test_remove_node_20_replace_by_node_30(void){
 
 
 
-  RemoveN(&root,20);
+  RemoveN(&root,20,(Compare) IntCompare);
 
   UnityAssertEqualNumber((UNITY_INT64)((&node30)), (UNITY_INT64)((root)), (
 
  ((void *)0)
 
- ), (UNITY_UINT)(199), UNITY_DISPLAY_STYLE_HEX64);
+ ), (UNITY_UINT)(202), UNITY_DISPLAY_STYLE_HEX64);
 
-  testAssertEqualNode(&node10,&node40,0,&node30,200);
-
-  testAssertEqualNode(
-
- ((void *)0)
-
- ,
-
- ((void *)0)
-
- ,0,&node40,201);
+  testAssertEqualNode(&node10,&node40,0,&node30,203);
 
   testAssertEqualNode(
 
@@ -538,7 +517,17 @@ void test_remove_node_20_replace_by_node_30(void){
 
  ((void *)0)
 
- ,0,&node10,202);
+ ,0,&node40,204);
+
+  testAssertEqualNode(
+
+ ((void *)0)
+
+ ,
+
+ ((void *)0)
+
+ ,0,&node10,205);
 
 }
 
@@ -624,33 +613,15 @@ void test_remove_node_20_replace_by_node_30(void){
 
 
 
-    RemoveN(&root,40);
+    RemoveN(&root,40,(Compare) IntCompare);
 
     UnityAssertEqualNumber((UNITY_INT64)((&node55)), (UNITY_INT64)((root)), (
 
    ((void *)0)
 
-   ), (UNITY_UINT)(255), UNITY_DISPLAY_STYLE_HEX64);
+   ), (UNITY_UINT)(258), UNITY_DISPLAY_STYLE_HEX64);
 
-    testAssertEqualNode(&node30,&node70,-1,&node55,256);
-
-    testAssertEqualNode(
-
-   ((void *)0)
-
-   ,
-
-   ((void *)0)
-
-   ,0,&node35,257);
-
-    testAssertEqualNode(
-
-   ((void *)0)
-
-   ,&node25,1,&node20,258);
-
-    testAssertEqualNode(&node20,&node45,0,&node30,259);
+    testAssertEqualNode(&node30,&node70,0,&node55,259);
 
     testAssertEqualNode(
 
@@ -660,7 +631,15 @@ void test_remove_node_20_replace_by_node_30(void){
 
    ((void *)0)
 
-   ,0,&node50,260);
+   ,0,&node35,260);
+
+    testAssertEqualNode(
+
+   ((void *)0)
+
+   ,&node25,1,&node20,261);
+
+    testAssertEqualNode(&node20,&node45,0,&node30,262);
 
     testAssertEqualNode(
 
@@ -670,17 +649,7 @@ void test_remove_node_20_replace_by_node_30(void){
 
    ((void *)0)
 
-   ,0,&node25,261);
-
-    testAssertEqualNode(&node35,&node50,0,&node45,262);
-
-    testAssertEqualNode(&node60,&node75,-1,&node70,263);
-
-    testAssertEqualNode(
-
-   ((void *)0)
-
-   ,&node65,1,&node60,264);
+   ,0,&node50,263);
 
     testAssertEqualNode(
 
@@ -690,7 +659,17 @@ void test_remove_node_20_replace_by_node_30(void){
 
    ((void *)0)
 
-   ,0,&node75,265);
+   ,0,&node25,264);
+
+    testAssertEqualNode(&node35,&node50,0,&node45,265);
+
+    testAssertEqualNode(&node60,&node75,-1,&node70,266);
+
+    testAssertEqualNode(
+
+   ((void *)0)
+
+   ,&node65,1,&node60,267);
 
     testAssertEqualNode(
 
@@ -700,7 +679,17 @@ void test_remove_node_20_replace_by_node_30(void){
 
    ((void *)0)
 
-   ,0,&node65,266);
+   ,0,&node75,268);
+
+    testAssertEqualNode(
+
+   ((void *)0)
+
+   ,
+
+   ((void *)0)
+
+   ,0,&node65,269);
 
   }
 
@@ -790,43 +779,33 @@ void test_remove_node_40_replace_by_node_50_with_rotation(void){
 
   Node *root = &node60;
 
-  RemoveN(&root,40);
+  RemoveN(&root,40,(Compare) IntCompare);
 
   UnityAssertEqualNumber((UNITY_INT64)((&node60)), (UNITY_INT64)((root)), (
 
  ((void *)0)
 
- ), (UNITY_UINT)(299), UNITY_DISPLAY_STYLE_HEX64);
+ ), (UNITY_UINT)(302), UNITY_DISPLAY_STYLE_HEX64);
 
-  testAssertEqualNode(&node30,&node90,0,&node60,300);
+  testAssertEqualNode(&node30,&node90,0,&node60,303);
 
-  testAssertEqualNode(&node20,&node50,0,&node30,301);
+  testAssertEqualNode(&node20,&node50,0,&node30,304);
 
   testAssertEqualNode(
 
  ((void *)0)
 
- ,&node80,1,&node75,302);
+ ,&node80,1,&node75,305);
 
   testAssertEqualNode(&node10,
 
  ((void *)0)
 
- ,-1,&node20,303);
+ ,-1,&node20,306);
 
-  testAssertEqualNode(&node35,&node55,0,&node50,304);
+  testAssertEqualNode(&node35,&node55,0,&node50,307);
 
-  testAssertEqualNode(&node75,&node100,-1,&node90,305);
-
-  testAssertEqualNode(
-
- ((void *)0)
-
- ,
-
- ((void *)0)
-
- ,0,&node10,306);
+  testAssertEqualNode(&node75,&node100,-1,&node90,308);
 
   testAssertEqualNode(
 
@@ -836,7 +815,7 @@ void test_remove_node_40_replace_by_node_50_with_rotation(void){
 
  ((void *)0)
 
- ,0,&node35,307);
+ ,0,&node10,309);
 
   testAssertEqualNode(
 
@@ -846,7 +825,7 @@ void test_remove_node_40_replace_by_node_50_with_rotation(void){
 
  ((void *)0)
 
- ,0,&node55,308);
+ ,0,&node35,310);
 
   testAssertEqualNode(
 
@@ -856,7 +835,7 @@ void test_remove_node_40_replace_by_node_50_with_rotation(void){
 
  ((void *)0)
 
- ,0,&node80,309);
+ ,0,&node55,311);
 
   testAssertEqualNode(
 
@@ -866,7 +845,17 @@ void test_remove_node_40_replace_by_node_50_with_rotation(void){
 
  ((void *)0)
 
- ,0,&node100,310);
+ ,0,&node80,312);
+
+  testAssertEqualNode(
+
+ ((void *)0)
+
+ ,
+
+ ((void *)0)
+
+ ,0,&node100,313);
 
 
 
@@ -924,17 +913,17 @@ void test_remove_node_20_replace_by_node_25_with_rotation(void){
 
 
 
-  RemoveN(&root,20);
+  RemoveN(&root,20,(Compare) IntCompare);
 
   UnityAssertEqualNumber((UNITY_INT64)((&node25)), (UNITY_INT64)((root)), (
 
  ((void *)0)
 
- ), (UNITY_UINT)(334), UNITY_DISPLAY_STYLE_HEX64);
+ ), (UNITY_UINT)(337), UNITY_DISPLAY_STYLE_HEX64);
 
-  testAssertEqualNode(&node10,&node40,0,&node25,335);
+  testAssertEqualNode(&node10,&node40,0,&node25,338);
 
-  testAssertEqualNode(&node30,&node50,0,&node40,336);
+  testAssertEqualNode(&node30,&node50,0,&node40,339);
 
   testAssertEqualNode(
 
@@ -944,13 +933,13 @@ void test_remove_node_20_replace_by_node_25_with_rotation(void){
 
  ((void *)0)
 
- ,0,&node30,337);
+ ,0,&node30,340);
 
   testAssertEqualNode(&node5,
 
  ((void *)0)
 
- ,-1,&node10,338);
+ ,-1,&node10,341);
 
   testAssertEqualNode(
 
@@ -960,7 +949,7 @@ void test_remove_node_20_replace_by_node_25_with_rotation(void){
 
  ((void *)0)
 
- ,0,&node50,339);
+ ,0,&node50,342);
 
   testAssertEqualNode(
 
@@ -970,7 +959,7 @@ void test_remove_node_20_replace_by_node_25_with_rotation(void){
 
  ((void *)0)
 
- ,0,&node5,340);
+ ,0,&node5,343);
 
 }
 
@@ -1012,19 +1001,13 @@ void test_remove_node_15_replace_by_node_20(void)
 
                               , 0);
 
-    printf("5 %x\n",&node5);
 
-    printf("15 %x\n",&node15);
-
-    printf("10 %x\n",&node10);
-
-    printf("20 %x\n",&node20);
 
     Node *root = &node5;
 
 
 
-    RemoveN(&root,15);
+    RemoveN(&root,15,(Compare) IntCompare);
 
     UnityAssertEqualNumber((UNITY_INT64)((&node5)), (UNITY_INT64)((root)), (
 
@@ -1124,7 +1107,7 @@ void test_remove_node_40_replace_by_node_50(void){
 
   Node *root = &node60;
 
-  RemoveN(&root,40);
+  RemoveN(&root,40,(Compare) IntCompare);
 
   UnityAssertEqualNumber((UNITY_INT64)((&node60)), (UNITY_INT64)((root)), (
 
@@ -1216,7 +1199,7 @@ void test_remove_node_30_replace_by_node_45_with_rotation(void){
 
   Node *root = &node30;
 
-  RemoveN(&root,30);
+  RemoveN(&root,30,(Compare) IntCompare);
 
   UnityAssertEqualNumber((UNITY_INT64)((&node45)), (UNITY_INT64)((root)), (
 

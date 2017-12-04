@@ -3,44 +3,44 @@
   :path: test
   :file: test_Insert.c
 :successes:
-- :test: test_insert_given_90_50_1pect_balance
-  :line: 47
+- :test: test_insert_given_90_50_expect_balance
+  :line: 49
   :message: ''
 - :test: test_Insert_20_with_10_as_root
-  :line: 81
+  :line: 84
   :message: ''
 - :test: test_Insert_5_with_10_as_root
-  :line: 98
+  :line: 101
   :message: ''
 - :test: test_Insert_20_with_10_as_root_N_15_as_child
-  :line: 116
+  :line: 119
   :message: ''
 - :test: test_Insert_10_with_30_15_expect_balance_tree
-  :line: 137
+  :line: 140
   :message: ''
 - :test: test_avlInsert_given_40_50_add_100_expect_a_balance_tree
-  :line: 162
+  :line: 165
   :message: ''
 - :test: test_avlInsert_given_40_50_add_55_expect_rotate_left_for_a_balance_tree
-  :line: 184
+  :line: 187
   :message: ''
 - :test: test_avlInsert_given_40_50_add_45_expect_rotate_right_left_for_a_balance_tree
-  :line: 206
+  :line: 209
   :message: ''
 - :test: test_avlInsert_given_15_20_45_50_55_add_35_expect_rotate_right_left_for_a_balance_tree
-  :line: 237
+  :line: 240
   :message: ''
 - :test: test_avlInsert_given_15_20_25_40_55_add_35_expect_rotate_right_left_for_a_balance_tree
-  :line: 285
+  :line: 288
   :message: ''
 - :test: test_avlInsert_given_50_60_add_40_expect_rotate_right_for_a_balance_tree
-  :line: 321
+  :line: 324
   :message: ''
 - :test: test_avlInsert_given_10_40_45_60_65_add_50_expect_rotate_left_right_a_balance_tree
-  :line: 355
+  :line: 358
   :message: ''
 - :test: test_avlInsert_given_10_40_50_60_65_add_45_expect_rotate_left_right_a_balance_tree
-  :line: 403
+  :line: 406
   :message: ''
 :failures: []
 :ignores: []
