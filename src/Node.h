@@ -7,7 +7,7 @@ struct Node {
   Node *left;
   Node *right;
   int balanceFactor;
-  uint32_t data;
+  void *data;
 };
 
 typedef struct StringNode StringNode;

@@ -4,49 +4,52 @@
   :file: test_Remove.c
 :successes:
 - :test: test_remove_50
-  :line: 34
+  :line: 36
   :message: ''
 - :test: test_remove_node_30
-  :line: 49
+  :line: 51
   :message: ''
 - :test: test_remove_node_50
-  :line: 69
+  :line: 71
   :message: ''
 - :test: test_remove_40_replace_by_45_with_rotation
-  :line: 102
+  :line: 104
   :message: ''
 - :test: test_remove_30_replace_by_40
-  :line: 139
+  :line: 141
   :message: ''
 - :test: test_remove_node_20_replace_by_node_25
-  :line: 169
+  :line: 171
   :message: ''
 - :test: test_remove_node_20_replace_by_node_30
-  :line: 194
+  :line: 196
   :message: ''
 - :test: test_remove_node_40_replace_by_node_45_with_rotation
-  :line: 242
+  :line: 244
   :message: ''
 - :test: test_remove_node_40_replace_by_node_50_with_rotation
-  :line: 284
+  :line: 286
   :message: ''
 - :test: test_remove_node_20_replace_by_node_25_with_rotation
-  :line: 326
+  :line: 328
   :message: ''
 - :test: test_remove_node_15_replace_by_node_20
-  :line: 354
+  :line: 356
   :message: ''
 - :test: test_remove_node_40_replace_by_node_50
-  :line: 381
+  :line: 383
   :message: ''
 - :test: test_remove_node_30_replace_by_node_45_with_rotation
-  :line: 416
+  :line: 418
+  :message: ''
+- :test: test_remove_Alexander_given_Rex_ThengChun_Andy
+  :line: 440
   :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 13
-  :passed: 13
+  :total: 14
+  :passed: 14
   :failed: 0
   :ignored: 0
 :stdout: []

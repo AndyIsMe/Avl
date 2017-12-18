@@ -2,36 +2,14 @@
 #include "Insert.h"
 #include "Rotate.h"
 #include "AvlInteger.h"
-
-
-
-Node node1,node5 , node10,node15,node20,node25,node30,node35,node40;
-Node node45,node50,node55,node60,node65,node90;
-Node node100;
-
-void initNode(Node *node,Node *left,Node *right,int bf){
-  node->left = left;
-  node->right = right;
-  node->balanceFactor = bf;
-}
+#include "NodeVerifier.h"
+#include "NodeHelper.h"
+#include <stdlib.h>
+#include "AvlString.h"
 
 void setUp(void){
-  node1.data = 1;
-  node5.data = 5;
-  node10.data = 10;
-  node15.data = 15;
-  node20.data = 20;
-  node25.data = 25;
-  node30.data = 30;
-  node35.data = 35;
-  node40.data = 40;
-  node45.data = 45;
-  node50.data = 50;
-  node55.data = 55;
-  node60.data = 60;
-  node65.data = 65;
-  node90.data = 90;
-  node100.data = 100;
+giveInitdata();
+giveInitStrdata();
 }
 void tearDown(void){}
 
@@ -56,21 +34,10 @@ void test_insert_given_90_50_expect_balance(void){
      Node *root = &node90;
      avlAddInteger(&root,&node60);
      TEST_ASSERT_EQUAL_PTR(&node90,root);
-     TEST_ASSERT_EQUAL_PTR(NULL,node45.left);
-     TEST_ASSERT_EQUAL_PTR(NULL,node45.right);
-     TEST_ASSERT_EQUAL_PTR(NULL,node60.left);
-     TEST_ASSERT_EQUAL_PTR(NULL,node60.right);
-     TEST_ASSERT_EQUAL_PTR(NULL,node100.left);
-     TEST_ASSERT_EQUAL_PTR(NULL,node100.right);
-     TEST_ASSERT_EQUAL_PTR(&node45,node50.left);
-     TEST_ASSERT_EQUAL_PTR(&node60,node50.right);
-     TEST_ASSERT_EQUAL_PTR(&node50,node90.left);
-     TEST_ASSERT_EQUAL_PTR(&node100,node90.right);
-     TEST_ASSERT_EQUAL(-1,node90.balanceFactor);
-     TEST_ASSERT_EQUAL(0,node45.balanceFactor);
-     TEST_ASSERT_EQUAL(0,node60.balanceFactor);
-     TEST_ASSERT_EQUAL(0,node100.balanceFactor);
-     TEST_ASSERT_EQUAL(0,node50.balanceFactor);
+     TEST_ASSERT_EQUAL_NODE(NULL,NULL,0,&node45);
+     TEST_ASSERT_EQUAL_NODE(NULL,NULL,0,&node60);
+     TEST_ASSERT_EQUAL_NODE(&node45,&node60,0,&node50);
+     TEST_ASSERT_EQUAL_NODE(&node50,&node100,-1,&node90);
 }
 
 
@@ -86,9 +53,8 @@ void test_Insert_20_with_10_as_root(void){
   initNode(&node10,NULL,NULL,0);
   avlAddInteger(&root,&node20);
   TEST_ASSERT_EQUAL_PTR(&node10,root);
-  TEST_ASSERT_EQUAL_PTR(&node20,node10.right);
-  TEST_ASSERT_EQUAL(1,node10.balanceFactor);
-  TEST_ASSERT_EQUAL(0,node20.balanceFactor);
+  TEST_ASSERT_EQUAL_NODE(NULL,&node20,1,&node10);
+  TEST_ASSERT_EQUAL_NODE(NULL,NULL,0,&node20);
 }
 
 /*                     Insert 5
@@ -103,9 +69,8 @@ void test_Insert_5_with_10_as_root(void){
   initNode(&node10,NULL,NULL,0);
   avlAddInteger(&root,&node5);
   TEST_ASSERT_EQUAL_PTR(&node10,root);
-  TEST_ASSERT_EQUAL_PTR(&node5,node10.left);
-  TEST_ASSERT_EQUAL(-1,node10.balanceFactor);
-  TEST_ASSERT_EQUAL(0,node5.balanceFactor);
+  TEST_ASSERT_EQUAL_NODE(&node5,NULL,-1,&node10);
+  TEST_ASSERT_EQUAL_NODE(NULL,NULL,0,&node5);
 
 }
 
@@ -121,12 +86,9 @@ void test_Insert_20_with_10_as_root_N_15_as_child(void){
   initNode(&node10,NULL,&node15,1);
   avlAddInteger(&root,&node20);
   TEST_ASSERT_EQUAL_PTR(&node15,root);
-  TEST_ASSERT_EQUAL_PTR(&node10,node15.left);
-  TEST_ASSERT_EQUAL_PTR(&node20,node15.right);
-  TEST_ASSERT_EQUAL(0,node10.balanceFactor);
-  TEST_ASSERT_EQUAL(0,node15.balanceFactor);
-  TEST_ASSERT_EQUAL(0,node20.balanceFactor);
-
+  TEST_ASSERT_EQUAL_NODE(&node10,&node20,0,&node15);
+  TEST_ASSERT_EQUAL_NODE(NULL,NULL,0,&node20);
+  TEST_ASSERT_EQUAL_NODE(NULL,NULL,0,&node10);
 }
 
 /*
@@ -143,16 +105,9 @@ void test_Insert_10_with_30_15_expect_balance_tree(void){
   initNode(&node15,NULL,NULL,0);
   avlAddInteger(&root,&node10);
   TEST_ASSERT_EQUAL_PTR(&node15,root);
-  TEST_ASSERT_EQUAL_PTR(&node10,node15.left);
-  TEST_ASSERT_EQUAL_PTR(&node30,node15.right);
-  TEST_ASSERT_EQUAL_PTR(NULL,node10.left);
-  TEST_ASSERT_EQUAL_PTR(NULL,node10.right);
-  TEST_ASSERT_EQUAL_PTR(NULL,node30.left);
-  TEST_ASSERT_EQUAL_PTR(NULL,node30.right);
-  TEST_ASSERT_EQUAL(0,node10.balanceFactor);
-  TEST_ASSERT_EQUAL(0,node15.balanceFactor);
-  TEST_ASSERT_EQUAL(0,node30.balanceFactor);
-
+  TEST_ASSERT_EQUAL_NODE(&node10,&node30,0,&node15);
+  TEST_ASSERT_EQUAL_NODE(NULL,NULL,0,&node10);
+  TEST_ASSERT_EQUAL_NODE(NULL,NULL,0,&node30);
 }
 
 /*
@@ -168,11 +123,9 @@ void test_avlInsert_given_40_50_add_100_expect_a_balance_tree(void){
   initNode(&node50,NULL,NULL,0);
   avlAddInteger(&root,&node100);
   TEST_ASSERT_EQUAL_PTR(&node50,root);
-  TEST_ASSERT_EQUAL_PTR(&node40,node50.left);
-  TEST_ASSERT_EQUAL_PTR(&node100,node50.right);
-  TEST_ASSERT_EQUAL(0,node50.balanceFactor);
-  TEST_ASSERT_EQUAL(0,node40.balanceFactor);
-  TEST_ASSERT_EQUAL(0,node100.balanceFactor);
+  TEST_ASSERT_EQUAL_NODE(&node40,&node100,0,&node50);
+  TEST_ASSERT_EQUAL_NODE(NULL,NULL,0,&node40);
+  TEST_ASSERT_EQUAL_NODE(NULL,NULL,0,&node100);
 }
 
 /*
@@ -190,11 +143,9 @@ void test_avlInsert_given_40_50_add_100_expect_a_balance_tree(void){
    initNode(&node50,NULL,NULL,0);
    avlAddInteger(&root,&node55);
    TEST_ASSERT_EQUAL_PTR(&node50,root);
-   TEST_ASSERT_EQUAL_PTR(&node40,node50.left);
-   TEST_ASSERT_EQUAL_PTR(&node55,node50.right);
-   TEST_ASSERT_EQUAL(0,node50.balanceFactor);
-   TEST_ASSERT_EQUAL(0,node40.balanceFactor);
-   TEST_ASSERT_EQUAL(0,node55.balanceFactor);
+   TEST_ASSERT_EQUAL_NODE(&node40,&node55,0,&node50);
+   TEST_ASSERT_EQUAL_NODE(NULL,NULL,0,&node40);
+   TEST_ASSERT_EQUAL_NODE(NULL,NULL,0,&node55);
  }
 
 /*
@@ -212,11 +163,9 @@ void test_avlInsert_given_40_50_add_100_expect_a_balance_tree(void){
    initNode(&node50,NULL,NULL,0);
    avlAddInteger(&root,&node45);
    TEST_ASSERT_EQUAL_PTR(&node45,root);
-   TEST_ASSERT_EQUAL_PTR(&node40,node45.left);
-   TEST_ASSERT_EQUAL_PTR(&node50,node45.right);
-   TEST_ASSERT_EQUAL(0,node50.balanceFactor);
-   TEST_ASSERT_EQUAL(0,node40.balanceFactor);
-   TEST_ASSERT_EQUAL(0,node45.balanceFactor);
+   TEST_ASSERT_EQUAL_NODE(&node40,&node50,0,&node45);
+   TEST_ASSERT_EQUAL_NODE(NULL,NULL,0,&node40);
+   TEST_ASSERT_EQUAL_NODE(NULL,NULL,0,&node50);
  }
 
  /*                        20(+1)                              20(+2)
@@ -246,24 +195,12 @@ void test_avlInsert_given_40_50_add_100_expect_a_balance_tree(void){
    initNode(&node15,NULL,NULL,0);
    avlAddInteger(&root,&node35);
    TEST_ASSERT_EQUAL_PTR(&node45,root);
-   TEST_ASSERT_EQUAL_PTR(&node20,node45.left);
-   TEST_ASSERT_EQUAL_PTR(&node50,node45.right);
-   TEST_ASSERT_EQUAL_PTR(&node15,node20.left);
-   TEST_ASSERT_EQUAL_PTR(&node35,node20.right);
-   TEST_ASSERT_EQUAL_PTR(NULL,node50.left);
-   TEST_ASSERT_EQUAL_PTR(&node55,node50.right);
-   TEST_ASSERT_EQUAL_PTR(NULL,node15.left);
-   TEST_ASSERT_EQUAL_PTR(NULL,node15.right);
-   TEST_ASSERT_EQUAL_PTR(NULL,node35.left);
-   TEST_ASSERT_EQUAL_PTR(NULL,node35.right);
-   TEST_ASSERT_EQUAL_PTR(NULL,node55.left);
-   TEST_ASSERT_EQUAL_PTR(NULL,node55.right);
-   TEST_ASSERT_EQUAL(1,node50.balanceFactor);
-   TEST_ASSERT_EQUAL(0,node55.balanceFactor);
-   TEST_ASSERT_EQUAL(0,node45.balanceFactor);
-   TEST_ASSERT_EQUAL(0,node35.balanceFactor);
-   TEST_ASSERT_EQUAL(0,node20.balanceFactor);
-   TEST_ASSERT_EQUAL(0,node15.balanceFactor);
+   TEST_ASSERT_EQUAL_NODE(&node20,&node50,0,&node45);
+   TEST_ASSERT_EQUAL_NODE(&node15,&node35,0,&node20);
+   TEST_ASSERT_EQUAL_NODE(NULL,&node55,1,&node50);
+   TEST_ASSERT_EQUAL_NODE(NULL,NULL,0,&node15);
+   TEST_ASSERT_EQUAL_NODE(NULL,NULL,0,&node35);
+   TEST_ASSERT_EQUAL_NODE(NULL,NULL,0,&node55);
  }
 
  /*                        20(+1)                              20(+2)
@@ -294,24 +231,12 @@ void test_avlInsert_given_40_50_add_100_expect_a_balance_tree(void){
    initNode(&node15,NULL,NULL,0);
    avlAddInteger(&root,&node35);
    TEST_ASSERT_EQUAL_PTR(&node25,root);
-   TEST_ASSERT_EQUAL_PTR(&node20,node25.left);
-   TEST_ASSERT_EQUAL_PTR(&node40,node25.right);
-   TEST_ASSERT_EQUAL_PTR(&node35,node40.left);
-   TEST_ASSERT_EQUAL_PTR(&node55,node40.right);
-   TEST_ASSERT_EQUAL_PTR(&node15,node20.left);
-   TEST_ASSERT_EQUAL_PTR(NULL,node20.right);
-   TEST_ASSERT_EQUAL_PTR(NULL,node15.left);
-   TEST_ASSERT_EQUAL_PTR(NULL,node15.right);
-   TEST_ASSERT_EQUAL_PTR(NULL,node35.left);
-   TEST_ASSERT_EQUAL_PTR(NULL,node35.right);
-   TEST_ASSERT_EQUAL_PTR(NULL,node55.left);
-   TEST_ASSERT_EQUAL_PTR(NULL,node55.right);
-   TEST_ASSERT_EQUAL(0,node40.balanceFactor);
-   TEST_ASSERT_EQUAL(0,node55.balanceFactor);
-   TEST_ASSERT_EQUAL(0,node35.balanceFactor);
-   TEST_ASSERT_EQUAL(-1,node20.balanceFactor);
-   TEST_ASSERT_EQUAL(0,node15.balanceFactor);
-   TEST_ASSERT_EQUAL(0,node25.balanceFactor);
+   TEST_ASSERT_EQUAL_NODE(&node20,&node40,0,&node25);
+   TEST_ASSERT_EQUAL_NODE(&node35,&node55,0,&node40);
+   TEST_ASSERT_EQUAL_NODE(&node15,NULL,-1,&node20);
+   TEST_ASSERT_EQUAL_NODE(NULL,NULL,0,&node15);
+   TEST_ASSERT_EQUAL_NODE(NULL,NULL,0,&node35);
+   TEST_ASSERT_EQUAL_NODE(NULL,NULL,0,&node55);
  }
 
  /*         60(-1)                     60(-2)                       50(0)
@@ -327,15 +252,9 @@ void test_avlInsert_given_40_50_add_100_expect_a_balance_tree(void){
    Node *root = &node60;
    avlAddInteger(&root,&node40);
    TEST_ASSERT_EQUAL_PTR(&node50, root);
-   TEST_ASSERT_EQUAL_PTR(&node40,node50.left);
-   TEST_ASSERT_EQUAL_PTR(&node60,node50.right);
-   TEST_ASSERT_EQUAL_PTR(NULL, node40.left);
-   TEST_ASSERT_EQUAL_PTR(NULL, node40.right);
-   TEST_ASSERT_EQUAL_PTR(NULL, node60.left);
-   TEST_ASSERT_EQUAL_PTR(NULL, node60.right);
-   TEST_ASSERT_EQUAL(0 ,node50.balanceFactor);
-   TEST_ASSERT_EQUAL(0 ,node40.balanceFactor);
-   TEST_ASSERT_EQUAL(0 ,node60.balanceFactor);
+   TEST_ASSERT_EQUAL_NODE(&node40,&node60,0,&node50);
+   TEST_ASSERT_EQUAL_NODE(NULL,NULL,0,&node40);
+   TEST_ASSERT_EQUAL_NODE(NULL,NULL,0,&node60);
  }
 
  /*                        60(-1)                                           60(-2)
@@ -365,24 +284,12 @@ void test_avlInsert_given_40_50_add_100_expect_a_balance_tree(void){
 
    avlAddInteger(&root,&node50);
    TEST_ASSERT_EQUAL_PTR(&node45, root);
-   TEST_ASSERT_EQUAL_PTR(&node40,node45.left);
-   TEST_ASSERT_EQUAL_PTR(&node60,node45.right);
-   TEST_ASSERT_EQUAL_PTR(&node10, node40.left);
-   TEST_ASSERT_EQUAL_PTR(&node50,node60.left);
-   TEST_ASSERT_EQUAL_PTR(&node65,node60.right);
-   TEST_ASSERT_EQUAL_PTR(NULL,node40.right);
-   TEST_ASSERT_EQUAL_PTR(NULL, node10.left);
-   TEST_ASSERT_EQUAL_PTR(NULL, node10.right);
-   TEST_ASSERT_EQUAL_PTR(NULL, node50.left);
-   TEST_ASSERT_EQUAL_PTR(NULL, node50.right);
-   TEST_ASSERT_EQUAL_PTR(NULL, node65.left);
-   TEST_ASSERT_EQUAL_PTR(NULL, node65.right);
-   TEST_ASSERT_EQUAL(0 ,node10.balanceFactor);
-   TEST_ASSERT_EQUAL(-1 ,node40.balanceFactor);
-   TEST_ASSERT_EQUAL(0 ,node45.balanceFactor);
-   TEST_ASSERT_EQUAL(0 ,node50.balanceFactor);
-   TEST_ASSERT_EQUAL(0 ,node60.balanceFactor);
-   TEST_ASSERT_EQUAL(0 ,node65.balanceFactor);
+   TEST_ASSERT_EQUAL_NODE(&node40,&node60,0,&node45);
+   TEST_ASSERT_EQUAL_NODE(&node10,NULL,-1,&node40);
+   TEST_ASSERT_EQUAL_NODE(&node50,&node65,0,&node60);
+   TEST_ASSERT_EQUAL_NODE(NULL,NULL,0,&node10);
+   TEST_ASSERT_EQUAL_NODE(NULL,NULL,0,&node50);
+   TEST_ASSERT_EQUAL_NODE(NULL,NULL,0,&node65);
  }
 
  /*                        60(-1)                                           60(-2)
@@ -413,25 +320,59 @@ void test_avlInsert_given_40_50_add_100_expect_a_balance_tree(void){
 
     avlAddInteger(&root,&node45);
     TEST_ASSERT_EQUAL_PTR(&node50, root);
-    TEST_ASSERT_EQUAL_PTR(&node40,node50.left);
-    TEST_ASSERT_EQUAL_PTR(&node60,node50.right);
-    TEST_ASSERT_EQUAL_PTR(&node10, node40.left);
-    TEST_ASSERT_EQUAL_PTR(NULL,node60.left);
-    TEST_ASSERT_EQUAL_PTR(&node65,node60.right);
-    TEST_ASSERT_EQUAL_PTR(&node45,node40.right);
-    TEST_ASSERT_EQUAL_PTR(NULL, node10.left);
-    TEST_ASSERT_EQUAL_PTR(NULL, node10.right);
-    TEST_ASSERT_EQUAL_PTR(NULL, node45.left);
-    TEST_ASSERT_EQUAL_PTR(NULL, node45.right);
-    TEST_ASSERT_EQUAL_PTR(NULL, node65.left);
-    TEST_ASSERT_EQUAL_PTR(NULL, node65.right);
-    TEST_ASSERT_EQUAL(0 ,node10.balanceFactor);
-    TEST_ASSERT_EQUAL(0 ,node40.balanceFactor);
-    TEST_ASSERT_EQUAL(0 ,node45.balanceFactor);
-    TEST_ASSERT_EQUAL(0 ,node50.balanceFactor);
-    TEST_ASSERT_EQUAL(1 ,node60.balanceFactor);
-    TEST_ASSERT_EQUAL(0 ,node65.balanceFactor);
+    TEST_ASSERT_EQUAL_NODE(&node40,&node60,0,&node50);
+    TEST_ASSERT_EQUAL_NODE(&node10,&node45,0,&node40);
+    TEST_ASSERT_EQUAL_NODE(NULL,&node65,1,&node60);
+    TEST_ASSERT_EQUAL_NODE(NULL,NULL,0,&node10);
+    TEST_ASSERT_EQUAL_NODE(NULL,NULL,0,&node45);
+    TEST_ASSERT_EQUAL_NODE(NULL,NULL,0,&node65);
   }
+
+  void test_insert_Rex(void)
+{
+    //initNodeString(&nodeRex,NULL,NULL,0);
+
+    StringNode *root = NULL;
+    avlAddString(&root,&nodeRex);
+    TEST_ASSERT_EQUAL_PTR(&nodeRex,root);
+    TEST_ASSERT_EQUAL_STRING_NODE(NULL,NULL,0,&nodeRex);
+}
+
+void test_insert_Jstan_given_Rex(void)
+{
+  initNodeString(&nodeRex,NULL,NULL,0);
+  //char *string = "Alexander";
+  StringNode *root = (StringNode *)&nodeRex;
+  avlAddString(&root,&nodeJstan);
+  TEST_ASSERT_EQUAL_PTR(&nodeRex,root);
+  TEST_ASSERT_EQUAL_STRING_NODE(NULL,&nodeJstan,1,&nodeRex);
+  TEST_ASSERT_EQUAL_STRING_NODE(NULL,NULL,0,&nodeJstan);
+}
+
+void test_insert_Jstan_given_ThengChun(void)
+{
+  initNodeString(&nodeThengChun,NULL,NULL,0);
+  //char *string = "Alexander";
+  StringNode *root = (StringNode *)&nodeThengChun;
+  avlAddString(&root,&nodeJstan);
+  TEST_ASSERT_EQUAL_PTR(&nodeThengChun,root);
+  TEST_ASSERT_EQUAL_STRING_NODE(NULL,&nodeJstan,1,&nodeThengChun);
+  TEST_ASSERT_EQUAL_STRING_NODE(NULL,NULL,0,&nodeJstan);
+}
+
+void test_insert_Alexander_given_Rex_ThengChun_Andy(void)
+{
+  initNodeString(&nodeRex,&nodeThengChun,&nodeAndy,0);
+  initNodeString(&nodeThengChun, NULL,NULL,0);
+  initNodeString(&nodeAndy,NULL,NULL,0);
+  StringNode *root = (StringNode *)&nodeRex;
+  avlAddString(&root,&nodeAlexander);
+  TEST_ASSERT_EQUAL_PTR(&nodeRex,root);
+  TEST_ASSERT_EQUAL_STRING_NODE(&nodeThengChun,&nodeAndy,1,&nodeRex);
+  TEST_ASSERT_EQUAL_STRING_NODE(NULL,&nodeAlexander,1,&nodeAndy);
+  TEST_ASSERT_EQUAL_STRING_NODE(NULL,NULL,0,&nodeThengChun);
+}
+
 
 /*      ___________________________________________________________________________________________
  *     |_Current_Node_|__Child_Node_| G.Child_Node |________Action________|_Root_|_Child_|_G.Child_|

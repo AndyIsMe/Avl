@@ -2,7 +2,6 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include "Rotate.h"
-//#include "AvlInteger.c"
 /*
 int avl_Insert(Node **rootPtr, Node *nodeToAdd){
   int heightstatus;
@@ -47,7 +46,7 @@ int avl_Insert(Node **rootPtr, Node *nodeToAdd){
       return heightstatus;
 }*/
 
-int avl_Insert(Node **rootPtr, Node *nodeToAdd,Compare IntCompare){
+int avl_Insert(Node **rootPtr, Node *nodeToAdd,Compare compareFunc){
   int heightstatus;
     if(*rootPtr == NULL){
       *rootPtr = nodeToAdd;
@@ -56,9 +55,9 @@ int avl_Insert(Node **rootPtr, Node *nodeToAdd,Compare IntCompare){
       return heightstatus = 1;
                         }
     else{
-      int compareResult = IntCompare(nodeToAdd->data,*rootPtr);
+      int compareResult = compareFunc(nodeToAdd->data,*rootPtr);
       if(compareResult > 0){
-        heightstatus = avl_Insert((&(*rootPtr)->left),nodeToAdd,IntCompare);
+        heightstatus = avl_Insert((&(*rootPtr)->left),nodeToAdd,(Compare)compareFunc);
         if(heightstatus == 1){
         //(*rootPtr)->left = avl_Insert((&(*rootPtr)->left),nodeToAdd);
         (*rootPtr)->balanceFactor -= 1;
@@ -70,7 +69,7 @@ int avl_Insert(Node **rootPtr, Node *nodeToAdd,Compare IntCompare){
         }
                                             }
       else if(compareResult < 0){
-        heightstatus = avl_Insert((&(*rootPtr)->right),nodeToAdd,IntCompare);
+        heightstatus = avl_Insert((&(*rootPtr)->right),nodeToAdd,(Compare)compareFunc);
         if(heightstatus == 1){
         //(*rootPtr)->right = avl_Insert((&(*rootPtr)->right),nodeToAdd);
         (*rootPtr)->balanceFactor += 1;

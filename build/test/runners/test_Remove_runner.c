@@ -43,6 +43,7 @@ extern void test_remove_node_20_replace_by_node_25_with_rotation(void);
 extern void test_remove_node_15_replace_by_node_20(void);
 extern void test_remove_node_40_replace_by_node_50(void);
 extern void test_remove_node_30_replace_by_node_45_with_rotation(void);
+extern void test_remove_Alexander_given_Rex_ThengChun_Andy(void);
 
 
 /*=======Test Reset Option=====*/
@@ -58,19 +59,20 @@ void resetTest(void)
 int main(void)
 {
   UnityBegin("test_Remove.c");
-  RUN_TEST(test_remove_50, 34);
-  RUN_TEST(test_remove_node_30, 49);
-  RUN_TEST(test_remove_node_50, 69);
-  RUN_TEST(test_remove_40_replace_by_45_with_rotation, 102);
-  RUN_TEST(test_remove_30_replace_by_40, 139);
-  RUN_TEST(test_remove_node_20_replace_by_node_25, 169);
-  RUN_TEST(test_remove_node_20_replace_by_node_30, 194);
-  RUN_TEST(test_remove_node_40_replace_by_node_45_with_rotation, 242);
-  RUN_TEST(test_remove_node_40_replace_by_node_50_with_rotation, 284);
-  RUN_TEST(test_remove_node_20_replace_by_node_25_with_rotation, 326);
-  RUN_TEST(test_remove_node_15_replace_by_node_20, 354);
-  RUN_TEST(test_remove_node_40_replace_by_node_50, 381);
-  RUN_TEST(test_remove_node_30_replace_by_node_45_with_rotation, 416);
+  RUN_TEST(test_remove_50, 36);
+  RUN_TEST(test_remove_node_30, 51);
+  RUN_TEST(test_remove_node_50, 71);
+  RUN_TEST(test_remove_40_replace_by_45_with_rotation, 104);
+  RUN_TEST(test_remove_30_replace_by_40, 141);
+  RUN_TEST(test_remove_node_20_replace_by_node_25, 171);
+  RUN_TEST(test_remove_node_20_replace_by_node_30, 196);
+  RUN_TEST(test_remove_node_40_replace_by_node_45_with_rotation, 244);
+  RUN_TEST(test_remove_node_40_replace_by_node_50_with_rotation, 286);
+  RUN_TEST(test_remove_node_20_replace_by_node_25_with_rotation, 328);
+  RUN_TEST(test_remove_node_15_replace_by_node_20, 356);
+  RUN_TEST(test_remove_node_40_replace_by_node_50, 383);
+  RUN_TEST(test_remove_node_30_replace_by_node_45_with_rotation, 418);
+  RUN_TEST(test_remove_Alexander_given_Rex_ThengChun_Andy, 440);
 
   return (UnityEnd());
 }

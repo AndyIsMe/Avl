@@ -5,11 +5,13 @@
 #include "NodeHelper.h"
 #include "AvlInteger.h"
 #include <stdlib.h>
+#include "AvlString.h"
 
 
 void setUp(void)
 {
 giveInitdata();
+giveInitStrdata();
 }
 void tearDown(void){}
 
@@ -433,4 +435,19 @@ void test_remove_node_30_replace_by_node_45_with_rotation(void){
   TEST_ASSERT_EQUAL_NODE(NULL,NULL,0,&node50);
   TEST_ASSERT_EQUAL_NODE(NULL,NULL,0,&node60);
 
+}
+
+void test_remove_Alexander_given_Rex_ThengChun_Andy(void)
+{
+  initNodeString(&nodeRex,&nodeThengChun,&nodeAndy,1);
+  initNodeString(&nodeThengChun, NULL,NULL,0);
+  initNodeString(&nodeAndy,NULL,&nodeAlexander,1);
+  initNodeString(&nodeAlexander,NULL,NULL,0);
+  StringNode *root = (StringNode *)&nodeRex;
+  avlRemoveString(&root,"Alexander");
+  TEST_ASSERT_EQUAL_PTR(&nodeRex,root);
+  TEST_ASSERT_EQUAL_STRING_NODE(&nodeThengChun,&nodeAndy,0,&nodeRex);
+  TEST_ASSERT_EQUAL_STRING_NODE(NULL,NULL,0,&nodeAndy);
+  TEST_ASSERT_EQUAL_STRING_NODE(NULL,NULL,0,&nodeThengChun);
+  //TEST_ASSERT_EQUAL_NODE(NULL,NULL,0,&string);
 }

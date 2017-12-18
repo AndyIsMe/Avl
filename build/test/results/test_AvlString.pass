@@ -1,0 +1,28 @@
+---
+:source:
+  :path: test
+  :file: test_AvlString.c
+:successes:
+- :test: test_CompareString_given_string_is_Andy_with_Andy_expect_0
+  :line: 17
+  :message: ''
+- :test: test_CompareString_given_string_is_RexG_Rex_expect_1
+  :line: 24
+  :message: ''
+- :test: test_CompareString_given_string_is_Jsta_Jstan_expect_minus_1
+  :line: 31
+  :message: ''
+- :test: test_CompareString_given_string_is_Rex_Armin_expect_minus_1
+  :line: 38
+  :message: ''
+- :test: test_CompareString_given_string_is_Rex_Ali_expect_1
+  :line: 45
+  :message: ''
+:failures: []
+:ignores: []
+:counts:
+  :total: 5
+  :passed: 5
+  :failed: 0
+  :ignored: 0
+:stdout: []

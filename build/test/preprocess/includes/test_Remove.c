@@ -5,4 +5,5 @@
 - NodeVerifier.h
 - NodeHelper.h
 - AvlInteger.h
+- AvlString.h
 - build/temp/_test_Remove.c

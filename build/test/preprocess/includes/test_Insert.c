@@ -3,4 +3,7 @@
 - Insert.h
 - Rotate.h
 - AvlInteger.h
+- NodeVerifier.h
+- NodeHelper.h
+- AvlString.h
 - build/temp/_test_Insert.c

@@ -57,22 +57,22 @@ Node *RemoveN(Node **rootPtr, int nodeToRemove)
   return RemoveN;
 }*/
 
-Node *RemoveN(Node **rootPtr, int nodeToRemove,Compare IntCompare)
+Node *RemoveN(Node **rootPtr, int nodeToRemove,Compare compareFunc)
 {
   int heightstatus;
-  Node *RemoveN = avl_Remove(rootPtr,nodeToRemove, &heightstatus,IntCompare);
+  Node *RemoveN = avl_Remove(rootPtr,nodeToRemove, &heightstatus,(Compare)compareFunc);
   return RemoveN;
 }
 
-Node *avl_Remove(Node **rootPtr, int nodeToRemove, int *heightstatus,Compare IntCompare)
+Node *avl_Remove(Node **rootPtr, int nodeToRemove, int *heightstatus,Compare compareFunc)
 {
   if((*rootPtr) == NULL){
     return *rootPtr;
   }
-  int compareResult = IntCompare(nodeToRemove,*rootPtr);
+  int compareResult = compareFunc((void*)nodeToRemove,*rootPtr);
       if(compareResult > 0)
       {
-        avl_Remove(&((*rootPtr)->left),nodeToRemove,heightstatus,IntCompare);
+        avl_Remove(&((*rootPtr)->left),nodeToRemove,heightstatus,(Compare)compareFunc);
         if(*heightstatus == 1)
         {
           (*rootPtr)->balanceFactor++;
@@ -86,7 +86,7 @@ Node *avl_Remove(Node **rootPtr, int nodeToRemove, int *heightstatus,Compare Int
       }
       else if(compareResult < 0)
       {
-        avl_Remove(&((*rootPtr)->right),nodeToRemove,heightstatus,IntCompare);
+        avl_Remove(&((*rootPtr)->right),nodeToRemove,heightstatus,(Compare)compareFunc);
         if(*heightstatus == 1)
         {
           (*rootPtr)->balanceFactor--;
