@@ -80,10 +80,18 @@ int avl_Insert(Node **rootPtr, Node *nodeToAdd,Compare compareFunc){
           (*rootPtr)->balanceFactor = (*rootPtr)->balanceFactor;
                                                   }
         }
-      if((*rootPtr)->balanceFactor >= 2)
-        avlBalanceRightTreeV1(&(*rootPtr));
-      else if((*rootPtr)->balanceFactor <= -2)
-        avlBalanceLeftTreeV1(&(*rootPtr));
+        if((*rootPtr)->balanceFactor >= 2)
+  	  {
+          avlBalanceRightTreeV1(&(*rootPtr));
+  		   if((*rootPtr)->balanceFactor == 0)
+              heightstatus = 0;
+  	  }
+        else if((*rootPtr)->balanceFactor <= -2)
+  	  {
+          avlBalanceLeftTreeV1(&(*rootPtr));
+  		   if((*rootPtr)->balanceFactor == 0)
+              heightstatus = 0;
+  	  }
       else{
         *rootPtr = *rootPtr;
       }

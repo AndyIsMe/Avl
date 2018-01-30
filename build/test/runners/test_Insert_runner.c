@@ -43,6 +43,7 @@ extern void test_avlInsert_given_15_20_25_40_55_add_35_expect_rotate_right_left_
 extern void test_avlInsert_given_50_60_add_40_expect_rotate_right_for_a_balance_tree(void);
 extern void test_avlInsert_given_10_40_45_60_65_add_50_expect_rotate_left_right_a_balance_tree(void);
 extern void test_avlInsert_given_10_40_50_60_65_add_45_expect_rotate_left_right_a_balance_tree(void);
+extern void test_Insert_Add_1_25_40_50_55_expect_rotate_left(void);
 extern void test_insert_Rex(void);
 extern void test_insert_Jstan_given_Rex(void);
 extern void test_insert_Jstan_given_ThengChun(void);
@@ -75,10 +76,11 @@ int main(void)
   RUN_TEST(test_avlInsert_given_50_60_add_40_expect_rotate_right_for_a_balance_tree, 249);
   RUN_TEST(test_avlInsert_given_10_40_45_60_65_add_50_expect_rotate_left_right_a_balance_tree, 277);
   RUN_TEST(test_avlInsert_given_10_40_50_60_65_add_45_expect_rotate_left_right_a_balance_tree, 313);
-  RUN_TEST(test_insert_Rex, 331);
-  RUN_TEST(test_insert_Jstan_given_Rex, 341);
-  RUN_TEST(test_insert_Jstan_given_ThengChun, 352);
-  RUN_TEST(test_insert_Alexander_given_Rex_ThengChun_Andy, 363);
+  RUN_TEST(test_Insert_Add_1_25_40_50_55_expect_rotate_left, 331);
+  RUN_TEST(test_insert_Rex, 352);
+  RUN_TEST(test_insert_Jstan_given_Rex, 362);
+  RUN_TEST(test_insert_Jstan_given_ThengChun, 373);
+  RUN_TEST(test_insert_Alexander_given_Rex_ThengChun_Andy, 384);
 
   return (UnityEnd());
 }

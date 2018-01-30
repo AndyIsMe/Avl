@@ -328,7 +328,28 @@ void test_avlInsert_given_40_50_add_100_expect_a_balance_tree(void){
     TEST_ASSERT_EQUAL_NODE(NULL,NULL,0,&node65);
   }
 
-  void test_insert_Rex(void)
+  void test_Insert_Add_1_25_40_50_55_expect_rotate_left(void){
+  initNode(&node1,NULL,NULL,0);
+  initNode(&node25,NULL,NULL,0);
+  initNode(&node40,NULL,NULL,0);
+  initNode(&node50,NULL,NULL,0);
+  initNode(&node55,NULL,NULL,0);
+  Node *root = NULL;
+  avlAddInteger(&root,&node1);
+  avlAddInteger(&root,&node25);
+  avlAddInteger(&root,&node40);
+  avlAddInteger(&root,&node50);
+  avlAddInteger(&root,&node55);
+  TEST_ASSERT_EQUAL_PTR(&node25,root);
+  TEST_ASSERT_EQUAL_NODE(&node1,&node50,1,&node25);
+  TEST_ASSERT_EQUAL_NODE(&node40,&node55,0,&node50);
+  TEST_ASSERT_EQUAL_NODE(NULL,NULL,0,&node1);
+  TEST_ASSERT_EQUAL_NODE(NULL,NULL,0,&node40);
+  TEST_ASSERT_EQUAL_NODE(NULL,NULL,0,&node55);
+
+}
+
+void test_insert_Rex(void)
 {
     //initNodeString(&nodeRex,NULL,NULL,0);
 
