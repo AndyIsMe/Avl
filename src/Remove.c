@@ -147,17 +147,31 @@ Node *avl_Remove(Node **rootPtr, int nodeToRemove, int *heightstatus,Compare com
       return *rootPtr;
     }
     if((*rootPtr)->balanceFactor >= 2)
+    {
       avlBalanceRightTreeV1(&(*rootPtr));
+      if((*rootPtr)->balanceFactor !=0)
+      *heightstatus = 0;
+      else
+      *heightstatus = 1;
+    }
     else if((*rootPtr)->balanceFactor <= -2)
+    {
       avlBalanceLeftTreeV1(&(*rootPtr));
+      if((*rootPtr)->balanceFactor !=0)
+      *heightstatus = 0;
+      else
+      *heightstatus = 1;
+    }
     else
     {
       *rootPtr = *rootPtr;
     }
     if((*rootPtr)->balanceFactor !=0)
     *heightstatus = 0;
-    else
+    if((*rootPtr)->left == NULL && (*rootPtr)->right == NULL)
     *heightstatus = 1;
+    // else
+    // *heightstatus = 1;
     return *rootPtr;
 }
 /*

@@ -1256,6 +1256,64 @@ void test_remove_node_30_replace_by_node_45_with_rotation(void){
 
 
 
+void test_Remove_40(void){
+
+initNode(&node1,
+
+               ((void *)0)
+
+                   ,
+
+                    ((void *)0)
+
+                        ,0);
+
+initNode(&node25,&node1,&node50,1);
+
+initNode(&node40,
+
+                ((void *)0)
+
+                    ,
+
+                     ((void *)0)
+
+                         ,0);
+
+initNode(&node50,&node40,&node55,0);
+
+initNode(&node55,
+
+                ((void *)0)
+
+                    ,
+
+                     ((void *)0)
+
+                         ,0);
+
+Node *root = &node25;
+
+RemoveN(&root,40,(Compare) IntCompare);
+
+testAssertEqualNode(&node1,&node50,1,&node25,448);
+
+testAssertEqualNode(
+
+((void *)0)
+
+,&node55,1,&node50,449);
+
+
+
+}
+
+
+
+
+
+
+
 void test_remove_Alexander_given_Rex_ThengChun_Andy(void)
 
 {
@@ -1296,19 +1354,9 @@ void test_remove_Alexander_given_Rex_ThengChun_Andy(void)
 
  ((void *)0)
 
- ), (UNITY_UINT)(448), UNITY_DISPLAY_STYLE_HEX32);
+ ), (UNITY_UINT)(463), UNITY_DISPLAY_STYLE_HEX32);
 
-  testAssertStringEqualNode(&nodeThengChun,&nodeAndy,0,&nodeRex,449);
-
-  testAssertStringEqualNode(
-
- ((void *)0)
-
- ,
-
- ((void *)0)
-
- ,0,&nodeAndy,450);
+  testAssertStringEqualNode(&nodeThengChun,&nodeAndy,0,&nodeRex,464);
 
   testAssertStringEqualNode(
 
@@ -1318,7 +1366,17 @@ void test_remove_Alexander_given_Rex_ThengChun_Andy(void)
 
  ((void *)0)
 
- ,0,&nodeThengChun,451);
+ ,0,&nodeAndy,465);
+
+  testAssertStringEqualNode(
+
+ ((void *)0)
+
+ ,
+
+ ((void *)0)
+
+ ,0,&nodeThengChun,466);
 
 
 

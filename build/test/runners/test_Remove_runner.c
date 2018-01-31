@@ -43,6 +43,7 @@ extern void test_remove_node_20_replace_by_node_25_with_rotation(void);
 extern void test_remove_node_15_replace_by_node_20(void);
 extern void test_remove_node_40_replace_by_node_50(void);
 extern void test_remove_node_30_replace_by_node_45_with_rotation(void);
+extern void test_Remove_40(void);
 extern void test_remove_Alexander_given_Rex_ThengChun_Andy(void);
 
 
@@ -72,7 +73,8 @@ int main(void)
   RUN_TEST(test_remove_node_15_replace_by_node_20, 356);
   RUN_TEST(test_remove_node_40_replace_by_node_50, 383);
   RUN_TEST(test_remove_node_30_replace_by_node_45_with_rotation, 418);
-  RUN_TEST(test_remove_Alexander_given_Rex_ThengChun_Andy, 440);
+  RUN_TEST(test_Remove_40, 440);
+  RUN_TEST(test_remove_Alexander_given_Rex_ThengChun_Andy, 455);
 
   return (UnityEnd());
 }

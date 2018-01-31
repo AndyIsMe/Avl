@@ -830,7 +830,7 @@ void test_avlInsert_given_40_50_add_100_expect_a_balance_tree(void){
 
 
 
-  void test_Insert_Add_1_25_40_50_55_expect_rotate_left(void){
+void test_Insert_Add_1_25_40_50_55_expect_rotate_left(void){
 
   initNode(&node1,
 

@@ -437,6 +437,21 @@ void test_remove_node_30_replace_by_node_45_with_rotation(void){
 
 }
 
+void test_Remove_40(void){
+initNode(&node1,NULL,NULL,0);
+initNode(&node25,&node1,&node50,1);
+initNode(&node40,NULL,NULL,0);
+initNode(&node50,&node40,&node55,0);
+initNode(&node55,NULL,NULL,0);
+Node *root = &node25;
+avlRemoveInteger(&root,40);
+TEST_ASSERT_EQUAL_NODE(&node1,&node50,1,&node25);
+TEST_ASSERT_EQUAL_NODE(NULL,&node55,1,&node50);
+
+}
+
+
+
 void test_remove_Alexander_given_Rex_ThengChun_Andy(void)
 {
   initNodeString(&nodeRex,&nodeThengChun,&nodeAndy,1);
